@@ -1,5 +1,6 @@
 // lib/widgets/date_time_picker.dart
 import 'package:flutter/material.dart';
+import 'package:slylist_app/theme.dart';
 
 class DateTimePicker extends StatefulWidget {
   @override
@@ -19,7 +20,7 @@ class _DateTimePickerState extends State<DateTimePicker> {
         children: [
           Text(
             'Selecciona la fecha y hora de la visita',
-            style: Theme.of(context).textTheme.headline6,
+            style: primaryTextTitleStyle,
           ),
           SizedBox(height: 16),
           ElevatedButton(
@@ -36,7 +37,13 @@ class _DateTimePickerState extends State<DateTimePicker> {
                 });
               }
             },
-            child: Text('Seleccionar fecha'),
+            child: Text(
+              'Seleccionar fecha',
+              style: buttonTextPrimaryStyle,
+            ),
+            style: ElevatedButton.styleFrom(
+              primary: primaryColorBlue,
+            ),
           ),
           SizedBox(height: 16),
           ElevatedButton(
@@ -58,7 +65,13 @@ class _DateTimePickerState extends State<DateTimePicker> {
                 });
               }
             },
-            child: Text('Seleccionar hora'),
+            child: Text(
+              'Seleccionar hora',
+              style: buttonTextPrimaryStyle,
+            ),
+            style: ElevatedButton.styleFrom(
+              primary: primaryColorBlue,
+            ),
           ),
           SizedBox(height: 16),
           Text(
@@ -71,7 +84,13 @@ class _DateTimePickerState extends State<DateTimePicker> {
               // Realiza alguna acción con la fecha y hora seleccionada
               Navigator.pop(context);
             },
-            child: Text('Confirmar visita'),
+            child: Text(
+              'Confirmar visita',
+              style: buttonTextPrimaryStyle,
+            ),
+            style: ElevatedButton.styleFrom(
+              primary: primaryColorBlue,
+            ),
           ),
         ],
       ),

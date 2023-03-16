@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:slylist_app/theme.dart';
 
 class SelectionWidget extends StatelessWidget {
   final IconData icon;
@@ -18,11 +19,9 @@ class SelectionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-
     return Card(
       elevation: 3.0,
-      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Row(
@@ -32,7 +31,7 @@ class SelectionWidget extends StatelessWidget {
                 icon,
                 color: Colors.white,
               ),
-              backgroundColor: Theme.of(context).primaryColor,
+              backgroundColor: primaryColorBlue,
             ),
             SizedBox(width: 16),
             Expanded(
@@ -41,13 +40,13 @@ class SelectionWidget extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: textTheme.subtitle1,
+                    style: primaryTextSubtitleStyle,
                   ),
                   if (subTitle.isNotEmpty)
                     Text(
                       subTitle,
-                      style: textTheme.bodyText2!
-                          .copyWith(color: Theme.of(context).hintColor),
+                      style: secondaryTextBodyStyle.copyWith(
+                          color: secondaryColorBlueGrey, fontSize: 14),
                     ),
                 ],
               ),
@@ -55,7 +54,7 @@ class SelectionWidget extends StatelessWidget {
             Checkbox(
               value: isSelected,
               onChanged: onChanged,
-              activeColor: Theme.of(context).accentColor,
+              activeColor: primaryColorRed,
             ),
           ],
         ),

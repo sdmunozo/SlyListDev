@@ -114,22 +114,22 @@ class _ServiceScreenState extends State<ServiceScreen> {
                     },
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
                     child: Text(
                       'Total',
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 32),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                     child: RichText(
                       text: TextSpan(
                         children: [
                           TextSpan(
                             text: '\$${_calculateTotal()} ',
                             style: TextStyle(
-                              fontSize: 70,
+                              fontSize: 50,
                               fontWeight: FontWeight.bold,
                               color: Theme.of(context)
                                   .primaryColor, // Aplica el backgroundColor aquí
@@ -138,7 +138,7 @@ class _ServiceScreenState extends State<ServiceScreen> {
                           TextSpan(
                             text: 'MXN',
                             style: TextStyle(
-                              fontSize: 25,
+                              fontSize: 20,
                               color: Theme.of(context)
                                   .primaryColor, // Aplica el backgroundColor aquí
                             ),
@@ -149,7 +149,7 @@ class _ServiceScreenState extends State<ServiceScreen> {
                   ),
 
                   Padding(
-                    padding: EdgeInsets.all(16),
+                    padding: EdgeInsets.all(6),
                     child: ElevatedButton(
                       onPressed: () {
                         showModalBottomSheet(
@@ -165,7 +165,7 @@ class _ServiceScreenState extends State<ServiceScreen> {
                       child: Text(
                         'Programar visita',
                         style: TextStyle(
-                            fontFamily: 'SohoGothicPro', fontSize: 23),
+                            fontFamily: 'SohoGothicPro', fontSize: 22),
                       ),
                       style: ElevatedButton.styleFrom(
                         primary: Color(0xFFED193E),
@@ -185,8 +185,7 @@ class _ServiceScreenState extends State<ServiceScreen> {
             ),
           ),
           Container(
-            height: 170, // ajusta la altura aquí
-            margin: EdgeInsets.only(top: 16, bottom: 8),
+            height: 170,
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             color: Colors.grey[300],
             child: Center(

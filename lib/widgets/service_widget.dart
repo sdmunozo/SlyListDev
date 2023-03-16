@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:slylist_app/theme.dart';
 
 class ServiceWidget extends StatelessWidget {
   final String serviceName;
@@ -15,11 +16,13 @@ class ServiceWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData appTheme = Theme.of(context);
+
     return Container(
       margin: EdgeInsets.only(left: 16, right: 16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        color: enabled ? color : Colors.grey,
+        color: enabled ? color : appTheme.disabledColor,
       ),
       child: Padding(
         padding: EdgeInsets.all(16),
@@ -29,12 +32,7 @@ class ServiceWidget extends StatelessWidget {
             SizedBox(width: 16),
             Text(
               serviceName,
-              style: TextStyle(
-                fontFamily: 'SohoGothicPro',
-                fontSize: 25,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
+              style: primaryTextTitleStyle.copyWith(color: Colors.white),
             ),
           ],
         ),

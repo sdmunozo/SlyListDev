@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:slylist_app/screens/confirmation_screen.dart';
+import 'package:slylist_app/theme.dart';
 
 class DateTimePickerBottomSheet extends StatefulWidget {
   @override
@@ -31,7 +32,7 @@ class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
         children: [
           Text(
             'Selecciona fecha y hora',
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            style: primaryTextTitleStyle,
           ),
           SizedBox(height: 10),
           Expanded(
@@ -57,11 +58,11 @@ class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
                 },
                 child: Text(
                   'Cancelar',
-                  style: TextStyle(fontFamily: 'SohoGothicPro', fontSize: 18),
+                  style: buttonTextSecondaryStyle,
                 ),
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.grey,
-                  onPrimary: Colors.white,
+                  primary: secondaryColorGrey,
+                  onPrimary: appTheme().primaryColor,
                   padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
@@ -80,11 +81,11 @@ class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
                 },
                 child: Text(
                   'Continuar',
-                  style: TextStyle(fontFamily: 'SohoGothicPro', fontSize: 18),
+                  style: buttonTextPrimaryStyle,
                 ),
                 style: ElevatedButton.styleFrom(
-                  primary: Theme.of(context).primaryColor,
-                  onPrimary: Colors.white,
+                  primary: primaryColorBlue,
+                  onPrimary: appTheme().backgroundColor,
                   padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),

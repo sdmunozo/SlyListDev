@@ -6,6 +6,7 @@ import 'package:slylist_app/screens/help_screen.dart';
 import 'package:slylist_app/screens/payment_methods_screen.dart';
 import 'package:slylist_app/screens/service_history_screen.dart';
 import 'package:slylist_app/screens/terms_and_conditions_screen.dart';
+import 'package:slylist_app/theme.dart';
 
 class SideMenu extends StatelessWidget {
   @override
@@ -17,7 +18,7 @@ class SideMenu extends StatelessWidget {
           DrawerHeader(
             child: Image.asset('assets/slylistLogoBlanco.png'),
             decoration: BoxDecoration(
-              color: Color(0xFF142449),
+              color: primaryColorBlue,
             ),
           ),
           _createDrawerItem(
@@ -120,10 +121,8 @@ class SideMenu extends StatelessWidget {
             padding: EdgeInsets.only(left: 8.0),
             child: Text(
               text,
-              style: TextStyle(
-                fontFamily: 'Cairo-Regular',
-                fontSize: 18, // Aumenta el tamaño del texto
-              ),
+              style: secondaryTextBodyStyle.copyWith(
+                  fontSize: 18), // Usa el estilo de texto secundario del tema
             ),
           ),
         ],

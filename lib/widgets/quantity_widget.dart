@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:slylist_app/theme.dart';
 
 class QuantityWidget extends StatelessWidget {
   final IconData icon;
@@ -20,7 +21,7 @@ class QuantityWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
       padding: EdgeInsets.all(5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
@@ -28,26 +29,30 @@ class QuantityWidget extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Icon(icon, size: 50, color: Colors.black),
+          Icon(icon, size: 50, color: primaryColorBlue),
           SizedBox(width: 15),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 title,
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                style: primaryTextTitleStyle.copyWith(fontSize: 18),
               ),
-              Text(subTitle, style: TextStyle(fontSize: 16)),
+              Text(
+                subTitle,
+                style: primaryTextSubtitleStyle.copyWith(fontSize: 16),
+              ),
             ],
           ),
           Spacer(),
           IconButton(
-            icon: Icon(Icons.remove),
+            icon: Icon(Icons.remove, color: primaryColorBlue),
             onPressed: onDecrement,
           ),
-          Text(quantity.toString(), style: TextStyle(fontSize: 26)),
+          Text(quantity.toString(),
+              style: primaryTextTitleStyle.copyWith(fontSize: 26)),
           IconButton(
-            icon: Icon(Icons.add),
+            icon: Icon(Icons.add, color: primaryColorBlue),
             onPressed: onIncrement,
           ),
         ],

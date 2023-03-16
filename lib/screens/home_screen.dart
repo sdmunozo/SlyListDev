@@ -100,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Text("Servicios Populares",
                         style: TextStyle(
                             fontFamily: 'Cairo-Bold',
-                            fontSize: 28,
+                            fontSize: 26,
                             color: Color(0xFFEC193E))),
                   ),
                   GestureDetector(
@@ -124,7 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Text("Próximamente",
                         style: TextStyle(
                             fontFamily: 'Cairo-Bold',
-                            fontSize: 28,
+                            fontSize: 20,
                             color: Color(0xFFEC193E))),
                   ),
                   SizedBox(height: 16),

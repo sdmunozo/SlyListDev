@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:slylist_app/screens/referral_code_screen.dart';
+import 'package:slylist_app/theme.dart';
 
 class ReferAFriendWidget extends StatelessWidget {
   @override
@@ -22,29 +23,29 @@ class ReferAFriendWidget extends StatelessWidget {
         margin: EdgeInsets.symmetric(horizontal: 16),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
-          color: appTheme.accentColor,
+          color: primaryColorRed,
         ),
         child: Padding(
-          padding: EdgeInsets.all(16),
+          padding: EdgeInsets.all(12),
           child: Column(
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Icon(Icons.card_travel, size: 65, color: Colors.white),
+                  Icon(Icons.card_travel, size: 50, color: Colors.white),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
                           "Invita a tus amigos",
-                          style: appTheme.textTheme.subtitle1
-                              ?.copyWith(color: Colors.white),
+                          style: secondaryTextTitleStyle.copyWith(
+                              color: Colors.white, fontSize: 20),
                         ),
                         Text(
                           "Gana hasta \$200",
-                          style: appTheme.textTheme.subtitle2
-                              ?.copyWith(color: Colors.white),
+                          style: secondaryTextBodyStyle.copyWith(
+                              color: Colors.white, fontSize: 16),
                         ),
                       ],
                     ),
