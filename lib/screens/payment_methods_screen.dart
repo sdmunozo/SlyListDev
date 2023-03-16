@@ -1,5 +1,6 @@
 // lib/screens/payment_methods_screen.dart
 import 'package:flutter/material.dart';
+import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
 
 class PaymentMethodsScreen extends StatefulWidget {
   @override
@@ -13,13 +14,7 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Métodos de pago',
-          style: TextStyle(fontFamily: 'Cairo-Bold'),
-        ),
-        backgroundColor: Theme.of(context).primaryColor,
-      ),
+      appBar: CustomAppBar(title: 'Métodos de pago'),
       body: ListView(
         children: <Widget>[
           _buildPaymentMethodItem(

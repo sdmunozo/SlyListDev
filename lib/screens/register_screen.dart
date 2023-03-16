@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
 
 class RegisterForm extends StatefulWidget {
   @override
@@ -11,13 +12,7 @@ class _RegisterFormState extends State<RegisterForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xFF142449),
-        title: Text(
-          'Registro',
-          style: TextStyle(fontFamily: 'SohoGothicPro-Bold', fontSize: 24),
-        ),
-      ),
+      appBar: CustomAppBar(title: 'Registro'),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: SingleChildScrollView(

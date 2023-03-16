@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
 import 'package:slylist_app/widgets/date_time_picker.dart';
 import 'package:slylist_app/widgets/date_time_picker_bottom_sheet.dart';
 import 'package:slylist_app/widgets/quantity_widget.dart';
@@ -29,18 +30,7 @@ class _ServiceScreenState extends State<ServiceScreen> {
     final textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Limpieza',
-          style: textTheme.headline6!.copyWith(
-            fontFamily: 'SohoGothicPro',
-            fontWeight: FontWeight.bold,
-            color:
-                Theme.of(context).backgroundColor, // Aplica el hintColor aquí
-          ),
-        ),
-        backgroundColor: Theme.of(context).primaryColor,
-      ),
+      appBar: CustomAppBar(title: 'Limpieza'),
       body: Column(
         children: [
           Expanded(

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
 
 class ConfirmationScreen extends StatefulWidget {
   @override
@@ -12,11 +13,7 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Confirmación del servicio',
-            style: TextStyle(fontFamily: 'Cairo-Bold')),
-        backgroundColor: Theme.of(context).primaryColor,
-      ),
+      appBar: CustomAppBar(title: 'Confirmación del servicio'),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(16),

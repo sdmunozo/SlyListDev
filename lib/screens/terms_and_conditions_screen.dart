@@ -1,14 +1,12 @@
 // lib/screens/terms_and_conditions_screen.dart
 import 'package:flutter/material.dart';
+import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
 
 class TermsAndConditionsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Términos y Condiciones'),
-        backgroundColor: Theme.of(context).primaryColor,
-      ),
+      appBar: CustomAppBar(title: 'Términos y Condiciones'),
       body: Padding(
         padding: EdgeInsets.all(16),
         child: SingleChildScrollView(

@@ -1,5 +1,6 @@
 // lib/screens/service_history_screen.dart
 import 'package:flutter/material.dart';
+import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
 
 class ServiceHistoryScreen extends StatefulWidget {
   @override
@@ -36,12 +37,8 @@ class _ServiceHistoryScreenState extends State<ServiceHistoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Historial de servicios',
-          style: TextStyle(fontFamily: 'Cairo-Bold'),
-        ),
-        backgroundColor: Theme.of(context).primaryColor,
+      appBar: CustomAppBar(
+        title: 'Historial de servicios',
       ),
       body: ListView.builder(
         itemCount: _services.length,

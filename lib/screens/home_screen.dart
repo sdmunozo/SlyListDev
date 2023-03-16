@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:slylist_app/screens/service_screen.dart';
+import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
 import 'package:slylist_app/widgets/refer_a_friend_widget.dart';
 import 'package:slylist_app/widgets/service_widget.dart';
 import 'package:slylist_app/widgets/side_menu.dart';
@@ -40,11 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xFF142449),
-        title: Text('SlyList'),
-        centerTitle: true,
-      ),
+      appBar: CustomAppBar(title: 'SlyList'),
       drawer: SideMenu(),
       body: Column(
         children: [

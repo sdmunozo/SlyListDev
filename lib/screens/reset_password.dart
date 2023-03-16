@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
   @override
@@ -12,13 +13,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xFF142449),
-        title: Text(
-          'Recuperar contraseña',
-          style: TextStyle(fontFamily: 'SohoGothicPro-Bold', fontSize: 24),
-        ),
-      ),
+      appBar: CustomAppBar(title: 'Recuperar contraseña'),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.0),
         child: SingleChildScrollView(

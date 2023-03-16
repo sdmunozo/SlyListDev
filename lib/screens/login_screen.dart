@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:slylist_app/screens/home_screen.dart';
 import 'package:slylist_app/screens/register_screen.dart';
 import 'package:slylist_app/screens/reset_password.dart';
+import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -14,13 +15,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xFF142449),
-        title: Text(
-          'Iniciar sesión',
-          style: TextStyle(fontFamily: 'SohoGothicPro-Bold', fontSize: 24),
-        ),
-      ),
+      appBar: CustomAppBar(title: 'Iniciar sesión'),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: SingleChildScrollView(
