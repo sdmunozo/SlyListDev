@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:slylist_app/screens/address_screen.dart';
+import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
 
 class EditAddressScreen extends StatefulWidget {
-  final Address address;
+  final Address? address;
+  final Function(Address) onSave;
+  final bool isNew;
 
-  EditAddressScreen({required this.address});
+  EditAddressScreen({this.address, required this.onSave, this.isNew = false});
 
   @override
   _EditAddressScreenState createState() => _EditAddressScreenState();
@@ -22,13 +25,13 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
   @override
   void initState() {
     super.initState();
-    _aliasController.text = widget.address.alias;
-    _streetController.text = widget.address.street;
-    _cityController.text = widget.address.city;
-    _stateController.text = widget.address.state;
-    _zipCodeController.text = widget.address.zipCode;
-    _countryController.text = widget.address.country;
-    _isDefault = widget.address.isDefault;
+    _aliasController.text = widget.address?.alias ?? '';
+    _streetController.text = widget.address?.street ?? '';
+    _cityController.text = widget.address?.city ?? '';
+    _stateController.text = widget.address?.state ?? '';
+    _zipCodeController.text = widget.address?.zipCode ?? '';
+    _countryController.text = widget.address?.country ?? '';
+    _isDefault = widget.address?.isDefault ?? false;
   }
 
   @override
@@ -46,8 +49,8 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
   Widget build(BuildContext context) {
     ThemeData appTheme = Theme.of(context);
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Editar dirección', style: appTheme.textTheme.headline6),
+      appBar: CustomAppBar(
+        title: widget.isNew ? 'Nueva dirección' : 'Editar dirección',
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16),
@@ -139,7 +142,17 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
                     padding: EdgeInsets.only(left: 8),
                     child: ElevatedButton(
                       onPressed: () {
-// Implementar la funcionalidad de guardar dirección aquí
+                        Address newAddress = Address(
+                          alias: _aliasController.text,
+                          street: _streetController.text,
+                          city: _cityController.text,
+                          state: _stateController.text,
+                          zipCode: _zipCodeController.text,
+                          country: _countryController.text,
+                          isDefault: _isDefault,
+                        );
+                        widget.onSave(newAddress);
+                        Navigator.pop(context);
                       },
                       child: Text(
                         'Guardar',

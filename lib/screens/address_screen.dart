@@ -64,6 +64,11 @@ class _AddressScreenState extends State<AddressScreen> {
           return _buildAddressCard(_addresses[index]);
         },
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _addNewAddress,
+        child: Icon(Icons.add),
+        backgroundColor: Theme.of(context).primaryColor,
+      ),
     );
   }
 
@@ -71,7 +76,32 @@ class _AddressScreenState extends State<AddressScreen> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => EditAddressScreen(address: address),
+        builder: (context) => EditAddressScreen(
+          address: address,
+          isNew: false,
+          onSave: (newAddress) {
+            setState(() {
+              int index = _addresses.indexOf(address);
+              _addresses[index] = newAddress;
+            });
+          },
+        ),
+      ),
+    );
+  }
+
+  void _addNewAddress() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => EditAddressScreen(
+          isNew: true,
+          onSave: (newAddress) {
+            setState(() {
+              _addresses.add(newAddress);
+            });
+          },
+        ),
       ),
     );
   }
@@ -135,8 +165,15 @@ class _AddressScreenState extends State<AddressScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) =>
-                              EditAddressScreen(address: address),
+                          builder: (context) => EditAddressScreen(
+                            address: address,
+                            onSave: (newAddress) {
+                              setState(() {
+                                int index = _addresses.indexOf(address);
+                                _addresses[index] = newAddress;
+                              });
+                            },
+                          ),
                         ),
                       );
                     },
