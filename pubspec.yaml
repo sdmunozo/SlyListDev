@@ -34,6 +34,7 @@ dependencies:
   flutter_map: ^0.14.0
   latlong2: ^0.8.0
   geolocator: ^7.6.2
+  url_launcher: ^6.0.12
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -66,6 +67,8 @@ flutter:
   assets:
   - assets/
   - assets/slylistLogoColor.png
+  - assets/account.png
+  - assets/paypal_logo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

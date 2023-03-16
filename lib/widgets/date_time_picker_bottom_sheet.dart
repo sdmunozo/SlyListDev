@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:slylist_app/screens/confirmation_screen.dart';
 
 class DateTimePickerBottomSheet extends StatefulWidget {
   @override
@@ -70,6 +71,12 @@ class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
               ElevatedButton(
                 onPressed: () {
                   Navigator.pop(context, _selectedDateTime);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ConfirmationScreen(),
+                    ),
+                  );
                 },
                 child: Text(
                   'Continuar',
