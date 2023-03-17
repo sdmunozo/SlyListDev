@@ -5,7 +5,6 @@ import 'package:slylist_app/widgets/date_time_picker_bottom_sheet.dart';
 import 'package:slylist_app/widgets/quantity_widget.dart';
 import 'package:slylist_app/widgets/selection_widget.dart';
 import 'package:slylist_app/screens/service_screen.dart';
-import 'package:slylist_app/screens/service_details_screen.dart'; // Importar la pantalla de detalles
 
 class ServiceScreen extends StatefulWidget {
   @override

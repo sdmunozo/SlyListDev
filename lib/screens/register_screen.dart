@@ -70,6 +70,13 @@ class _RegisterFormState extends State<RegisterForm> {
                 ),
               ),
               SizedBox(height: 20),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Cupón de referido (opcional)',
+                  labelStyle: TextStyle(fontFamily: 'Cairo-Regular'),
+                ),
+              ),
+              SizedBox(height: 20),
               Row(
                 children: [
                   Checkbox(
