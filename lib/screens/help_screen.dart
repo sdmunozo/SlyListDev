@@ -28,6 +28,11 @@ class HelpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ThemeData appTheme = Theme.of(context);
+    final callButtonStyle = ElevatedButton.styleFrom(
+      primary: appTheme.accentColor,
+      padding: EdgeInsets.symmetric(vertical: 16),
+      textStyle: TextStyle(fontSize: 20),
+    );
     return Scaffold(
       backgroundColor: appTheme.canvasColor,
       appBar: CustomAppBar(title: 'Ayuda'),
@@ -67,11 +72,7 @@ class HelpScreen extends StatelessWidget {
                       },
                       icon: Icon(Icons.call, size: 30),
                       label: Text('Llamar'),
-                      style: ElevatedButton.styleFrom(
-                        primary: appTheme.accentColor,
-                        padding: EdgeInsets.symmetric(vertical: 16),
-                        textStyle: TextStyle(fontSize: 20),
-                      ),
+                      style: callButtonStyle,
                     ),
                   ),
                 ),
@@ -85,11 +86,7 @@ class HelpScreen extends StatelessWidget {
                       },
                       icon: Icon(Icons.chat, size: 30),
                       label: Text('WhatsApp'),
-                      style: ElevatedButton.styleFrom(
-                        primary: appTheme.accentColor,
-                        padding: EdgeInsets.symmetric(vertical: 16),
-                        textStyle: TextStyle(fontSize: 20),
-                      ),
+                      style: callButtonStyle,
                     ),
                   ),
                 ),

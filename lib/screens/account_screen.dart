@@ -40,6 +40,44 @@ class _AccountScreenState extends State<AccountScreen> {
     );
   }
 
+  Widget _buildProfilePicture() {
+    return Center(
+      child: InkWell(
+        onTap: () {
+          // Implementar la funcionalidad de selección de imagen aquí
+        },
+        child: CircleAvatar(
+          radius: 60,
+          backgroundColor: Colors.white,
+          backgroundImage: AssetImage('assets/account.png'),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSaveButton(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: ElevatedButton(
+        onPressed: () {
+          // Implementar la funcionalidad de guardar cambios aquí
+        },
+        child: Text(
+          'Guardar cambios',
+          style: TextStyle(fontSize: 20, fontFamily: 'Cairo-Bold'),
+        ),
+        style: ElevatedButton.styleFrom(
+          primary: Theme.of(context).primaryColor,
+          onPrimary: Colors.white,
+          padding: EdgeInsets.symmetric(vertical: 16),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,18 +88,7 @@ class _AccountScreenState extends State<AccountScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Center(
-                child: InkWell(
-                  onTap: () {
-                    // Implementar la funcionalidad de selección de imagen aquí
-                  },
-                  child: CircleAvatar(
-                    radius: 60,
-                    backgroundColor: Colors.white,
-                    backgroundImage: AssetImage('assets/account.png'),
-                  ),
-                ),
-              ),
+              _buildProfilePicture(),
               SizedBox(height: 20),
               _buildTextFormField(labelText: 'Nombre'),
               SizedBox(height: 10),
@@ -93,26 +120,7 @@ class _AccountScreenState extends State<AccountScreen> {
                 ),
               ),
               SizedBox(height: 20),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Implementar la funcionalidad de guardar cambios aquí
-                  },
-                  child: Text(
-                    'Guardar cambios',
-                    style: TextStyle(fontSize: 20, fontFamily: 'Cairo-Bold'),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    primary: Theme.of(context).primaryColor,
-                    onPrimary: Colors.white,
-                    padding: EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                ),
-              ),
+              _buildSaveButton(context),
             ],
           ),
         ),

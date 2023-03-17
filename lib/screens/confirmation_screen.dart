@@ -11,6 +11,29 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
   bool _isAgreed = false;
   String? _selectedPaymentMethod;
 
+  Widget _buildRow(IconData icon, String title, String content) {
+    return Row(
+      children: [
+        Icon(icon, size: 35),
+        SizedBox(width: 8),
+        Flexible(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(title,
+                  style: TextStyle(
+                      fontFamily: 'Cairo-Regular',
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold)),
+              Text(content,
+                  style: TextStyle(fontFamily: 'Cairo-Bold', fontSize: 15)),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,72 +70,14 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
                           fontFamily: 'Cairo-Bold'),
                     ),
                     SizedBox(height: 10),
-                    Row(
-                      children: [
-                        Icon(Icons.cleaning_services, size: 35),
-                        SizedBox(width: 8),
-                        Flexible(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Tipo de servicio',
-                                  style: TextStyle(
-                                      fontFamily: 'Cairo-Regular',
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold)),
-                              Text('Limpieza de hogar',
-                                  style: TextStyle(
-                                      fontFamily: 'Cairo-Bold', fontSize: 15)),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+                    _buildRow(Icons.cleaning_services, 'Tipo de servicio',
+                        'Limpieza de hogar'),
                     SizedBox(height: 10),
-                    Row(
-                      children: [
-                        Icon(Icons.location_on, size: 35),
-                        SizedBox(width: 8),
-                        Flexible(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Dirección del domicilio',
-                                  style: TextStyle(
-                                      fontFamily: 'Cairo-Regular',
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold)),
-                              Text(
-                                  'Calle Falsa 123, Ciudad X, Monterrey Nuevo León, México',
-                                  style: TextStyle(
-                                      fontFamily: 'Cairo-Bold', fontSize: 15)),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+                    _buildRow(Icons.location_on, 'Dirección del domicilio',
+                        'Calle Falsa 123, Ciudad X, Monterrey Nuevo León, México'),
                     SizedBox(height: 10),
-                    Row(
-                      children: [
-                        Icon(Icons.calendar_today, size: 35),
-                        SizedBox(width: 8),
-                        Flexible(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Fecha y hora de la cita',
-                                  style: TextStyle(
-                                      fontFamily: 'Cairo-Regular',
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold)),
-                              Text('25 de marzo de 2023, 10:30 AM',
-                                  style: TextStyle(
-                                      fontFamily: 'Cairo-Bold', fontSize: 15)),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+                    _buildRow(Icons.calendar_today, 'Fecha y hora de la cita',
+                        '25 de marzo de 2023, 10:30 AM'),
                   ],
                 ),
               ),
@@ -167,7 +132,7 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
                 child: ElevatedButton(
                   onPressed: _isAgreed
                       ? () {
-                          // Implementar la funcionalidad de pago aquí
+// Implementar la funcionalidad de pago aquí
                         }
                       : null,
                   child: Text(

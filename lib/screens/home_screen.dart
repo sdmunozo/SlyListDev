@@ -17,9 +17,15 @@ class _HomeScreenState extends State<HomeScreen> {
   Position? _currentPosition;
   MapController _mapController = MapController();
 
+  @override
+  void initState() {
+    super.initState();
+    _getCurrentLocation();
+  }
+
   Future<void> _getCurrentLocation() async {
     try {
-      Position position = await Geolocator.getCurrentPosition(
+      final position = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.best);
       setState(() {
         _currentPosition = position;
@@ -33,19 +39,17 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    _getCurrentLocation();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final popularServicesTitleStyle = TextStyle(
+        fontFamily: 'Cairo-Bold', fontSize: 26, color: Color(0xFFEC193E));
+    final comingSoonTitleStyle = TextStyle(
+        fontFamily: 'Cairo-Bold', fontSize: 20, color: Color(0xFFEC193E));
+
     return Scaffold(
       appBar: CustomAppBar(title: 'SlyList'),
       drawer: SideMenu(),
       body: Column(
         children: [
-          // Mapa (1/3 de la pantalla)
           Expanded(
             flex: 1,
             child: FlutterMap(
@@ -84,8 +88,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
-
-          // Contenido (2/3 de la pantalla)
           Expanded(
             flex: 2,
             child: SingleChildScrollView(
@@ -95,10 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Padding(
                     padding: EdgeInsets.all(16),
                     child: Text("Servicios Populares",
-                        style: TextStyle(
-                            fontFamily: 'Cairo-Bold',
-                            fontSize: 26,
-                            color: Color(0xFFEC193E))),
+                        style: popularServicesTitleStyle),
                   ),
                   GestureDetector(
                     onTap: () {
@@ -117,12 +116,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   SizedBox(height: 16),
                   Padding(
-                    padding: EdgeInsets.only(left: 16, right: 16),
-                    child: Text("Próximamente",
-                        style: TextStyle(
-                            fontFamily: 'Cairo-Bold',
-                            fontSize: 20,
-                            color: Color(0xFFEC193E))),
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    child: Text("Próximamente", style: comingSoonTitleStyle),
                   ),
                   SizedBox(height: 16),
                   ServiceWidget(
@@ -143,7 +138,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          // Widget de referidos
           ReferAFriendWidget(),
           SizedBox(height: 16),
         ],

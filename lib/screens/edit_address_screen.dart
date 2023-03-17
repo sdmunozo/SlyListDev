@@ -45,6 +45,15 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
     super.dispose();
   }
 
+  Widget _buildTextFormField(String labelText, TextEditingController controller,
+      {TextInputType keyboardType = TextInputType.text}) {
+    return TextFormField(
+      controller: controller,
+      decoration: InputDecoration(labelText: labelText),
+      keyboardType: keyboardType,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     ThemeData appTheme = Theme.of(context);
@@ -57,48 +66,18 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TextFormField(
-              controller: _aliasController,
-              decoration: InputDecoration(
-                labelText: 'Alias',
-              ),
-            ),
+            _buildTextFormField('Alias', _aliasController),
             SizedBox(height: 10),
-            TextFormField(
-              controller: _streetController,
-              decoration: InputDecoration(
-                labelText: 'Calle y número',
-              ),
-            ),
+            _buildTextFormField('Calle y número', _streetController),
             SizedBox(height: 10),
-            TextFormField(
-              controller: _cityController,
-              decoration: InputDecoration(
-                labelText: 'Ciudad',
-              ),
-            ),
+            _buildTextFormField('Ciudad', _cityController),
             SizedBox(height: 10),
-            TextFormField(
-              controller: _stateController,
-              decoration: InputDecoration(
-                labelText: 'Estado',
-              ),
-            ),
+            _buildTextFormField('Estado', _stateController),
             SizedBox(height: 10),
-            TextFormField(
-              controller: _zipCodeController,
-              decoration: InputDecoration(
-                labelText: 'Código postal',
-              ),
-              keyboardType: TextInputType.number,
-            ),
+            _buildTextFormField('Código postal', _zipCodeController,
+                keyboardType: TextInputType.number),
             SizedBox(height: 10),
-            TextFormField(
-              controller: _countryController,
-              decoration: InputDecoration(
-                labelText: 'País',
-              ),
-            ),
+            _buildTextFormField('País', _countryController),
             SizedBox(height: 10),
             CheckboxListTile(
               title: Text('Establecer como dirección predeterminada'),

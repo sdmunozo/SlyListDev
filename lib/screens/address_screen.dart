@@ -1,4 +1,3 @@
-// lib/screens/address_screen.dart
 import 'package:flutter/material.dart';
 import 'package:slylist_app/screens/edit_address_screen.dart';
 import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
@@ -67,37 +66,45 @@ class _AddressScreenState extends State<AddressScreen> {
     );
   }
 
-  void _openAddressEditor(Address address) {
+  void _navigateToEditAddressScreen(
+      {required Address address,
+      required bool isNew,
+      required Function(Address) onSave}) {
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => EditAddressScreen(
           address: address,
-          isNew: false,
-          onSave: (newAddress) {
-            setState(() {
-              int index = _addresses.indexOf(address);
-              _addresses[index] = newAddress;
-            });
-          },
+          isNew: isNew,
+          onSave: onSave,
         ),
       ),
     );
   }
 
+  void _openAddressEditor(Address address) {
+    _navigateToEditAddressScreen(
+      address: address,
+      isNew: false,
+      onSave: (newAddress) {
+        setState(() {
+          int index = _addresses.indexOf(address);
+          _addresses[index] = newAddress;
+        });
+      },
+    );
+  }
+
   void _addNewAddress() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => EditAddressScreen(
-          isNew: true,
-          onSave: (newAddress) {
-            setState(() {
-              _addresses.add(newAddress);
-            });
-          },
-        ),
-      ),
+    _navigateToEditAddressScreen(
+      address: Address(
+          alias: '', street: '', city: '', state: '', zipCode: '', country: ''),
+      isNew: true,
+      onSave: (newAddress) {
+        setState(() {
+          _addresses.add(newAddress);
+        });
+      },
     );
   }
 
@@ -146,7 +153,7 @@ class _AddressScreenState extends State<AddressScreen> {
               ),
               SizedBox(height: 10),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   if (address.isDefault)
                     Chip(
