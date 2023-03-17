@@ -1,12 +1,11 @@
-// theme.dart
 import 'package:flutter/material.dart';
 
 class AppTheme {
   AppTheme._();
 
   // Colores primarios
-  static const Color primaryRed = Color(0xFF142431);
-  static const Color primaryNavyBlue = Color(0xFFED193E);
+  static const Color primaryRed = Color(0xFFED193E);
+  static const Color primaryNavyBlue = Color(0xFF142431);
 
   // Colores secundarios
   static const Color secondaryLightGray = Color(0xFFE5E1E5);
@@ -55,4 +54,6 @@ class AppTheme {
       overline: TextStyle(fontFamily: 'Cairo-Regular', fontSize: 10),
     );
   }
+
+  static ThemeData get light => lightTheme;
 }

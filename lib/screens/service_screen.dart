@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
-import 'package:slylist_app/widgets/date_time_picker.dart';
-import 'package:slylist_app/widgets/date_time_picker_bottom_sheet.dart';
+import 'package:slylist_app/widgets/date_time_picker_bottom_widget.dart';
+import 'package:slylist_app/widgets/date_time_picker_bottom_widget.dart';
+import 'package:slylist_app/widgets/large_button_widget.dart';
 import 'package:slylist_app/widgets/quantity_widget.dart';
 import 'package:slylist_app/widgets/selection_widget.dart';
 import 'package:slylist_app/screens/service_details_screen.dart';
@@ -182,36 +183,23 @@ class _ServiceScreenState extends State<ServiceScreen> {
     );
   }
 
-  Padding buildScheduleButton(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(6),
-      child: ElevatedButton(
-        onPressed: () {
-          showModalBottomSheet(
-            context: context,
-            builder: (context) => DateTimePickerBottomSheet(),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-            ),
-            isScrollControlled: true,
-          );
-        },
-        child: Text(
-          'Programar visita',
-          style: textTheme.headline5!.copyWith(
-            fontFamily: 'SohoGothicPro',
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
+  Widget buildScheduleButton(BuildContext context) {
+    return LargeButtonWidget(
+      colorOption: ButtonColorOption.option3,
+      onPressed: () {
+        showModalBottomSheet(
+          context: context,
+          builder: (context) => Container(
+            height: MediaQuery.of(context).size.height *
+                0.5, // establecer la altura
+            child: DateTimePickerBottomSheet(),
           ),
-        ),
-        style: ElevatedButton.styleFrom(
-          primary: Theme.of(context).accentColor,
-          padding: EdgeInsets.symmetric(vertical: 16, horizontal: 32),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
           ),
-        ),
-      ),
+        );
+      },
+      buttonText: 'Programar visita',
     );
   }
 

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:slylist_app/theme.dart';
 import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
+import 'package:slylist_app/widgets/large_button_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HelpScreen extends StatelessWidget {
@@ -14,7 +16,7 @@ class HelpScreen extends StatelessWidget {
       'answer':
           'Ve a la sección "Mi cuenta" en la aplicación y selecciona "Cambiar dirección de correo electrónico".',
     },
-    // Agrega más preguntas y respuestas aquí
+// Agrega más preguntas y respuestas aquí
   ];
 
   Future<void> _launchURL(String url) async {
@@ -27,14 +29,14 @@ class HelpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ThemeData appTheme = Theme.of(context);
+    final appTheme = AppTheme.light;
     final callButtonStyle = ElevatedButton.styleFrom(
-      primary: appTheme.accentColor,
+      primary: AppTheme.primaryNavyBlue,
       padding: EdgeInsets.symmetric(vertical: 16),
       textStyle: TextStyle(fontSize: 20),
     );
     return Scaffold(
-      backgroundColor: appTheme.canvasColor,
+      backgroundColor: appTheme.scaffoldBackgroundColor,
       appBar: CustomAppBar(title: 'Ayuda'),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -48,6 +50,7 @@ class HelpScreen extends StatelessWidget {
                   return FAQWidget(
                     question: faqs[index]['question']!,
                     answer: faqs[index]['answer']!,
+                    appTheme: appTheme,
                   );
                 },
               ),
@@ -56,7 +59,7 @@ class HelpScreen extends StatelessWidget {
             Text(
               '¿Necesitas más ayuda?',
               style: appTheme.textTheme.subtitle1
-                  ?.copyWith(color: appTheme.primaryColor, fontSize: 24),
+                  ?.copyWith(color: AppTheme.primaryRed, fontSize: 24),
             ),
             SizedBox(height: 26),
             Row(
@@ -64,35 +67,35 @@ class HelpScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: ElevatedButton.icon(
+                    padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                    child: LargeButtonWidget(
                       onPressed: () {
                         _launchURL(
                             'tel:+1234567890'); // Reemplaza con el número de teléfono real
                       },
-                      icon: Icon(Icons.call, size: 30),
-                      label: Text('Llamar'),
-                      style: callButtonStyle,
+                      buttonText: 'Llamar',
+                      fontSize: 20,
+                      colorOption: ButtonColorOption.option2,
                     ),
                   ),
                 ),
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: ElevatedButton.icon(
+                    padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                    child: LargeButtonWidget(
                       onPressed: () {
                         _launchURL(
                             'https://wa.me/1234567890'); // Reemplaza con el número de teléfono real
                       },
-                      icon: Icon(Icons.chat, size: 30),
-                      label: Text('WhatsApp'),
-                      style: callButtonStyle,
+                      buttonText: 'WhatsApp',
+                      fontSize: 20,
+                      colorOption: ButtonColorOption.option2,
                     ),
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 30),
+            SizedBox(height: 40),
           ],
         ),
       ),
@@ -103,27 +106,31 @@ class HelpScreen extends StatelessWidget {
 class FAQWidget extends StatelessWidget {
   final String question;
   final String answer;
+  final ThemeData appTheme;
 
-  FAQWidget({required this.question, required this.answer});
+  FAQWidget(
+      {required this.question, required this.answer, required this.appTheme});
 
   @override
   Widget build(BuildContext context) {
-    ThemeData appTheme = Theme.of(context);
     return Theme(
-      data: ThemeData(accentColor: appTheme.accentColor),
+      data: ThemeData(accentColor: AppTheme.primaryNavyBlue),
       child: ExpansionTile(
         title: Text(
           question,
-          style: appTheme.textTheme.subtitle1
-              ?.copyWith(color: appTheme.primaryColor),
+          style: appTheme.textTheme.subtitle1?.copyWith(
+            color: AppTheme.primaryRed,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         children: [
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: Text(
               answer,
-              style: appTheme.textTheme.bodyText2
-                  ?.copyWith(color: appTheme.primaryColor),
+              style: appTheme.textTheme.bodyText2?.copyWith(
+                color: AppTheme.primaryNavyBlue,
+              ),
             ),
           ),
         ],

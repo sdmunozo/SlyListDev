@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:slylist_app/screens/address_screen.dart';
 import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
+import 'package:slylist_app/theme.dart';
+import 'package:slylist_app/widgets/large_button_widget.dart';
 
 class EditAddressScreen extends StatefulWidget {
   final Address? address;
@@ -49,14 +51,22 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
       {TextInputType keyboardType = TextInputType.text}) {
     return TextFormField(
       controller: controller,
-      decoration: InputDecoration(labelText: labelText),
+      decoration: InputDecoration(
+        labelText: labelText,
+        labelStyle: AppTheme.lightTheme.textTheme.bodyText1,
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: AppTheme.primaryNavyBlue,
+            width: 2.0,
+          ),
+        ),
+      ),
       keyboardType: keyboardType,
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    ThemeData appTheme = Theme.of(context);
     return Scaffold(
       appBar: CustomAppBar(
         title: widget.isNew ? 'Nueva dirección' : 'Editar dirección',
@@ -80,7 +90,10 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
             _buildTextFormField('País', _countryController),
             SizedBox(height: 10),
             CheckboxListTile(
-              title: Text('Establecer como dirección predeterminada'),
+              title: Text(
+                'Establecer como dirección predeterminada',
+                style: AppTheme.lightTheme.textTheme.bodyText1,
+              ),
               value: _isDefault,
               onChanged: (bool? value) {
                 setState(() {
@@ -88,6 +101,7 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
                 });
               },
               controlAffinity: ListTileControlAffinity.leading,
+              activeColor: AppTheme.primaryNavyBlue,
             ),
             SizedBox(height: 20),
             Row(
@@ -96,30 +110,20 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
                 Expanded(
                   child: Padding(
                     padding: EdgeInsets.only(right: 8),
-                    child: ElevatedButton(
+                    child: LargeButtonWidget(
                       onPressed: () {
                         Navigator.pop(context);
                       },
-                      child: Text(
-                        'Cancelar',
-                        style:
-                            TextStyle(fontSize: 20, fontFamily: 'Cairo-Bold'),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        primary: Theme.of(context).errorColor,
-                        onPrimary: Colors.white,
-                        padding: EdgeInsets.symmetric(vertical: 16),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      ),
+                      buttonText: 'Cancelar',
+                      fontSize: 20,
+                      colorOption: ButtonColorOption.option3,
                     ),
                   ),
                 ),
                 Expanded(
                   child: Padding(
                     padding: EdgeInsets.only(left: 8),
-                    child: ElevatedButton(
+                    child: LargeButtonWidget(
                       onPressed: () {
                         Address newAddress = Address(
                           alias: _aliasController.text,
@@ -133,19 +137,9 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
                         widget.onSave(newAddress);
                         Navigator.pop(context);
                       },
-                      child: Text(
-                        'Guardar',
-                        style:
-                            TextStyle(fontSize: 20, fontFamily: 'Cairo-Bold'),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        primary: appTheme.primaryColor,
-                        onPrimary: Colors.white,
-                        padding: EdgeInsets.symmetric(vertical: 16),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      ),
+                      buttonText: 'Guardar',
+                      fontSize: 20,
+                      colorOption: ButtonColorOption.option2,
                     ),
                   ),
                 ),

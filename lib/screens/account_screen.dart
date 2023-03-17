@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:slylist_app/theme.dart';
+import 'package:slylist_app/widgets/large_button_widget.dart';
 import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
 
 class AccountScreen extends StatefulWidget {
+  const AccountScreen({super.key});
+
   @override
   _AccountScreenState createState() => _AccountScreenState();
 }
@@ -10,17 +14,7 @@ class _AccountScreenState extends State<AccountScreen> {
   TextEditingController _passwordController = TextEditingController();
   bool _isPasswordVisible = false;
 
-  @override
-  void initState() {
-    super.initState();
-    _passwordController = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    _passwordController.dispose();
-    super.dispose();
-  }
+  // ...
 
   Widget _buildTextFormField({
     required String labelText,
@@ -37,6 +31,7 @@ class _AccountScreenState extends State<AccountScreen> {
       ),
       keyboardType: keyboardType,
       obscureText: obscureText,
+      style: Theme.of(context).textTheme.subtitle2,
     );
   }
 
@@ -48,31 +43,8 @@ class _AccountScreenState extends State<AccountScreen> {
         },
         child: CircleAvatar(
           radius: 60,
-          backgroundColor: Colors.white,
+          backgroundColor: AppTheme.secondaryLightGray,
           backgroundImage: AssetImage('assets/account.png'),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildSaveButton(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      child: ElevatedButton(
-        onPressed: () {
-          // Implementar la funcionalidad de guardar cambios aquí
-        },
-        child: Text(
-          'Guardar cambios',
-          style: TextStyle(fontSize: 20, fontFamily: 'Cairo-Bold'),
-        ),
-        style: ElevatedButton.styleFrom(
-          primary: Theme.of(context).primaryColor,
-          onPrimary: Colors.white,
-          padding: EdgeInsets.symmetric(vertical: 16),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
         ),
       ),
     );
@@ -109,9 +81,11 @@ class _AccountScreenState extends State<AccountScreen> {
                 controller: _passwordController,
                 obscureText: !_isPasswordVisible,
                 suffixIcon: IconButton(
-                  icon: Icon(_isPasswordVisible
-                      ? Icons.visibility
-                      : Icons.visibility_off),
+                  icon: Icon(
+                      _isPasswordVisible
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                      color: Theme.of(context).accentColor),
                   onPressed: () {
                     setState(() {
                       _isPasswordVisible = !_isPasswordVisible;
@@ -120,7 +94,15 @@ class _AccountScreenState extends State<AccountScreen> {
                 ),
               ),
               SizedBox(height: 20),
-              _buildSaveButton(context),
+              Center(
+                child: LargeButtonWidget(
+                  onPressed: () {
+                    // Implementar la funcionalidad de guardar cambios aquí
+                  },
+                  buttonText: 'Guardar cambios',
+                  colorOption: ButtonColorOption.option1,
+                ),
+              ),
             ],
           ),
         ),

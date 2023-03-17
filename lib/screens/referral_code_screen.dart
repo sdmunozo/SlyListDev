@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
+import '../theme.dart';
 
 class ReferralCodeScreen extends StatelessWidget {
   final String referralCode;
@@ -8,10 +9,10 @@ class ReferralCodeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ThemeData appTheme = Theme.of(context);
+    ThemeData appTheme = AppTheme.lightTheme;
 
     return Scaffold(
-      backgroundColor: appTheme.canvasColor,
+      backgroundColor: appTheme.scaffoldBackgroundColor,
       appBar: CustomAppBar(title: 'Invita a tus amigos'),
       body: Center(
         child: Padding(
@@ -38,7 +39,7 @@ class ReferralCodeScreen extends StatelessWidget {
                   referralCode,
                   style: appTheme.textTheme.headline1?.copyWith(
                     fontSize: 48,
-                    color: appTheme.canvasColor,
+                    color: appTheme.scaffoldBackgroundColor,
                   ),
                 ),
               ),

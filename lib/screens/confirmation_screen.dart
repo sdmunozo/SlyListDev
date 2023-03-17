@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:slylist_app/theme.dart';
 import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
 
 class ConfirmationScreen extends StatefulWidget {
@@ -22,11 +23,15 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
             children: [
               Text(title,
                   style: TextStyle(
-                      fontFamily: 'Cairo-Regular',
+                      fontFamily:
+                          AppTheme.lightTheme.textTheme.subtitle1!.fontFamily,
                       fontSize: 12,
                       fontWeight: FontWeight.bold)),
               Text(content,
-                  style: TextStyle(fontFamily: 'Cairo-Bold', fontSize: 15)),
+                  style: TextStyle(
+                      fontFamily:
+                          AppTheme.lightTheme.textTheme.bodyText1!.fontFamily,
+                      fontSize: 15)),
             ],
           ),
         ),
@@ -56,7 +61,7 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
               Container(
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
                 decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor.withOpacity(0.1),
+                  color: AppTheme.lightTheme.primaryColor.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Column(
@@ -67,7 +72,8 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
                       style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          fontFamily: 'Cairo-Bold'),
+                          fontFamily: AppTheme
+                              .lightTheme.textTheme.headline6!.fontFamily),
                     ),
                     SizedBox(height: 10),
                     _buildRow(Icons.cleaning_services, 'Tipo de servicio',
@@ -85,18 +91,24 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
               DropdownButtonFormField<String>(
                 decoration: InputDecoration(
                   labelText: 'Forma de pago',
-                  labelStyle: TextStyle(fontFamily: 'Cairo-Regular'),
+                  labelStyle: TextStyle(
+                      fontFamily:
+                          AppTheme.lightTheme.textTheme.subtitle1!.fontFamily),
                 ),
                 value: _selectedPaymentMethod,
                 items: [
                   DropdownMenuItem<String>(
                     child: Text('Efectivo',
-                        style: TextStyle(fontFamily: 'Cairo-Regular')),
+                        style: TextStyle(
+                            fontFamily: AppTheme
+                                .lightTheme.textTheme.bodyText1!.fontFamily)),
                     value: 'credit_card',
                   ),
                   DropdownMenuItem<String>(
                     child: Text('PayPal',
-                        style: TextStyle(fontFamily: 'Cairo-Regular')),
+                        style: TextStyle(
+                            fontFamily: AppTheme
+                                .lightTheme.textTheme.bodyText1!.fontFamily)),
                     value: 'paypal',
                   ),
                 ],
@@ -120,8 +132,11 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
                   Flexible(
                     child: Text(
                       'Confirmo que poseo autorización para el servicio solicitado en el inmueble.',
-                      style:
-                          TextStyle(fontSize: 16, fontFamily: 'Cairo-Regular'),
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontFamily:
+                            AppTheme.lightTheme.textTheme.bodyText1!.fontFamily,
+                      ),
                     ),
                   ),
                 ],
@@ -137,10 +152,14 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
                       : null,
                   child: Text(
                     'Pagar servicio',
-                    style: TextStyle(fontSize: 20, fontFamily: 'Cairo-Bold'),
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontFamily:
+                          AppTheme.lightTheme.textTheme.button!.fontFamily,
+                    ),
                   ),
                   style: ElevatedButton.styleFrom(
-                    primary: Theme.of(context).primaryColor,
+                    primary: AppTheme.lightTheme.primaryColor,
                     onPrimary: Colors.white,
                     padding: EdgeInsets.symmetric(vertical: 20),
                     shape: RoundedRectangleBorder(

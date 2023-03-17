@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:slylist_app/screens/service_details_screen.dart';
 import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
 import 'package:slylist_app/models/feature_model.dart';
+import 'package:slylist_app/theme.dart';
+import 'package:slylist_app/widgets/small_button_widget.dart';
 
 class ServiceHistoryScreen extends StatefulWidget {
   @override
@@ -93,11 +95,11 @@ class ServiceList extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Icon(service.icon, size: 40, color: Theme.of(context).primaryColor),
+        Icon(service.icon, size: 40, color: AppTheme.primaryRed),
         Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Text(service.date, style: Theme.of(context).textTheme.subtitle1),
+            Text(service.date, style: AppTheme.lightTheme.textTheme.subtitle1),
             SizedBox(height: 4),
             Text(service.time),
           ],
@@ -111,7 +113,8 @@ class ServiceList extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(service.serviceName, style: Theme.of(context).textTheme.subtitle2),
+        Text(service.serviceName,
+            style: AppTheme.lightTheme.textTheme.subtitle2),
         SizedBox(height: 8),
         Text('Costo: \$${service.cost.toStringAsFixed(2)}'),
         SizedBox(height: 4),
@@ -119,7 +122,8 @@ class ServiceList extends StatelessWidget {
         SizedBox(height: 4),
         Text('Forma de pago: ${service.paymentMethod}'),
         SizedBox(height: 4),
-        Text('Persona que lo realizará: ${service.serviceProvider}'),
+        Text('Persona que lo realizará: ${service.serviceProvider}',
+            style: Theme.of(context).textTheme.bodyText2),
       ],
     );
   }
@@ -146,29 +150,27 @@ class ServiceList extends StatelessWidget {
   }
 
   Widget _buildRatingButton(BuildContext context, ServiceHistory service) {
-    return ElevatedButton(
+    return SmallButtonWidget(
       onPressed: () {
         print('Calificar servicio ${service.serviceName}');
       },
-      child: Text('Calificar'),
-      style: ElevatedButton.styleFrom(primary: Theme.of(context).accentColor),
+      buttonText: 'Calificar',
+      colorOption: ButtonColorOption.option2,
     );
   }
 
   Widget _buildDetailsButton(BuildContext context, ServiceHistory service) {
-    return ElevatedButton(
-      onPressed: () {
-        print('Más detalles de servicio ${service.serviceName}');
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ServiceDetailsScreen(service: service),
-          ),
-        );
-      },
-      child: Text('Más detalles'),
-      style: ElevatedButton.styleFrom(primary: Theme.of(context).accentColor),
-    );
+    return SmallButtonWidget(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ServiceDetailsScreen(service: service),
+            ),
+          );
+        },
+        buttonText: 'Más detalles',
+        colorOption: ButtonColorOption.option2);
   }
 }
 
@@ -224,41 +226,19 @@ List<ServiceHistory> _getScheduledServices() {
       serviceProvider: 'Juan García',
       features: [
         QuantityFeature(
-            id: 'q1',
-            title: 'Característica de cantidad 1',
-            subTitle: 'Subtítulo de cantidad 1',
-            quantity: 1,
-            unitCost: 10.0),
-        QuantityFeature(
-            id: 'q2',
-            title: 'Característica de cantidad 2',
-            subTitle: 'Subtítulo de cantidad 2',
-            quantity: 2,
-            unitCost: 20.0),
-        QuantityFeature(
-            id: 'q3',
-            title: 'Característica de cantidad 3',
-            subTitle: 'Subtítulo de cantidad 3',
-            quantity: 3,
-            unitCost: 30.0),
+          id: 'q1',
+          title: 'Característica de cantidad 1',
+          subTitle: 'Subtítulo de cantidad 1',
+          quantity: 1,
+          unitCost: 10.0,
+        ),
         SelectionFeature(
-            id: 's1',
-            title: 'Característica de selección 1',
-            subTitle: 'Subtítulo de selección 1',
-            isSelected: false,
-            cost: 50.0),
-        SelectionFeature(
-            id: 's2',
-            title: 'Característica de selección 2',
-            subTitle: 'Subtítulo de selección 2',
-            isSelected: true,
-            cost: 100.0),
-        SelectionFeature(
-            id: 's3',
-            title: 'Característica de selección 3',
-            subTitle: 'Subtítulo de selección 3',
-            isSelected: false,
-            cost: 150.0),
+          id: 's3',
+          title: 'Característica de selección 3',
+          subTitle: 'Subtítulo de selección 3',
+          isSelected: false,
+          cost: 150.0,
+        ),
       ],
     ),
   ];
@@ -280,22 +260,24 @@ List<ServiceHistory> _getCompletedServices() {
       serviceProvider: 'María Rodríguez',
       features: [
         QuantityFeature(
-            id: 'q1',
-            title: 'Característica de cantidad 1',
-            subTitle: 'Subtítulo de cantidad 1',
-            quantity: 1,
-            unitCost: 10.0),
+          id: 'q1',
+          title: 'Característica de cantidad 1',
+          subTitle: 'Subtítulo de cantidad 1',
+          quantity: 1,
+          unitCost: 10.0,
+        ),
         SelectionFeature(
-            id: 's3',
-            title: 'Característica de selección 3',
-            subTitle: 'Subtítulo de selección 3',
-            isSelected: false,
-            cost: 150.0),
+          id: 's3',
+          title: 'Característica de selección 3',
+          subTitle: 'Subtítulo de selección 3',
+          isSelected: false,
+          cost: 150.0,
+        ),
       ],
     ),
     ServiceHistory(
       completed: true,
-      icon: Icons.grass, // Cambiado el icono a "grass"
+      icon: Icons.grass,
       date: '2023-03-25',
       time: '10:00',
       serviceName: 'Mantenimiento de jardín',
@@ -306,17 +288,19 @@ List<ServiceHistory> _getCompletedServices() {
       rating: 4,
       features: [
         QuantityFeature(
-            id: 'q1',
-            title: 'Característica de cantidad 1',
-            subTitle: 'Subtítulo de cantidad 1',
-            quantity: 1,
-            unitCost: 10.0),
+          id: 'q1',
+          title: 'Característica de cantidad 1',
+          subTitle: 'Subtítulo de cantidad 1',
+          quantity: 1,
+          unitCost: 10.0,
+        ),
         SelectionFeature(
-            id: 's3',
-            title: 'Característica de selección 3',
-            subTitle: 'Subtítulo de selección 3',
-            isSelected: false,
-            cost: 150.0),
+          id: 's3',
+          title: 'Característica de selección 3',
+          subTitle: 'Subtítulo de selección 3',
+          isSelected: false,
+          cost: 150.0,
+        ),
       ],
     ),
   ];

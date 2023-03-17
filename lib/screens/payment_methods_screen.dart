@@ -1,6 +1,6 @@
-// lib/screens/payment_methods_screen.dart
 import 'package:flutter/material.dart';
 import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
+import 'package:slylist_app/theme.dart';
 
 class PaymentMethodsScreen extends StatefulWidget {
   @override
@@ -11,6 +11,12 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
   bool _isPayPalLoggedIn = false;
   String _payPalEmail = '';
 
+  TextStyle paymentTextStyle = const TextStyle(
+    fontSize: 20,
+    fontFamily: 'Cairo-Regular',
+    color: Colors.white,
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +26,7 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
           _buildPaymentMethodItem(
             icon: Icons.attach_money,
             text: 'Efectivo',
-            color: Colors.green,
+            color: AppTheme.primaryRed,
             onTap: () {
               print('Efectivo seleccionado');
             },
@@ -28,7 +34,7 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
           _buildPaymentMethodItem(
             icon: Icons.payment,
             text: 'PayPal',
-            color: Color(0xFF3B7BBF),
+            color: AppTheme.secondaryBlueGray,
             onTap: () {
               print('PayPal seleccionado');
               setState(() {
@@ -73,26 +79,22 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
                 children: [
                   Text(
                     text,
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontFamily: 'Cairo-Regular',
-                      color: Colors.white,
-                    ),
+                    style: paymentTextStyle,
                   ),
                   if (isLoggedIn)
                     Text(
                       email,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontFamily: 'Cairo-Regular',
-                        color: Colors.white,
-                      ),
+                      style: paymentTextStyle.copyWith(fontSize: 18),
                     ),
                 ],
               ),
             ),
             if (isLoggedIn)
-              const Icon(Icons.check_circle, size: 30, color: Colors.white),
+              Icon(
+                Icons.check_circle,
+                size: 30,
+                color: Colors.white,
+              ),
           ],
         ),
       ),

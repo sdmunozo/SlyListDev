@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:slylist_app/widgets/large_button_widget.dart';
 import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
+import 'package:slylist_app/theme.dart';
 
 class RegisterForm extends StatefulWidget {
   @override
@@ -11,6 +13,7 @@ class _RegisterFormState extends State<RegisterForm> {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData appTheme = Theme.of(context);
     return Scaffold(
       appBar: CustomAppBar(title: 'Registro'),
       body: Padding(
@@ -54,7 +57,7 @@ class _RegisterFormState extends State<RegisterForm> {
                 obscureText: _obscurePassword,
                 decoration: InputDecoration(
                   labelText: 'Contraseña',
-                  labelStyle: const TextStyle(fontFamily: 'Cairo-Regular'),
+                  labelStyle: TextStyle(fontFamily: 'Cairo-Regular'),
                   suffixIcon: IconButton(
                     icon: Icon(
                       _obscurePassword
@@ -92,17 +95,10 @@ class _RegisterFormState extends State<RegisterForm> {
                 ],
               ),
               const SizedBox(height: 40),
-              ElevatedButton(
+              LargeButtonWidget(
                 onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  primary: const Color(0xFFED193E),
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  textStyle: const TextStyle(
-                    fontFamily: 'SohoGothicPro-Bold',
-                    fontSize: 18,
-                  ),
-                ),
-                child: const Text('Registrar'),
+                buttonText: 'Registrar',
+                colorOption: ButtonColorOption.option1,
               ),
             ],
           ),

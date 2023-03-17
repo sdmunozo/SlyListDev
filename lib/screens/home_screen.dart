@@ -7,6 +7,7 @@ import 'package:slylist_app/widgets/side_menu.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:slylist_app/theme.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -41,17 +42,19 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final popularServicesTitleStyle = TextStyle(
-        fontFamily: 'Cairo-Bold', fontSize: 26, color: Color(0xFFEC193E));
+        fontFamily: 'Cairo-Bold',
+        fontSize: 26,
+        color: AppTheme.primaryNavyBlue);
     final comingSoonTitleStyle = TextStyle(
-        fontFamily: 'Cairo-Bold', fontSize: 20, color: Color(0xFFEC193E));
-
+        fontFamily: 'Cairo-Bold',
+        fontSize: 20,
+        color: AppTheme.primaryNavyBlue);
     return Scaffold(
       appBar: CustomAppBar(title: 'SlyList'),
       drawer: SideMenu(),
       body: Column(
         children: [
           Expanded(
-            flex: 1,
             child: FlutterMap(
               mapController: _mapController,
               options: MapOptions(
@@ -77,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             builder: (ctx) => Container(
                               child: Icon(
                                 Icons.location_on,
-                                color: Colors.red,
+                                color: AppTheme.primaryRed,
                                 size: 60.0,
                               ),
                             ),
@@ -102,44 +105,47 @@ class _HomeScreenState extends State<HomeScreen> {
                   GestureDetector(
                     onTap: () {
                       Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ServiceScreen()),
-                      );
+                          context,
+                          MaterialPageRoute(
+                            builder: (builder) => ServiceScreen(),
+                          ));
                     },
                     child: ServiceWidget(
                       serviceName: "Limpieza",
                       icon: Icons.cleaning_services,
-                      color: Color(0xFF12384D),
+                      color: AppTheme.secondaryBlueGray,
                       enabled: true,
                     ),
                   ),
                   SizedBox(height: 16),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16),
-                    child: Text("Próximamente", style: comingSoonTitleStyle),
+                    child: Text(
+                      "Próximamente",
+                      style: comingSoonTitleStyle,
+                    ),
                   ),
                   SizedBox(height: 16),
                   ServiceWidget(
                     serviceName: "Lavandería",
                     icon: Icons.local_laundry_service,
-                    color: Color(0xFFEC193E),
+                    color: AppTheme.secondaryWine,
                     enabled: false,
                   ),
                   SizedBox(height: 16),
                   ServiceWidget(
                     serviceName: "Asesorías",
                     icon: Icons.person_search,
-                    color: Color(0xFFC41F4B),
+                    color: AppTheme.secondaryOrange,
                     enabled: false,
                   ),
+                  SizedBox(height: 16),
+                  ReferAFriendWidget(),
                   SizedBox(height: 16),
                 ],
               ),
             ),
           ),
-          ReferAFriendWidget(),
-          SizedBox(height: 16),
         ],
       ),
     );

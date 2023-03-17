@@ -18,9 +18,11 @@ class ServiceDetailsScreen extends StatelessWidget {
     final boldSubtitleStyle = Theme.of(context)
         .textTheme
         .subtitle1!
-        .copyWith(fontWeight: FontWeight.bold);
-    final regularSubtitleStyle =
-        Theme.of(context).textTheme.subtitle1!.copyWith(fontSize: 20);
+        .copyWith(fontWeight: FontWeight.bold, fontFamily: 'Cairo-Bold');
+    final regularSubtitleStyle = Theme.of(context)
+        .textTheme
+        .subtitle1!
+        .copyWith(fontSize: 20, fontFamily: 'Cairo-Regular');
 
     return Scaffold(
       appBar: CustomAppBar(title: service.serviceName),

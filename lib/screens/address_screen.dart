@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:slylist_app/screens/edit_address_screen.dart';
 import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
+import 'package:slylist_app/theme.dart';
 
 class Address {
   final String alias;
@@ -51,7 +52,9 @@ class _AddressScreenState extends State<AddressScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: 'Direcciones'),
+      appBar: CustomAppBar(
+        title: 'Direcciones',
+      ),
       body: ListView.builder(
         itemCount: _addresses.length,
         itemBuilder: (BuildContext context, int index) {
@@ -61,7 +64,7 @@ class _AddressScreenState extends State<AddressScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: _addNewAddress,
         child: Icon(Icons.add),
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: AppTheme.primaryRed,
       ),
     );
   }
@@ -125,7 +128,8 @@ class _AddressScreenState extends State<AddressScreen> {
             children: [
               Text(
                 address.alias,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: AppTheme.light.textTheme.headline5!
+                    .copyWith(fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 8),
               Row(
@@ -134,7 +138,8 @@ class _AddressScreenState extends State<AddressScreen> {
                   Expanded(
                     child: Text(
                       address.street,
-                      style: TextStyle(fontSize: 16),
+                      style: AppTheme.light.textTheme.bodyText1!
+                          .copyWith(fontSize: 16),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -144,12 +149,14 @@ class _AddressScreenState extends State<AddressScreen> {
               SizedBox(height: 8),
               Text(
                 '${address.city}, ${address.state}',
-                style: TextStyle(fontSize: 16),
+                style:
+                    AppTheme.light.textTheme.bodyText1!.copyWith(fontSize: 16),
               ),
               SizedBox(height: 8),
               Text(
                 '${address.zipCode}, ${address.country}',
-                style: TextStyle(fontSize: 16),
+                style:
+                    AppTheme.light.textTheme.bodyText1!.copyWith(fontSize: 16),
               ),
               SizedBox(height: 10),
               Row(
@@ -157,9 +164,14 @@ class _AddressScreenState extends State<AddressScreen> {
                 children: [
                   if (address.isDefault)
                     Chip(
-                      label: Text('Predeterminada'),
-                      backgroundColor: Theme.of(context).accentColor,
-                      labelStyle: TextStyle(color: Colors.white),
+                      label: Text(
+                        'Predeterminada',
+                        style: AppTheme.light.textTheme.button!
+                            .copyWith(color: Colors.white),
+                      ),
+                      backgroundColor: AppTheme.primaryNavyBlue,
+                      labelStyle: AppTheme.light.textTheme.button!
+                          .copyWith(color: Colors.white),
                     ),
                   SizedBox(width: 10),
                   TextButton.icon(
@@ -179,11 +191,14 @@ class _AddressScreenState extends State<AddressScreen> {
                         ),
                       );
                     },
-                    icon:
-                        Icon(Icons.edit, color: Theme.of(context).primaryColor),
+                    icon: Icon(
+                      Icons.edit,
+                      color: AppTheme.primaryRed,
+                    ),
                     label: Text(
                       'Editar',
-                      style: TextStyle(color: Theme.of(context).primaryColor),
+                      style: AppTheme.light.textTheme.button!
+                          .copyWith(color: AppTheme.primaryRed),
                     ),
                   ),
                 ],

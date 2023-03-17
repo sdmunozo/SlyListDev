@@ -1,6 +1,6 @@
-// reset_password_screen.dart
 import 'package:flutter/material.dart';
 import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
+import 'package:slylist_app/theme.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
   @override
@@ -32,23 +32,23 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 },
                 decoration: InputDecoration(
                   labelText: 'Correo electrónico',
-                  labelStyle: const TextStyle(fontFamily: 'Cairo-Regular'),
+                  labelStyle: TextStyle(fontFamily: 'Cairo-Regular'),
                 ),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: _isEmailValid
                     ? () {
-                        // Aquí va el código para enviar la solicitud de restablecimiento de contraseña
+// Aquí va el código para enviar la solicitud de restablecimiento de contraseña
                       }
                     : null,
                 style: ElevatedButton.styleFrom(
-                  primary: const Color(0xFFED193E),
+                  primary: AppTheme.primaryNavyBlue,
                   padding: const EdgeInsets.symmetric(vertical: 16),
-                  textStyle: const TextStyle(
-                    fontFamily: 'SohoGothicPro-Bold',
-                    fontSize: 18,
-                  ),
+                  textStyle: Theme.of(context).textTheme.headline6?.copyWith(
+                        fontSize: 18,
+                        color: Theme.of(context).canvasColor,
+                      ),
                 ),
                 child: const Text('Enviar'),
               ),
@@ -56,7 +56,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
               Text(
                 'Se ha enviado un correo electrónico de restablecimiento de contraseña a la dirección proporcionada. Por favor, sigue las instrucciones en el correo electrónico para restablecer tu contraseña.',
                 textAlign: TextAlign.center,
-                style: const TextStyle(fontFamily: 'Cairo-Regular'),
+                style: TextStyle(fontFamily: 'Cairo-Regular'),
               ),
               const SizedBox(height: 20),
               TextButton(
@@ -67,7 +67,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   'Cancelar',
                   style: TextStyle(
                     fontFamily: 'Cairo-Bold',
-                    color: const Color(0xFFED193E),
+                    color: AppTheme.primaryNavyBlue,
                   ),
                 ),
               ),

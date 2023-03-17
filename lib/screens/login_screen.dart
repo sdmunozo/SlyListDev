@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:slylist_app/screens/home_screen.dart';
 import 'package:slylist_app/screens/register_screen.dart';
 import 'package:slylist_app/screens/reset_password.dart';
+import 'package:slylist_app/theme.dart';
+import 'package:slylist_app/widgets/large_button_widget.dart';
 import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -35,7 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   labelText: 'Correo electrónico',
-                  labelStyle: const TextStyle(fontFamily: 'Cairo-Regular'),
+                  labelStyle: TextStyle(fontFamily: 'Cairo-Regular'),
                 ),
               ),
               const SizedBox(height: 20),
@@ -43,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 obscureText: _obscurePassword,
                 decoration: InputDecoration(
                   labelText: 'Contraseña',
-                  labelStyle: const TextStyle(fontFamily: 'Cairo-Regular'),
+                  labelStyle: TextStyle(fontFamily: 'Cairo-Regular'),
                   suffixIcon: IconButton(
                     icon: Icon(
                       _obscurePassword
@@ -72,15 +74,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   '¿Olvidaste tu contraseña?',
                   style: TextStyle(
                     fontFamily: 'Cairo-Bold',
-                    color: Color(0xFFED193E),
+                    color: AppTheme.primaryNavyBlue,
                   ),
                 ),
               ),
               const SizedBox(height: 20),
-              ElevatedButton(
+              LargeButtonWidget(
                 onPressed: () {
                   // Aquí puedes agregar la lógica de inicio de sesión y validación
-
                   // Si la validación es exitosa, navega a HomeScreen
                   Navigator.pushReplacement(
                     context,
@@ -89,15 +90,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   );
                 },
-                style: ElevatedButton.styleFrom(
-                  primary: Color(0xFFED193E),
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  textStyle: const TextStyle(
-                    fontFamily: 'SohoGothicPro-Bold',
-                    fontSize: 18,
-                  ),
-                ),
-                child: const Text('Iniciar sesión'),
+                buttonText: 'Iniciar sesión',
+                colorOption: ButtonColorOption.option1,
               ),
               const SizedBox(height: 20),
               Row(
@@ -120,7 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       'Regístrate',
                       style: TextStyle(
                         fontFamily: 'Cairo-Bold',
-                        color: Color(0xFFED193E),
+                        color: AppTheme.primaryNavyBlue,
                       ),
                     ),
                   ),

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:slylist_app/screens/confirmation_screen.dart';
 import 'package:slylist_app/theme.dart';
+import 'package:slylist_app/widgets/small_button_widget.dart';
 
 class DateTimePickerBottomSheet extends StatefulWidget {
   @override
@@ -12,10 +13,13 @@ class DateTimePickerBottomSheet extends StatefulWidget {
 class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
   late DateTime _selectedDateTime;
 
+  final int hoursToAdd = 20;
+
   @override
   void initState() {
     super.initState();
-    _selectedDateTime = _roundUpToNextHalfHour(DateTime.now());
+    _selectedDateTime =
+        _roundUpToNextHalfHour(DateTime.now().add(Duration(hours: hoursToAdd)));
   }
 
   DateTime _roundUpToNextHalfHour(DateTime dateTime) {
@@ -27,6 +31,8 @@ class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
+    final minimumDateTime = DateTime.now().add(Duration(hours: hoursToAdd));
+
     return Container(
       height: MediaQuery.of(context).size.height * 0.4,
       padding: EdgeInsets.all(16),
@@ -45,32 +51,28 @@ class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
                   _selectedDateTime = newDateTime;
                 });
               },
-              minimumDate: DateTime.now(),
+              minimumDate: minimumDateTime,
               minuteInterval: 30,
               mode: CupertinoDatePickerMode.dateAndTime,
             ),
           ),
           SizedBox(height: 10),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _buildElevatedButton(
-                context,
-                'Cancelar',
-                AppTheme.secondaryLightGray,
-                Theme.of(context).primaryColor,
-                () => Navigator.pop(context),
-              ),
-              _buildElevatedButton(
-                context,
-                'Continuar',
-                Theme.of(context).primaryColor,
-                Theme.of(context).backgroundColor,
-                () {
-                  Navigator.pop(context, _selectedDateTime);
-                  _navigateToConfirmationScreen(context);
-                },
-              ),
+              SmallButtonWidget(
+                  colorOption: ButtonColorOption.option3,
+                  fontSize: 30,
+                  onPressed: () => Navigator.pop(context),
+                  buttonText: 'Cancelar'),
+              SmallButtonWidget(
+                  colorOption: ButtonColorOption.option1,
+                  fontSize: 30,
+                  onPressed: () => () {
+                        Navigator.pop(context, _selectedDateTime);
+                        _navigateToConfirmationScreen(context);
+                      },
+                  buttonText: 'Continuar'),
             ],
           ),
           SizedBox(height: 20),
@@ -79,23 +81,9 @@ class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
     );
   }
 
-  ElevatedButton _buildElevatedButton(BuildContext context, String text,
-      Color primary, Color onPrimary, VoidCallback onPressed) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      child: Text(
-        text,
-        style: Theme.of(context).textTheme.button,
-      ),
-      style: ElevatedButton.styleFrom(
-        primary: primary,
-        onPrimary: onPrimary,
-        padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-      ),
-    );
+  SmallButtonWidget _buildElevatedButton(
+      BuildContext context, String text, VoidCallback onPressed) {
+    return SmallButtonWidget(onPressed: onPressed, buttonText: text);
   }
 
   void _navigateToConfirmationScreen(BuildContext context) {
