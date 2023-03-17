@@ -57,8 +57,8 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
     return InkWell(
       onTap: onTap,
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
         decoration: BoxDecoration(
           color: color,
           borderRadius: BorderRadius.circular(8),
@@ -66,31 +66,33 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
         child: Row(
           children: <Widget>[
             Icon(icon, size: 40, color: Colors.white),
-            SizedBox(width: 16),
+            const SizedBox(width: 16),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     text,
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontFamily: 'Cairo-Regular',
-                        color: Colors.white),
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontFamily: 'Cairo-Regular',
+                      color: Colors.white,
+                    ),
                   ),
                   if (isLoggedIn)
                     Text(
                       email,
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontFamily: 'Cairo-Regular',
-                          color: Colors.white),
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontFamily: 'Cairo-Regular',
+                        color: Colors.white,
+                      ),
                     ),
                 ],
               ),
             ),
             if (isLoggedIn)
-              Icon(Icons.check_circle, size: 30, color: Colors.white),
+              const Icon(Icons.check_circle, size: 30, color: Colors.white),
           ],
         ),
       ),

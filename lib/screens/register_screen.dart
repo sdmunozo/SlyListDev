@@ -19,42 +19,42 @@ class _RegisterFormState extends State<RegisterForm> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              SizedBox(height: 40),
+              const SizedBox(height: 40),
               TextFormField(
                 decoration: InputDecoration(
                   labelText: 'Nombre',
                   labelStyle: TextStyle(fontFamily: 'Cairo-Regular'),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               TextFormField(
                 decoration: InputDecoration(
                   labelText: 'Apellido',
                   labelStyle: TextStyle(fontFamily: 'Cairo-Regular'),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               TextFormField(
                 keyboardType: TextInputType.phone,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Número de teléfono',
                   labelStyle: TextStyle(fontFamily: 'Cairo-Regular'),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               TextFormField(
                 keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Correo electrónico',
                   labelStyle: TextStyle(fontFamily: 'Cairo-Regular'),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               TextFormField(
                 obscureText: _obscurePassword,
                 decoration: InputDecoration(
                   labelText: 'Contraseña',
-                  labelStyle: TextStyle(fontFamily: 'Cairo-Regular'),
+                  labelStyle: const TextStyle(fontFamily: 'Cairo-Regular'),
                   suffixIcon: IconButton(
                     icon: Icon(
                       _obscurePassword
@@ -69,21 +69,21 @@ class _RegisterFormState extends State<RegisterForm> {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               TextFormField(
                 decoration: InputDecoration(
                   labelText: 'Cupón de referido (opcional)',
                   labelStyle: TextStyle(fontFamily: 'Cairo-Regular'),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Row(
                 children: [
                   Checkbox(
                     value: false,
                     onChanged: (bool? value) {},
                   ),
-                  Expanded(
+                  const Expanded(
                     child: Text(
                       'Aceptar Términos y Condiciones',
                       style: TextStyle(fontFamily: 'Cairo-Regular'),
@@ -91,18 +91,18 @@ class _RegisterFormState extends State<RegisterForm> {
                   ),
                 ],
               ),
-              SizedBox(height: 40),
+              const SizedBox(height: 40),
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                  primary: Color(0xFFED193E),
-                  padding: EdgeInsets.symmetric(vertical: 16),
-                  textStyle: TextStyle(
+                  primary: const Color(0xFFED193E),
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  textStyle: const TextStyle(
                     fontFamily: 'SohoGothicPro-Bold',
                     fontSize: 18,
                   ),
                 ),
-                child: Text('Registrar'),
+                child: const Text('Registrar'),
               ),
             ],
           ),

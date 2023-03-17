@@ -24,35 +24,34 @@ class QuantityFeatureWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
         color: Colors.grey[200],
       ),
-      child: Row(
-        children: [
-          Icon(icon, size: 50, color: primaryColorBlue),
-          SizedBox(width: 15),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                feature.title,
-                style: primaryTextTitleStyle.copyWith(fontSize: 18),
-              ),
-              Text(
-                feature.subTitle,
-                style: primaryTextSubtitleStyle.copyWith(fontSize: 14),
-              ),
-            ],
-          ),
-          Spacer(),
-          IconButton(
-            icon: Icon(Icons.remove, color: primaryColorBlue),
-            onPressed: onDecrement,
-          ),
-          Text(feature.quantity.toString(),
-              style: primaryTextTitleStyle.copyWith(fontSize: 26)),
-          IconButton(
-            icon: Icon(Icons.add, color: primaryColorBlue),
-            onPressed: onIncrement,
-          ),
-        ],
+      child: ListTile(
+        leading: Icon(icon, size: 50, color: AppTheme.primaryNavyBlue),
+        title: Text(
+          feature.title,
+          style: Theme.of(context).textTheme.headline6!.copyWith(fontSize: 18),
+        ),
+        subtitle: Text(
+          feature.subTitle,
+          style: Theme.of(context).textTheme.subtitle2!.copyWith(fontSize: 14),
+        ),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            IconButton(
+              icon: Icon(Icons.remove, color: AppTheme.primaryNavyBlue),
+              onPressed: onDecrement,
+            ),
+            Text(feature.quantity.toString(),
+                style: Theme.of(context)
+                    .textTheme
+                    .headline6!
+                    .copyWith(fontSize: 26)),
+            IconButton(
+              icon: Icon(Icons.add, color: AppTheme.primaryNavyBlue),
+              onPressed: onIncrement,
+            ),
+          ],
+        ),
       ),
     );
   }

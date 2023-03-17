@@ -1,10 +1,11 @@
-// lib/screens/terms_and_conditions_screen.dart
 import 'package:flutter/material.dart';
 import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
 
 class TermsAndConditionsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    ThemeData appTheme = Theme.of(context);
+
     return Scaffold(
       appBar: CustomAppBar(title: 'Términos y Condiciones'),
       body: Padding(
@@ -13,19 +14,36 @@ class TermsAndConditionsScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                '1. Introducción',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 8),
-              Text(
+              buildSectionTitle('1. Introducción', appTheme),
+              buildSectionText(
                 'Estos Términos y Condiciones rigen el uso de nuestra aplicación y todos los servicios relacionados. Al utilizar nuestra aplicación, usted acepta estos Términos y Condiciones en su totalidad. Si no está de acuerdo con estos Términos y Condiciones o cualquier parte de estos Términos y Condiciones, no debe utilizar nuestra aplicación.',
-                style: TextStyle(fontSize: 16),
+                appTheme,
               ),
               // Añade más secciones y texto aquí
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget buildSectionTitle(String title, ThemeData appTheme) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8.0),
+      child: Text(
+        title,
+        style:
+            appTheme.textTheme.headline6!.copyWith(fontWeight: FontWeight.bold),
+      ),
+    );
+  }
+
+  Widget buildSectionText(String text, ThemeData appTheme) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16.0),
+      child: Text(
+        text,
+        style: appTheme.textTheme.bodyText1,
       ),
     );
   }

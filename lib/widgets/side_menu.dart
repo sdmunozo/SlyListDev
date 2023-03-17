@@ -1,4 +1,3 @@
-// lib/widgets/side_menu.dart
 import 'package:flutter/material.dart';
 import 'package:slylist_app/screens/account_screen.dart';
 import 'package:slylist_app/screens/address_screen.dart';
@@ -18,86 +17,51 @@ class SideMenu extends StatelessWidget {
           DrawerHeader(
             child: Image.asset('assets/slylistLogoBlanco.png'),
             decoration: BoxDecoration(
-              color: primaryColorBlue,
+              color: AppTheme.primaryNavyBlue,
             ),
           ),
-          _createDrawerItem(
-            icon: Icons.account_circle,
-            text: 'Cuenta',
-            context: context,
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => AccountScreen()),
-              );
-            },
-          ),
-          _createDrawerItem(
-            icon: Icons.payment,
-            text: 'Mis métodos de pago',
-            context: context,
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => PaymentMethodsScreen()),
-              );
-            },
-          ),
-          _createDrawerItem(
-            icon: Icons.history,
-            text: 'Historial de servicios',
-            context: context,
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => ServiceHistoryScreen()),
-              );
-            },
-          ),
-          _createDrawerItem(
-            icon: Icons.location_on,
-            text: 'Mis direcciones',
-            context: context,
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => AddressScreen()),
-              );
-            },
-          ),
-          _createDrawerItem(
-            icon: Icons.description,
-            text: 'Términos y Condiciones',
-            context: context,
-            onTap: () {
-              Navigator.pop(context); // Cierra el Drawer antes de navegar
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => TermsAndConditionsScreen(),
+          ListTileTheme(
+            iconColor: Colors.black87,
+            textColor: Colors.black87,
+            child: Column(
+              children: [
+                _createDrawerItem(
+                  icon: Icons.account_circle,
+                  text: 'Cuenta',
+                  onTap: () => _navigateTo(context, AccountScreen()),
                 ),
-              );
-            },
-          ),
-          _createDrawerItem(
-            icon: Icons.help,
-            text: 'Ayuda',
-            context: context,
-            onTap: () {
-              Navigator.pop(context); // Cierra el Drawer antes de navegar
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => HelpScreen(),
+                _createDrawerItem(
+                  icon: Icons.payment,
+                  text: 'Mis métodos de pago',
+                  onTap: () => _navigateTo(context, PaymentMethodsScreen()),
                 ),
-              );
-            },
-          ),
-          _createDrawerItem(
-            icon: Icons.logout,
-            text: 'Cerrar sesión',
-            context: context,
-            onTap: () => print('Cerrar sesión'),
+                _createDrawerItem(
+                  icon: Icons.history,
+                  text: 'Historial de servicios',
+                  onTap: () => _navigateTo(context, ServiceHistoryScreen()),
+                ),
+                _createDrawerItem(
+                  icon: Icons.location_on,
+                  text: 'Mis direcciones',
+                  onTap: () => _navigateTo(context, AddressScreen()),
+                ),
+                _createDrawerItem(
+                  icon: Icons.description,
+                  text: 'Términos y Condiciones',
+                  onTap: () => _navigateTo(context, TermsAndConditionsScreen()),
+                ),
+                _createDrawerItem(
+                  icon: Icons.help,
+                  text: 'Ayuda',
+                  onTap: () => _navigateTo(context, HelpScreen()),
+                ),
+                _createDrawerItem(
+                  icon: Icons.logout,
+                  text: 'Cerrar sesión',
+                  onTap: () => print('Cerrar sesión'),
+                ),
+              ],
+            ),
           ),
         ],
       ),
@@ -107,27 +71,23 @@ class SideMenu extends StatelessWidget {
   Widget _createDrawerItem({
     required IconData icon,
     required String text,
-    required BuildContext context,
     required GestureTapCallback onTap,
   }) {
     return ListTile(
-      title: Row(
-        children: <Widget>[
-          Icon(
-            icon,
-            size: 30, // Aumenta el tamaño del icono
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: 8.0),
-            child: Text(
-              text,
-              style: secondaryTextBodyStyle.copyWith(
-                  fontSize: 18), // Usa el estilo de texto secundario del tema
-            ),
-          ),
-        ],
+      leading: Icon(icon, size: 30),
+      title: Text(
+        text,
+        style: TextStyle(fontSize: 18),
       ),
       onTap: onTap,
+    );
+  }
+
+  void _navigateTo(BuildContext context, Widget screen) {
+    Navigator.pop(context); // Cierra el Drawer antes de navegar
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => screen),
     );
   }
 }

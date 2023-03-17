@@ -10,7 +10,13 @@ class DateTimePickerBottomSheet extends StatefulWidget {
 }
 
 class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
-  DateTime? _selectedDateTime;
+  late DateTime _selectedDateTime;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedDateTime = _roundUpToNextHalfHour(DateTime.now());
+  }
 
   DateTime _roundUpToNextHalfHour(DateTime dateTime) {
     int minute = dateTime.minute;
@@ -21,10 +27,6 @@ class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
-    if (_selectedDateTime == null) {
-      _selectedDateTime = _roundUpToNextHalfHour(DateTime.now());
-    }
-
     return Container(
       height: MediaQuery.of(context).size.height * 0.4,
       padding: EdgeInsets.all(16),
@@ -32,7 +34,7 @@ class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
         children: [
           Text(
             'Selecciona fecha y hora',
-            style: primaryTextTitleStyle,
+            style: Theme.of(context).textTheme.headline6,
           ),
           SizedBox(height: 10),
           Expanded(
@@ -52,50 +54,55 @@ class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Text(
-                  'Cancelar',
-                  style: buttonTextSecondaryStyle,
-                ),
-                style: ElevatedButton.styleFrom(
-                  primary: secondaryColorGrey,
-                  onPrimary: appTheme().primaryColor,
-                  padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
+              _buildElevatedButton(
+                context,
+                'Cancelar',
+                AppTheme.secondaryLightGray,
+                Theme.of(context).primaryColor,
+                () => Navigator.pop(context),
               ),
-              ElevatedButton(
-                onPressed: () {
+              _buildElevatedButton(
+                context,
+                'Continuar',
+                Theme.of(context).primaryColor,
+                Theme.of(context).backgroundColor,
+                () {
                   Navigator.pop(context, _selectedDateTime);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ConfirmationScreen(),
-                    ),
-                  );
+                  _navigateToConfirmationScreen(context);
                 },
-                child: Text(
-                  'Continuar',
-                  style: buttonTextPrimaryStyle,
-                ),
-                style: ElevatedButton.styleFrom(
-                  primary: primaryColorBlue,
-                  onPrimary: appTheme().backgroundColor,
-                  padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
               ),
             ],
           ),
           SizedBox(height: 20),
         ],
+      ),
+    );
+  }
+
+  ElevatedButton _buildElevatedButton(BuildContext context, String text,
+      Color primary, Color onPrimary, VoidCallback onPressed) {
+    return ElevatedButton(
+      onPressed: onPressed,
+      child: Text(
+        text,
+        style: Theme.of(context).textTheme.button,
+      ),
+      style: ElevatedButton.styleFrom(
+        primary: primary,
+        onPrimary: onPrimary,
+        padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+      ),
+    );
+  }
+
+  void _navigateToConfirmationScreen(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ConfirmationScreen(),
       ),
     );
   }

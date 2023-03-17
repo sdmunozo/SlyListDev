@@ -1,4 +1,3 @@
-// lib/screens/service_history_screen.dart
 import 'package:flutter/material.dart';
 import 'package:slylist_app/screens/service_details_screen.dart';
 import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
@@ -12,8 +11,169 @@ class ServiceHistoryScreen extends StatefulWidget {
 class _ServiceHistoryScreenState extends State<ServiceHistoryScreen>
     with SingleTickerProviderStateMixin {
   TabController? _tabController;
+  final List<ServiceHistory> scheduledServices = _getScheduledServices();
+  final List<ServiceHistory> completedServices = _getCompletedServices();
 
-  // Ejemplos de servicios programados y completados
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController?.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: CustomAppBar(
+        title: 'Servicios',
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(48.0),
+          child: TabBar(
+            controller: _tabController,
+            tabs: [
+              Tab(text: 'Programados'),
+              Tab(text: 'Completados'),
+            ],
+          ),
+        ),
+      ),
+      body: TabBarView(
+        controller: _tabController,
+        children: [
+          ServiceList(
+              serviceList: scheduledServices), // Lista de servicios programados
+          ServiceList(
+              serviceList: completedServices), // Lista de servicios completados
+        ],
+      ),
+    );
+  }
+}
+
+class ServiceList extends StatelessWidget {
+  final List<ServiceHistory> serviceList;
+
+  const ServiceList({required this.serviceList});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: serviceList.length,
+      itemBuilder: (BuildContext context, int index) {
+        return _buildServiceCard(context, serviceList[index]);
+      },
+    );
+  }
+
+  Widget _buildServiceCard(BuildContext context, ServiceHistory service) {
+    return Card(
+      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+      child: Padding(
+        padding: EdgeInsets.all(8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildServiceHeader(context, service),
+            SizedBox(height: 16),
+            _buildServiceInformation(context, service),
+            SizedBox(height: 16),
+            _buildServiceButtonOrRating(context, service),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildServiceHeader(BuildContext context, ServiceHistory service) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Icon(service.icon, size: 40, color: Theme.of(context).primaryColor),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Text(service.date, style: Theme.of(context).textTheme.subtitle1),
+            SizedBox(height: 4),
+            Text(service.time),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildServiceInformation(
+      BuildContext context, ServiceHistory service) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(service.serviceName, style: Theme.of(context).textTheme.subtitle2),
+        SizedBox(height: 8),
+        Text('Costo: \$${service.cost.toStringAsFixed(2)}'),
+        SizedBox(height: 4),
+        Text('Dirección: ${service.address}'),
+        SizedBox(height: 4),
+        Text('Forma de pago: ${service.paymentMethod}'),
+        SizedBox(height: 4),
+        Text('Persona que lo realizará: ${service.serviceProvider}'),
+      ],
+    );
+  }
+
+  Widget _buildServiceButtonOrRating(
+      BuildContext context, ServiceHistory service) {
+    return service.completed
+        ? service.rating != null
+            ? _buildRatingRow(context, service.rating!)
+            : _buildRatingButton(context, service)
+        : _buildDetailsButton(context, service);
+  }
+
+  Widget _buildRatingRow(BuildContext context, int rating) {
+    return Row(
+      children: List.generate(
+        5,
+        (index) => Icon(
+          index < rating ? Icons.star : Icons.star_border,
+          color: Theme.of(context).accentColor,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildRatingButton(BuildContext context, ServiceHistory service) {
+    return ElevatedButton(
+      onPressed: () {
+        print('Calificar servicio ${service.serviceName}');
+      },
+      child: Text('Calificar'),
+      style: ElevatedButton.styleFrom(primary: Theme.of(context).accentColor),
+    );
+  }
+
+  Widget _buildDetailsButton(BuildContext context, ServiceHistory service) {
+    return ElevatedButton(
+      onPressed: () {
+        print('Más detalles de servicio ${service.serviceName}');
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ServiceDetailsScreen(service: service),
+          ),
+        );
+      },
+      child: Text('Más detalles'),
+      style: ElevatedButton.styleFrom(primary: Theme.of(context).accentColor),
+    );
+  }
+}
+
+List<ServiceHistory> _getScheduledServices() {
+// Ejemplos de servicios programados y completados
   final List<ServiceHistory> scheduledServices = [
     ServiceHistory(
       completed: false,
@@ -103,6 +263,10 @@ class _ServiceHistoryScreenState extends State<ServiceHistoryScreen>
     ),
   ];
 
+  return scheduledServices;
+}
+
+List<ServiceHistory> _getCompletedServices() {
   final List<ServiceHistory> completedServices = [
     ServiceHistory(
       completed: true,
@@ -157,140 +321,7 @@ class _ServiceHistoryScreenState extends State<ServiceHistoryScreen>
     ),
   ];
 
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(length: 2, vsync: this);
-  }
-
-  @override
-  void dispose() {
-    _tabController?.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(
-        title: 'Servicios',
-        bottom: PreferredSize(
-          preferredSize: Size.fromHeight(48.0),
-          child: TabBar(
-            controller: _tabController,
-            tabs: [
-              Tab(text: 'Programados'),
-              Tab(text: 'Completados'),
-            ],
-          ),
-        ),
-      ),
-      body: TabBarView(
-        controller: _tabController,
-        children: [
-          ServiceList(
-              serviceList: scheduledServices), // Lista de servicios programados
-          ServiceList(
-              serviceList: completedServices), // Lista de servicios completados
-        ],
-      ),
-    );
-  }
-}
-
-class ServiceList extends StatelessWidget {
-  final List<ServiceHistory> serviceList;
-
-  const ServiceList({required this.serviceList});
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: serviceList.length,
-      itemBuilder: (BuildContext context, int index) {
-        return _buildServiceCard(context, serviceList[index]);
-      },
-    );
-  }
-
-  Widget _buildServiceCard(BuildContext context, ServiceHistory service) {
-    return Card(
-      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-      child: Padding(
-        padding: EdgeInsets.all(8),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Icon(service.icon,
-                    size: 40, color: Theme.of(context).primaryColor),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text(service.date,
-                        style: Theme.of(context).textTheme.subtitle1),
-                    SizedBox(height: 4),
-                    Text(service.time),
-                  ],
-                ),
-              ],
-            ),
-            SizedBox(height: 16),
-            Text(service.serviceName,
-                style: Theme.of(context).textTheme.subtitle2),
-            SizedBox(height: 8),
-            Text('Costo: \$${service.cost.toStringAsFixed(2)}'),
-            SizedBox(height: 4),
-            Text('Dirección: ${service.address}'),
-            SizedBox(height: 4),
-            Text('Forma de pago: ${service.paymentMethod}'),
-            SizedBox(height: 4),
-            Text('Persona que lo realizará: ${service.serviceProvider}'),
-            SizedBox(height: 16),
-            service.completed
-                ? service.rating != null
-                    ? Row(
-                        children: List.generate(
-                          5,
-                          (index) => Icon(
-                            index < service.rating!
-                                ? Icons.star
-                                : Icons.star_border,
-                            color: Theme.of(context).accentColor,
-                          ),
-                        ),
-                      )
-                    : ElevatedButton(
-                        onPressed: () {
-                          print('Calificar servicio ${service.serviceName}');
-                        },
-                        child: Text('Calificar'),
-                        style: ElevatedButton.styleFrom(
-                            primary: Theme.of(context).accentColor),
-                      )
-                : ElevatedButton(
-                    onPressed: () {
-                      print('Más detalles de servicio ${service.serviceName}');
-                      // Navega a la pantalla de edición del servicio aquí
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              ServiceDetailsScreen(service: service),
-                        ),
-                      );
-                    },
-                    child: Text('Más detalles'),
-                    style: ElevatedButton.styleFrom(
-                        primary: Theme.of(context).accentColor),
-                  ),
-          ],
-        ),
-      ),
-    );
-  }
+  return completedServices;
 }
 
 class ServiceHistory {

@@ -1,3 +1,4 @@
+// reset_password_screen.dart
 import 'package:flutter/material.dart';
 import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
 
@@ -15,12 +16,12 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
     return Scaffold(
       appBar: CustomAppBar(title: 'Recuperar contraseña'),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.0),
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              SizedBox(height: 40),
+              const SizedBox(height: 40),
               TextFormField(
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
@@ -31,10 +32,10 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 },
                 decoration: InputDecoration(
                   labelText: 'Correo electrónico',
-                  labelStyle: TextStyle(fontFamily: 'Cairo-Regular'),
+                  labelStyle: const TextStyle(fontFamily: 'Cairo-Regular'),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: _isEmailValid
                     ? () {
@@ -42,22 +43,22 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                       }
                     : null,
                 style: ElevatedButton.styleFrom(
-                  primary: Color(0xFFED193E),
-                  padding: EdgeInsets.symmetric(vertical: 16),
-                  textStyle: TextStyle(
+                  primary: const Color(0xFFED193E),
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  textStyle: const TextStyle(
                     fontFamily: 'SohoGothicPro-Bold',
                     fontSize: 18,
                   ),
                 ),
-                child: Text('Enviar'),
+                child: const Text('Enviar'),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Text(
                 'Se ha enviado un correo electrónico de restablecimiento de contraseña a la dirección proporcionada. Por favor, sigue las instrucciones en el correo electrónico para restablecer tu contraseña.',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontFamily: 'Cairo-Regular'),
+                style: const TextStyle(fontFamily: 'Cairo-Regular'),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               TextButton(
                 onPressed: () {
                   Navigator.pop(context);
@@ -66,7 +67,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   'Cancelar',
                   style: TextStyle(
                     fontFamily: 'Cairo-Bold',
-                    color: Color(0xFFED193E),
+                    color: const Color(0xFFED193E),
                   ),
                 ),
               ),

@@ -16,44 +16,28 @@ class SelectionFeatureWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData appTheme = Theme.of(context);
+
     return Card(
       elevation: 3.0,
       margin: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          children: [
-            CircleAvatar(
-              child: Icon(
-                icon,
-                color: Colors.white,
-              ),
-              backgroundColor: primaryColorBlue,
-            ),
-            SizedBox(width: 16),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    feature.title,
-                    style: primaryTextSubtitleStyle,
-                  ),
-                  if (feature.subTitle.isNotEmpty)
-                    Text(
-                      feature.subTitle,
-                      style: secondaryTextBodyStyle.copyWith(
-                          color: secondaryColorBlueGrey, fontSize: 14),
-                    ),
-                ],
-              ),
-            ),
-            Checkbox(
-              value: feature.isSelected,
-              onChanged: onChanged,
-              activeColor: primaryColorRed,
-            ),
-          ],
+      child: ListTile(
+        leading: CircleAvatar(
+          child: Icon(icon, color: Colors.white),
+          backgroundColor: AppTheme.primaryNavyBlue,
+        ),
+        title: Text(feature.title, style: appTheme.textTheme.subtitle1),
+        subtitle: feature.subTitle.isNotEmpty
+            ? Text(
+                feature.subTitle,
+                style: appTheme.textTheme.subtitle2!
+                    .copyWith(color: AppTheme.secondaryBlueGray, fontSize: 14),
+              )
+            : null,
+        trailing: Checkbox(
+          value: feature.isSelected,
+          onChanged: onChanged,
+          activeColor: AppTheme.primaryRed,
         ),
       ),
     );

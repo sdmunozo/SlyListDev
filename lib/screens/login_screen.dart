@@ -22,7 +22,7 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              SizedBox(height: 40),
+              const SizedBox(height: 40),
               Center(
                 child: Image.asset(
                   'assets/slylistLogoColor.png',
@@ -30,20 +30,20 @@ class _LoginScreenState extends State<LoginScreen> {
                   width: 150,
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               TextFormField(
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   labelText: 'Correo electrónico',
-                  labelStyle: TextStyle(fontFamily: 'Cairo-Regular'),
+                  labelStyle: const TextStyle(fontFamily: 'Cairo-Regular'),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               TextFormField(
                 obscureText: _obscurePassword,
                 decoration: InputDecoration(
                   labelText: 'Contraseña',
-                  labelStyle: TextStyle(fontFamily: 'Cairo-Regular'),
+                  labelStyle: const TextStyle(fontFamily: 'Cairo-Regular'),
                   suffixIcon: IconButton(
                     icon: Icon(
                       _obscurePassword
@@ -58,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               TextButton(
                 onPressed: () {
                   Navigator.push(
@@ -68,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   );
                 },
-                child: Text(
+                child: const Text(
                   '¿Olvidaste tu contraseña?',
                   style: TextStyle(
                     fontFamily: 'Cairo-Bold',
@@ -76,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   // Aquí puedes agregar la lógica de inicio de sesión y validación
@@ -91,19 +91,19 @@ class _LoginScreenState extends State<LoginScreen> {
                 },
                 style: ElevatedButton.styleFrom(
                   primary: Color(0xFFED193E),
-                  padding: EdgeInsets.symmetric(vertical: 16),
-                  textStyle: TextStyle(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  textStyle: const TextStyle(
                     fontFamily: 'SohoGothicPro-Bold',
                     fontSize: 18,
                   ),
                 ),
-                child: Text('Iniciar sesión'),
+                child: const Text('Iniciar sesión'),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     '¿No tienes cuenta?',
                     style: TextStyle(fontFamily: 'Cairo-Regular'),
                   ),
@@ -116,7 +116,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       );
                     },
-                    child: Text(
+                    child: const Text(
                       'Regístrate',
                       style: TextStyle(
                         fontFamily: 'Cairo-Bold',

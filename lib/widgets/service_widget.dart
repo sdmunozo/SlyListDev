@@ -19,22 +19,17 @@ class ServiceWidget extends StatelessWidget {
     ThemeData appTheme = Theme.of(context);
 
     return Container(
-      margin: EdgeInsets.only(left: 16, right: 16),
+      margin: EdgeInsets.symmetric(horizontal: 16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         color: enabled ? color : appTheme.disabledColor,
       ),
-      child: Padding(
-        padding: EdgeInsets.all(16),
-        child: Row(
-          children: [
-            Icon(icon, size: 40, color: Colors.white),
-            SizedBox(width: 16),
-            Text(
-              serviceName,
-              style: primaryTextTitleStyle.copyWith(color: Colors.white),
-            ),
-          ],
+      child: ListTile(
+        contentPadding: EdgeInsets.all(16),
+        leading: Icon(icon, size: 40, color: Colors.white),
+        title: Text(
+          serviceName,
+          style: appTheme.textTheme.headline5!.copyWith(color: Colors.white),
         ),
       ),
     );

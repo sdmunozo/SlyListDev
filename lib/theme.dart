@@ -1,83 +1,58 @@
+// theme.dart
 import 'package:flutter/material.dart';
 
-// Paleta de Colores Primaria
-const Color primaryColorRed = Color(0xFFED193E);
-const Color primaryColorBlue = Color(0xFF142449);
+class AppTheme {
+  AppTheme._();
 
-// Paleta de Colores Secundaria
-const Color secondaryColorGrey = Color(0xFFE5E1E5);
-const Color secondaryColorWine = Color(0xFFC41F4B);
-const Color secondaryColorOrange = Color(0xFFF04B24);
-const Color secondaryColorOxfordBlue = Color(0xFF12284B);
-const Color secondaryColorBlueGrey = Color(0xFF415364);
+  // Colores primarios
+  static const Color primaryRed = Color(0xFF142431);
+  static const Color primaryNavyBlue = Color(0xFFED193E);
 
-// Tipografías
-const String primaryFontFamily = 'SohoGothicPro';
-const String secondaryFontFamily = 'Cairo';
+  // Colores secundarios
+  static const Color secondaryLightGray = Color(0xFFE5E1E5);
+  static const Color secondaryWine = Color(0xFFC41F4B);
+  static const Color secondaryOrange = Color(0xFFF04B24);
+  static const Color secondaryOxfordBlue = Color(0xFF12284B);
+  static const Color secondaryBlueGray = Color(0xFF415364);
 
-// Estilos de texto
-TextStyle primaryTextTitleStyle = TextStyle(
-  fontFamily: primaryFontFamily,
-  fontWeight: FontWeight.bold,
-  fontSize: 24,
-);
-
-TextStyle primaryTextSubtitleStyle = TextStyle(
-  fontFamily: primaryFontFamily,
-  fontWeight: FontWeight.normal,
-  fontSize: 16,
-);
-
-final TextStyle buttonTextSecondaryStyle = TextStyle(
-  fontFamily: 'SohoGothicPro',
-  fontSize: 18,
-);
-final TextStyle buttonTextPrimaryStyle = TextStyle(
-  fontFamily: 'SohoGothicPro',
-  fontSize: 18,
-);
-
-TextStyle primaryTextBodyStyle = TextStyle(
-  fontFamily: primaryFontFamily,
-  fontWeight: FontWeight.normal,
-  fontSize: 16,
-);
-
-TextStyle secondaryTextTitleStyle = TextStyle(
-  fontFamily: secondaryFontFamily,
-  fontWeight: FontWeight.bold,
-  fontSize: 24,
-);
-
-TextStyle secondaryTextBodyStyle = TextStyle(
-  fontFamily: secondaryFontFamily,
-  fontWeight: FontWeight.normal,
-  fontSize: 16,
-);
-
-// Tema
-ThemeData appTheme() {
-  return ThemeData(
-    primaryColor: primaryColorBlue,
-    accentColor: primaryColorRed,
-    backgroundColor: secondaryColorGrey,
-    disabledColor: secondaryColorBlueGrey,
-    errorColor: secondaryColorOrange,
-    indicatorColor: secondaryColorOxfordBlue,
-    hintColor: secondaryColorBlueGrey,
-    visualDensity: VisualDensity.adaptivePlatformDensity,
-    fontFamily: secondaryFontFamily,
-    textTheme: TextTheme(
-      headline1: primaryTextTitleStyle,
-      bodyText1: primaryTextBodyStyle,
-      headline2: secondaryTextTitleStyle,
-      bodyText2: secondaryTextBodyStyle,
-      // Estilos adicionales
-      subtitle1: TextStyle(fontFamily: 'Cairo-Bold'),
-      subtitle2: TextStyle(fontFamily: 'Cairo-Bold'),
-      button: TextStyle(fontFamily: 'Cairo-Bold'),
-      caption: TextStyle(fontFamily: 'Cairo-Regular'),
-      overline: TextStyle(fontFamily: 'Cairo-Regular'),
+  static final ThemeData lightTheme = ThemeData(
+    primaryColor: primaryRed,
+    accentColor: primaryNavyBlue,
+    scaffoldBackgroundColor: Colors.white,
+    textTheme: _buildTextTheme(),
+    buttonTheme: ButtonThemeData(
+      buttonColor: primaryRed,
+      textTheme: ButtonTextTheme.primary,
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        primary: primaryRed,
+        textStyle: TextStyle(fontFamily: 'Cairo-Bold'),
+      ),
+    ),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        primary: primaryRed,
+        textStyle: TextStyle(fontFamily: 'Cairo-Bold'),
+      ),
     ),
   );
+
+  static TextTheme _buildTextTheme() {
+    return const TextTheme(
+      headline1: TextStyle(fontFamily: 'SohoGothicPro-Ultra', fontSize: 96),
+      headline2: TextStyle(fontFamily: 'SohoGothicPro-Ultra', fontSize: 60),
+      headline3: TextStyle(fontFamily: 'SohoGothicPro-Bold', fontSize: 48),
+      headline4: TextStyle(fontFamily: 'SohoGothicPro-Bold', fontSize: 34),
+      headline5: TextStyle(fontFamily: 'SohoGothicPro-Bold', fontSize: 24),
+      headline6: TextStyle(fontFamily: 'SohoGothicPro-Bold', fontSize: 20),
+      subtitle1: TextStyle(fontFamily: 'Cairo-Bold', fontSize: 16),
+      subtitle2: TextStyle(fontFamily: 'Cairo-Regular', fontSize: 14),
+      bodyText1: TextStyle(fontFamily: 'Cairo-Regular', fontSize: 16),
+      bodyText2: TextStyle(fontFamily: 'Cairo-Regular', fontSize: 14),
+      button: TextStyle(fontFamily: 'Cairo-Bold', fontSize: 14),
+      caption: TextStyle(fontFamily: 'Cairo-Regular', fontSize: 12),
+      overline: TextStyle(fontFamily: 'Cairo-Regular', fontSize: 10),
+    );
+  }
 }

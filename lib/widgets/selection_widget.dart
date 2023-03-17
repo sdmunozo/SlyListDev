@@ -19,44 +19,28 @@ class SelectionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData appTheme = Theme.of(context);
+
     return Card(
       elevation: 3.0,
       margin: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          children: [
-            CircleAvatar(
-              child: Icon(
-                icon,
-                color: Colors.white,
-              ),
-              backgroundColor: primaryColorBlue,
-            ),
-            SizedBox(width: 16),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: primaryTextSubtitleStyle,
-                  ),
-                  if (subTitle.isNotEmpty)
-                    Text(
-                      subTitle,
-                      style: secondaryTextBodyStyle.copyWith(
-                          color: secondaryColorBlueGrey, fontSize: 14),
-                    ),
-                ],
-              ),
-            ),
-            Checkbox(
-              value: isSelected,
-              onChanged: onChanged,
-              activeColor: primaryColorRed,
-            ),
-          ],
+      child: ListTile(
+        leading: CircleAvatar(
+          child: Icon(icon, color: Colors.white),
+          backgroundColor: AppTheme.primaryNavyBlue,
+        ),
+        title: Text(title, style: appTheme.textTheme.subtitle1),
+        subtitle: subTitle.isNotEmpty
+            ? Text(
+                subTitle,
+                style: appTheme.textTheme.subtitle2!
+                    .copyWith(color: AppTheme.secondaryBlueGray, fontSize: 14),
+              )
+            : null,
+        trailing: Checkbox(
+          value: isSelected,
+          onChanged: onChanged,
+          activeColor: AppTheme.primaryRed,
         ),
       ),
     );

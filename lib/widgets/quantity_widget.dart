@@ -20,42 +20,42 @@ class QuantityWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Card(
       margin: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-      padding: EdgeInsets.all(5),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: Colors.grey[200],
-      ),
-      child: Row(
-        children: [
-          Icon(icon, size: 50, color: primaryColorBlue),
-          SizedBox(width: 15),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      child: Padding(
+        padding: EdgeInsets.all(5),
+        child: ListTile(
+          leading: Icon(icon, size: 50, color: AppTheme.primaryNavyBlue),
+          title: Text(
+            title,
+            style:
+                Theme.of(context).textTheme.headline6!.copyWith(fontSize: 18),
+          ),
+          subtitle: Text(
+            subTitle,
+            style:
+                Theme.of(context).textTheme.subtitle2!.copyWith(fontSize: 16),
+          ),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              Text(
-                title,
-                style: primaryTextTitleStyle.copyWith(fontSize: 18),
+              IconButton(
+                icon: Icon(Icons.remove, color: AppTheme.primaryNavyBlue),
+                onPressed: onDecrement,
               ),
-              Text(
-                subTitle,
-                style: primaryTextSubtitleStyle.copyWith(fontSize: 16),
+              Text(quantity.toString(),
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline6!
+                      .copyWith(fontSize: 26)),
+              IconButton(
+                icon: Icon(Icons.add, color: AppTheme.primaryNavyBlue),
+                onPressed: onIncrement,
               ),
             ],
           ),
-          Spacer(),
-          IconButton(
-            icon: Icon(Icons.remove, color: primaryColorBlue),
-            onPressed: onDecrement,
-          ),
-          Text(quantity.toString(),
-              style: primaryTextTitleStyle.copyWith(fontSize: 26)),
-          IconButton(
-            icon: Icon(Icons.add, color: primaryColorBlue),
-            onPressed: onIncrement,
-          ),
-        ],
+        ),
       ),
     );
   }

@@ -4,7 +4,7 @@ import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
 class ReferralCodeScreen extends StatelessWidget {
   final String referralCode;
 
-  ReferralCodeScreen({required this.referralCode});
+  const ReferralCodeScreen({required this.referralCode});
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +27,9 @@ class ReferralCodeScreen extends StatelessWidget {
                 ),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               Container(
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   color: appTheme.primaryColor,
                   borderRadius: BorderRadius.circular(12),
@@ -42,7 +42,7 @@ class ReferralCodeScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 32),
+              const SizedBox(height: 32),
               Text(
                 'Tus amigos recibirán beneficios al unirse con tu código',
                 style: appTheme.textTheme.bodyText1?.copyWith(

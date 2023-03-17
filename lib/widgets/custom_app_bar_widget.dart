@@ -10,12 +10,14 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor:
-          primaryColorBlue, // Use the primary blue color from the theme
+      backgroundColor: Theme.of(context)
+          .primaryColor, // Use the primary color from the theme
       title: Text(
         title,
-        style:
-            primaryTextTitleStyle, // Use the primary title text style from the theme
+        style: Theme.of(context)
+            .textTheme
+            .headline6
+            ?.copyWith(color: Colors.white), // Set the text color to white
       ),
       centerTitle: true,
       bottom: bottom,

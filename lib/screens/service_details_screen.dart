@@ -1,3 +1,4 @@
+// service_details_screen.dart
 import 'package:flutter/material.dart';
 import 'package:slylist_app/theme.dart';
 import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
@@ -14,75 +15,50 @@ class ServiceDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final boldSubtitleStyle = Theme.of(context)
+        .textTheme
+        .subtitle1!
+        .copyWith(fontWeight: FontWeight.bold);
+    final regularSubtitleStyle =
+        Theme.of(context).textTheme.subtitle1!.copyWith(fontSize: 20);
+
     return Scaffold(
-      appBar: CustomAppBar(
-        title: service.serviceName,
-      ),
+      appBar: CustomAppBar(title: service.serviceName),
       body: ListView(
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
         children: [
-          SizedBox(height: 10),
-          Text(
-            'Usuario:',
-            style:
-                primaryTextSubtitleStyle.copyWith(fontWeight: FontWeight.bold),
-          ),
-          Text(
-            'Carlos Martínez',
-            style: primaryTextSubtitleStyle.copyWith(fontSize: 20),
-          ),
-          SizedBox(height: 10),
-          Text(
-            'Fecha y hora:',
-            style:
-                primaryTextSubtitleStyle.copyWith(fontWeight: FontWeight.bold),
-          ),
-          Text(
-            '${service.date} ${service.time}',
-            style: primaryTextSubtitleStyle.copyWith(fontSize: 20),
-          ),
-          SizedBox(height: 10),
-          Text(
-            'Servicio:',
-            style:
-                primaryTextSubtitleStyle.copyWith(fontWeight: FontWeight.bold),
-          ),
-          Text(
-            '${service.serviceName}',
-            style: primaryTextSubtitleStyle.copyWith(fontSize: 20),
-          ),
-          SizedBox(height: 10),
-          Text(
-            'Forma de pago:',
-            style:
-                primaryTextSubtitleStyle.copyWith(fontWeight: FontWeight.bold),
-          ),
-          Text(
-            '${service.paymentMethod}',
-            style: primaryTextSubtitleStyle.copyWith(fontSize: 20),
-          ),
-          SizedBox(height: 16),
-          // Agregando widgets para QuantityFeature y SelectionFeature
+          const SizedBox(height: 10),
+          Text('Usuario:', style: boldSubtitleStyle),
+          Text('Carlos Martínez', style: regularSubtitleStyle),
+          const SizedBox(height: 10),
+          Text('Fecha y hora:', style: boldSubtitleStyle),
+          Text('${service.date} ${service.time}', style: regularSubtitleStyle),
+          const SizedBox(height: 10),
+          Text('Servicio:', style: boldSubtitleStyle),
+          Text('${service.serviceName}', style: regularSubtitleStyle),
+          const SizedBox(height: 10),
+          Text('Forma de pago:', style: boldSubtitleStyle),
+          Text('${service.paymentMethod}', style: regularSubtitleStyle),
+          const SizedBox(height: 16),
           ...service.features.map((Feature feature) {
             if (feature is QuantityFeature) {
               return QuantityFeatureWidget(
-                icon: Icons.build, // Reemplazar con el ícono que corresponda
+                icon: Icons.build,
                 feature: feature,
-                onIncrement: () {}, // Ajusta esta función según sea necesario
-                onDecrement: () {}, // Ajusta esta función según sea necesario
+                onIncrement: () {},
+                onDecrement: () {},
               );
             } else if (feature is SelectionFeature) {
               return SelectionFeatureWidget(
-                icon: Icons.check, // Reemplazar con el ícono que corresponda
+                icon: Icons.check,
                 feature: feature,
-                onChanged: (bool?
-                    isSelected) {}, // Ajusta esta función según sea necesario
+                onChanged: (bool? isSelected) {},
               );
             } else {
-              return SizedBox.shrink();
+              return const SizedBox.shrink();
             }
           }).toList(),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
         ],
       ),
     );

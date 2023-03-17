@@ -4,8 +4,7 @@ import 'package:slylist_app/widgets/date_time_picker.dart';
 import 'package:slylist_app/widgets/date_time_picker_bottom_sheet.dart';
 import 'package:slylist_app/widgets/quantity_widget.dart';
 import 'package:slylist_app/widgets/selection_widget.dart';
-import 'package:slylist_app/screens/service_screen.dart';
-import 'package:slylist_app/screens/service_details_screen.dart'; // Importar la pantalla de detalles
+import 'package:slylist_app/screens/service_details_screen.dart';
 
 class ServiceScreen extends StatefulWidget {
   @override
@@ -16,6 +15,7 @@ class _ServiceScreenState extends State<ServiceScreen> {
   int _bedrooms = 0;
   int _bathrooms = 0;
   int _commonAreas = 0;
+  late TextTheme textTheme;
   bool _deepCleaning = false;
 
   int _calculateTotal() {
@@ -28,175 +28,203 @@ class _ServiceScreenState extends State<ServiceScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+    textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
-      appBar: CustomAppBar(title: 'Limpieza'),
+      appBar: CustomAppBar(
+        title: 'Limpieza',
+      ),
       body: Column(
         children: [
           Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Text(
-                      '¿Qué limpiaremos por ti?',
-                      style: textTheme.headline5!.copyWith(
-                          fontFamily: 'SohoGothicPro',
-                          fontWeight: FontWeight.bold,
-                          color: Theme.of(context).primaryColor),
-                    ),
-                  ),
-                  QuantityWidget(
-                    icon: Icons.king_bed,
-                    title: 'Cuartos',
-                    subTitle: '',
-                    quantity: _bedrooms,
-                    onIncrement: () {
-                      setState(() {
-                        _bedrooms++;
-                      });
-                    },
-                    onDecrement: () {
-                      setState(() {
-                        if (_bedrooms > 0) {
-                          _bedrooms--;
-                        }
-                      });
-                    },
-                  ),
-                  QuantityWidget(
-                    icon: Icons.bathtub,
-                    title: 'Baños',
-                    subTitle: '',
-                    quantity: _bathrooms,
-                    onIncrement: () {
-                      setState(() {
-                        _bathrooms++;
-                      });
-                    },
-                    onDecrement: () {
-                      setState(() {
-                        if (_bathrooms > 0) {
-                          _bathrooms--;
-                        }
-                      });
-                    },
-                  ),
-                  QuantityWidget(
-                    icon: Icons.weekend,
-                    title: 'Áreas comunes',
-                    subTitle: '(Sala, Comedor)',
-                    quantity: _commonAreas,
-                    onIncrement: () {
-                      setState(() {
-                        _commonAreas++;
-                      });
-                    },
-                    onDecrement: () {
-                      setState(() {
-                        if (_commonAreas > 0) {
-                          _commonAreas--;
-                        }
-                      });
-                    },
-                  ),
-                  SelectionWidget(
-                    icon: Icons.cleaning_services,
-                    title: 'Limpieza profunda',
-                    subTitle: 'Fiestas, suciedad acumulada(+200)',
-                    isSelected: _deepCleaning,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        _deepCleaning = value ?? false;
-                      });
-                    },
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-                    child: Text(
-                      'Total',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                    child: RichText(
-                      text: TextSpan(
-                        children: [
-                          TextSpan(
-                            text: '\$${_calculateTotal()} ',
-                            style: TextStyle(
-                              fontSize: 50,
-                              fontWeight: FontWeight.bold,
-                              color: Theme.of(context)
-                                  .primaryColor, // Aplica el backgroundColor aquí
-                            ),
-                          ),
-                          TextSpan(
-                            text: 'MXN',
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Theme.of(context)
-                                  .primaryColor, // Aplica el backgroundColor aquí
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-
-                  Padding(
-                    padding: EdgeInsets.all(6),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        showModalBottomSheet(
-                          context: context,
-                          builder: (context) => DateTimePickerBottomSheet(),
-                          shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.vertical(top: Radius.circular(16)),
-                          ),
-                          isScrollControlled: true,
-                        );
-                      },
-                      child: Text(
-                        'Programar visita',
-                        style: TextStyle(
-                            fontFamily: 'SohoGothicPro', fontSize: 22),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        primary: Color(0xFFED193E),
-                        onPrimary: Colors.white,
-                        padding:
-                            EdgeInsets.symmetric(vertical: 16, horizontal: 32),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  // Espacio para publicidad
-                ],
-              ),
+            child: ListView(
+              padding: EdgeInsets.all(10),
+              children: [
+                buildTitle(textTheme, context),
+                buildQuantityWidgets(),
+                buildSelectionWidget(),
+                buildTotal(context),
+                buildScheduleButton(context),
+              ],
             ),
           ),
-          Container(
-            height: 170,
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            color: Colors.grey[300],
-            child: Center(
-              child: Text(
-                'Espacio para publicidad',
-                style: TextStyle(fontSize: 16),
-              ),
-            ),
-          ),
+          buildAdSpace(),
         ],
+      ),
+    );
+  }
+
+  Text buildTitle(TextTheme textTheme, BuildContext context) {
+    return Text(
+      '¿Qué limpiaremos por ti?',
+      textAlign: TextAlign.center,
+      style: textTheme.headline5!.copyWith(
+          fontFamily: 'SohoGothicPro-Bold',
+          fontWeight: FontWeight.bold,
+          color: Theme.of(context).primaryColor),
+    );
+  }
+
+  Widget buildQuantityWidgets() {
+    return Column(
+      children: [
+        QuantityWidget(
+          icon: Icons.king_bed,
+          title: 'Cuartos',
+          subTitle: '',
+          quantity: _bedrooms,
+          onIncrement: () {
+            setState(() {
+              _bedrooms++;
+            });
+          },
+          onDecrement: () {
+            setState(() {
+              if (_bedrooms > 0) {
+                _bedrooms--;
+              }
+            });
+          },
+        ),
+        QuantityWidget(
+          icon: Icons.bathtub,
+          title: 'Baños',
+          subTitle: '',
+          quantity: _bathrooms,
+          onIncrement: () {
+            setState(() {
+              _bathrooms++;
+            });
+          },
+          onDecrement: () {
+            setState(() {
+              if (_bathrooms > 0) {
+                _bathrooms--;
+              }
+            });
+          },
+        ),
+        QuantityWidget(
+          icon: Icons.weekend,
+          title: 'Áreas comunes',
+          subTitle: '(Sala, Comedor)',
+          quantity: _commonAreas,
+          onIncrement: () {
+            setState(() {
+              _commonAreas++;
+            });
+          },
+          onDecrement: () {
+            setState(() {
+              if (_commonAreas > 0) {
+                _commonAreas--;
+              }
+            });
+          },
+        ),
+      ],
+    );
+  }
+
+  SelectionWidget buildSelectionWidget() {
+    return SelectionWidget(
+      icon: Icons.cleaning_services,
+      title: 'Limpieza profunda',
+      subTitle: 'Fiestas, suciedad acumulada(+200)',
+      isSelected: _deepCleaning,
+      onChanged: (bool? value) {
+        setState(() {
+          _deepCleaning = value ?? false;
+        });
+      },
+    );
+  }
+
+  Column buildTotal(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+          child: Text(
+            'Total',
+            style: textTheme.headline5!.copyWith(
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).primaryColor,
+            ),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+          child: RichText(
+            text: TextSpan(
+              children: [
+                TextSpan(
+                  text: '\$${_calculateTotal()} ',
+                  style: TextStyle(
+                    fontSize: 50,
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                ),
+                TextSpan(
+                  text: 'MXN',
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Padding buildScheduleButton(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(6),
+      child: ElevatedButton(
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            builder: (context) => DateTimePickerBottomSheet(),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+            ),
+            isScrollControlled: true,
+          );
+        },
+        child: Text(
+          'Programar visita',
+          style: textTheme.headline5!.copyWith(
+            fontFamily: 'SohoGothicPro',
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        style: ElevatedButton.styleFrom(
+          primary: Theme.of(context).accentColor,
+          padding: EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Container buildAdSpace() {
+    return Container(
+      height: 170,
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      color: Theme.of(context).primaryColorLight,
+      child: Center(
+        child: Text(
+          'Espacio para publicidad',
+          style: textTheme.bodyText1!.copyWith(fontSize: 16),
+        ),
       ),
     );
   }

@@ -10,7 +10,6 @@ class DateTimePicker extends StatefulWidget {
 class _DateTimePickerState extends State<DateTimePicker> {
   DateTime _selectedDate = DateTime.now();
   TimeOfDay _selectedTime = TimeOfDay.now();
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,7 +19,7 @@ class _DateTimePickerState extends State<DateTimePicker> {
         children: [
           Text(
             'Selecciona la fecha y hora de la visita',
-            style: primaryTextTitleStyle,
+            style: Theme.of(context).textTheme.headline6,
           ),
           SizedBox(height: 16),
           ElevatedButton(
@@ -39,10 +38,10 @@ class _DateTimePickerState extends State<DateTimePicker> {
             },
             child: Text(
               'Seleccionar fecha',
-              style: buttonTextPrimaryStyle,
+              style: Theme.of(context).textTheme.button,
             ),
             style: ElevatedButton.styleFrom(
-              primary: primaryColorBlue,
+              primary: AppTheme.primaryNavyBlue,
             ),
           ),
           SizedBox(height: 16),
@@ -67,10 +66,10 @@ class _DateTimePickerState extends State<DateTimePicker> {
             },
             child: Text(
               'Seleccionar hora',
-              style: buttonTextPrimaryStyle,
+              style: Theme.of(context).textTheme.button,
             ),
             style: ElevatedButton.styleFrom(
-              primary: primaryColorBlue,
+              primary: AppTheme.primaryNavyBlue,
             ),
           ),
           SizedBox(height: 16),
@@ -81,15 +80,15 @@ class _DateTimePickerState extends State<DateTimePicker> {
           SizedBox(height: 16),
           ElevatedButton(
             onPressed: () {
-              // Realiza alguna acción con la fecha y hora seleccionada
+// Realiza alguna acción con la fecha y hora seleccionada
               Navigator.pop(context);
             },
             child: Text(
               'Confirmar visita',
-              style: buttonTextPrimaryStyle,
+              style: Theme.of(context).textTheme.button,
             ),
             style: ElevatedButton.styleFrom(
-              primary: primaryColorBlue,
+              primary: AppTheme.primaryNavyBlue,
             ),
           ),
         ],
