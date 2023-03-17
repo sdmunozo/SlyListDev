@@ -22,6 +22,24 @@ class _AccountScreenState extends State<AccountScreen> {
     super.dispose();
   }
 
+  Widget _buildTextFormField({
+    required String labelText,
+    TextInputType keyboardType = TextInputType.text,
+    TextEditingController? controller,
+    bool obscureText = false,
+    Widget? suffixIcon,
+  }) {
+    return TextFormField(
+      controller: controller,
+      decoration: InputDecoration(
+        labelText: labelText,
+        suffixIcon: suffixIcon,
+      ),
+      keyboardType: keyboardType,
+      obscureText: obscureText,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,48 +63,34 @@ class _AccountScreenState extends State<AccountScreen> {
                 ),
               ),
               SizedBox(height: 20),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: 'Nombre',
-                ),
-              ),
+              _buildTextFormField(labelText: 'Nombre'),
               SizedBox(height: 10),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: 'Apellido',
-                ),
-              ),
+              _buildTextFormField(labelText: 'Apellido'),
               SizedBox(height: 10),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: 'Número de teléfono',
-                ),
+              _buildTextFormField(
+                labelText: 'Número de teléfono',
                 keyboardType: TextInputType.phone,
               ),
               SizedBox(height: 10),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: 'Correo electrónico',
-                ),
+              _buildTextFormField(
+                labelText: 'Correo electrónico',
                 keyboardType: TextInputType.emailAddress,
               ),
               SizedBox(height: 10),
-              TextFormField(
+              _buildTextFormField(
+                labelText: 'Contraseña',
                 controller: _passwordController,
-                decoration: InputDecoration(
-                  labelText: 'Contraseña',
-                  suffixIcon: IconButton(
-                    icon: Icon(_isPasswordVisible
-                        ? Icons.visibility
-                        : Icons.visibility_off),
-                    onPressed: () {
-                      setState(() {
-                        _isPasswordVisible = !_isPasswordVisible;
-                      });
-                    },
-                  ),
-                ),
                 obscureText: !_isPasswordVisible,
+                suffixIcon: IconButton(
+                  icon: Icon(_isPasswordVisible
+                      ? Icons.visibility
+                      : Icons.visibility_off),
+                  onPressed: () {
+                    setState(() {
+                      _isPasswordVisible = !_isPasswordVisible;
+                    });
+                  },
+                ),
               ),
               SizedBox(height: 20),
               SizedBox(

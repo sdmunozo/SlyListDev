@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
         _currentPosition = position;
         _mapController.move(
             LatLng(_currentPosition!.latitude, _currentPosition!.longitude),
-            13.0);
+            16.5);
       });
     } catch (e) {
       print(e);
@@ -51,14 +51,11 @@ class _HomeScreenState extends State<HomeScreen> {
             child: FlutterMap(
               mapController: _mapController,
               options: MapOptions(
-                center: _currentPosition != null
-                    ? LatLng(
-                        _currentPosition!.latitude, _currentPosition!.longitude)
-                    : LatLng(25.651081,
-                        -100.289558), // Si no se obtiene la posición, se centra en (0, 0)
-                // Si no se obtiene la posición, se centra en (0, 0)
-                zoom: 16.0,
-              ),
+                  center: _currentPosition != null
+                      ? LatLng(_currentPosition!.latitude,
+                          _currentPosition!.longitude)
+                      : LatLng(25.651081, -100.289558),
+                  zoom: 16.5),
               layers: [
                 TileLayerOptions(
                   urlTemplate:
@@ -77,7 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: Icon(
                                 Icons.location_on,
                                 color: Colors.red,
-                                size: 40.0,
+                                size: 60.0,
                               ),
                             ),
                           ),
