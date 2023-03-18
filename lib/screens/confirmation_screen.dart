@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:slylist_app/theme.dart';
+import 'package:slylist_app/widgets/checkbox_widget.dart';
 import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
 import 'package:slylist_app/widgets/large_button_widget.dart';
 
@@ -121,7 +122,17 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
               ),
               SizedBox(height: 20),
               Row(
-                children: [],
+                children: [
+                  CheckboxWidget(
+                      labelText:
+                          'Confirmo que poseo autorización para el servicio solicitado en el inmueble.',
+                      value: _isAgreed,
+                      onChanged: (value) {
+                        setState(() {
+                          _isAgreed = value!;
+                        });
+                      }),
+                ],
               ),
               SizedBox(height: 20),
               SizedBox(

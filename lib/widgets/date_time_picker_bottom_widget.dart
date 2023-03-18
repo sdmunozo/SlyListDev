@@ -13,14 +13,15 @@ class DateTimePickerBottomSheet extends StatefulWidget {
 
 class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
   late DateTime _selectedDateTime;
+  late DateTime _minimumDateTime;
 
   final int hoursToAdd = 20;
 
   @override
   void initState() {
     super.initState();
-    _selectedDateTime =
-        _roundUpToNextHalfHour(DateTime.now().add(Duration(hours: hoursToAdd)));
+    _minimumDateTime = DateTime.now().add(Duration(hours: hoursToAdd));
+    _selectedDateTime = _roundUpToNextHalfHour(_minimumDateTime);
   }
 
   DateTime _roundUpToNextHalfHour(DateTime dateTime) {
@@ -32,8 +33,6 @@ class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
-    final minimumDateTime = DateTime.now().add(Duration(hours: hoursToAdd));
-
     return Container(
       height: MediaQuery.of(context).size.height * 0.4,
       padding: EdgeInsets.all(16),
@@ -52,7 +51,7 @@ class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
                   _selectedDateTime = newDateTime;
                 });
               },
-              minimumDate: minimumDateTime,
+              minimumDate: _minimumDateTime,
               minuteInterval: 30,
               mode: CupertinoDatePickerMode.dateAndTime,
             ),
@@ -83,6 +82,8 @@ class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
             ],
           ),
         ],
+
+        ///aqui
       ),
     );
   }

@@ -44,7 +44,9 @@ class _CheckboxWidgetState extends State<CheckboxWidget> {
             _toggleCheckbox();
           },
         ),
-        Flexible(
+        SizedBox(
+          width: MediaQuery.of(context).size.width *
+              0.6, // Ajusta el ancho según sea necesario
           child: GestureDetector(
             onTap: _toggleCheckbox, // Llamada a la función al tocar el texto
             child: Text(
@@ -53,6 +55,7 @@ class _CheckboxWidgetState extends State<CheckboxWidget> {
                 fontSize: 16,
                 fontFamily: Theme.of(context).textTheme.bodyText1!.fontFamily,
               ),
+              maxLines: null, // Permitir que el texto sea multilinea
             ),
           ),
         ),
