@@ -141,7 +141,7 @@ class _ServiceScreenState extends State<ServiceScreen> {
 
   Column buildTotal(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
