@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:slylist_app/theme.dart';
 import 'package:slylist_app/widgets/large_button_widget.dart';
 import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
+import 'package:slylist_app/widgets/text_form_field_widget.dart';
 
 class AccountScreen extends StatefulWidget {
   const AccountScreen({super.key});
@@ -15,25 +16,6 @@ class _AccountScreenState extends State<AccountScreen> {
   bool _isPasswordVisible = false;
 
   // ...
-
-  Widget _buildTextFormField({
-    required String labelText,
-    TextInputType keyboardType = TextInputType.text,
-    TextEditingController? controller,
-    bool obscureText = false,
-    Widget? suffixIcon,
-  }) {
-    return TextFormField(
-      controller: controller,
-      decoration: InputDecoration(
-        labelText: labelText,
-        suffixIcon: suffixIcon,
-      ),
-      keyboardType: keyboardType,
-      obscureText: obscureText,
-      style: Theme.of(context).textTheme.subtitle2,
-    );
-  }
 
   Widget _buildProfilePicture() {
     return Center(
@@ -62,21 +44,21 @@ class _AccountScreenState extends State<AccountScreen> {
             children: [
               _buildProfilePicture(),
               SizedBox(height: 20),
-              _buildTextFormField(labelText: 'Nombre'),
+              TextFormFieldWidget(labelText: 'Nombre'),
               SizedBox(height: 10),
-              _buildTextFormField(labelText: 'Apellido'),
+              TextFormFieldWidget(labelText: 'Apellido'),
               SizedBox(height: 10),
-              _buildTextFormField(
+              TextFormFieldWidget(
                 labelText: 'Número de teléfono',
                 keyboardType: TextInputType.phone,
               ),
               SizedBox(height: 10),
-              _buildTextFormField(
+              TextFormFieldWidget(
                 labelText: 'Correo electrónico',
                 keyboardType: TextInputType.emailAddress,
               ),
               SizedBox(height: 10),
-              _buildTextFormField(
+              TextFormFieldWidget(
                 labelText: 'Contraseña',
                 controller: _passwordController,
                 obscureText: !_isPasswordVisible,

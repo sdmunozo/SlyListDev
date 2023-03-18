@@ -4,7 +4,7 @@ import 'package:slylist_app/theme.dart';
 enum ButtonColorOption { option1, option2, option3 }
 
 class LargeButtonWidget extends StatelessWidget {
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final String buttonText;
   final ButtonColorOption colorOption;
   final double? fontSize;

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:slylist_app/screens/confirmation_screen.dart';
 import 'package:slylist_app/theme.dart';
+import 'package:slylist_app/widgets/large_button_widget.dart';
 import 'package:slylist_app/widgets/small_button_widget.dart';
 
 class DateTimePickerBottomSheet extends StatefulWidget {
@@ -56,34 +57,34 @@ class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
               mode: CupertinoDatePickerMode.dateAndTime,
             ),
           ),
-          SizedBox(height: 10),
+          SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              SmallButtonWidget(
+              SizedBox(
+                height: 80.0,
+                child: LargeButtonWidget(
                   colorOption: ButtonColorOption.option3,
-                  fontSize: 30,
                   onPressed: () => Navigator.pop(context),
-                  buttonText: 'Cancelar'),
-              SmallButtonWidget(
-                  colorOption: ButtonColorOption.option1,
-                  fontSize: 30,
-                  onPressed: () => () {
-                        Navigator.pop(context, _selectedDateTime);
-                        _navigateToConfirmationScreen(context);
-                      },
-                  buttonText: 'Continuar'),
+                  buttonText: 'Cancelar',
+                ),
+              ),
+              SizedBox(
+                height: 80.0,
+                child: LargeButtonWidget(
+                  colorOption: ButtonColorOption.option2,
+                  onPressed: () {
+                    Navigator.pop(context, _selectedDateTime);
+                    _navigateToConfirmationScreen(context);
+                  },
+                  buttonText: 'Continuar',
+                ),
+              ),
             ],
           ),
-          SizedBox(height: 20),
         ],
       ),
     );
-  }
-
-  SmallButtonWidget _buildElevatedButton(
-      BuildContext context, String text, VoidCallback onPressed) {
-    return SmallButtonWidget(onPressed: onPressed, buttonText: text);
   }
 
   void _navigateToConfirmationScreen(BuildContext context) {

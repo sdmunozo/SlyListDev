@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:slylist_app/widgets/checkbox_widget.dart';
 import 'package:slylist_app/widgets/large_button_widget.dart';
 import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
 import 'package:slylist_app/theme.dart';
+import 'package:slylist_app/widgets/text_form_field_widget.dart';
 
 class RegisterForm extends StatefulWidget {
   @override
@@ -23,27 +25,13 @@ class _RegisterFormState extends State<RegisterForm> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const SizedBox(height: 40),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: 'Nombre',
-                  labelStyle: TextStyle(fontFamily: 'Cairo-Regular'),
-                ),
-              ),
+              TextFormFieldWidget(labelText: 'Nombre'),
               const SizedBox(height: 20),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: 'Apellido',
-                  labelStyle: TextStyle(fontFamily: 'Cairo-Regular'),
-                ),
-              ),
+              TextFormFieldWidget(labelText: 'Apellido'),
               const SizedBox(height: 20),
-              TextFormField(
-                keyboardType: TextInputType.phone,
-                decoration: const InputDecoration(
+              TextFormFieldWidget(
                   labelText: 'Número de teléfono',
-                  labelStyle: TextStyle(fontFamily: 'Cairo-Regular'),
-                ),
-              ),
+                  keyboardType: TextInputType.phone),
               const SizedBox(height: 20),
               TextFormField(
                 keyboardType: TextInputType.emailAddress,
@@ -53,46 +41,27 @@ class _RegisterFormState extends State<RegisterForm> {
                 ),
               ),
               const SizedBox(height: 20),
-              TextFormField(
+              TextFormFieldWidget(
                 obscureText: _obscurePassword,
-                decoration: InputDecoration(
-                  labelText: 'Contraseña',
-                  labelStyle: TextStyle(fontFamily: 'Cairo-Regular'),
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                      _obscurePassword
-                          ? Icons.visibility
-                          : Icons.visibility_off,
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        _obscurePassword = !_obscurePassword;
-                      });
-                    },
+                labelText: 'Contraseña',
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    _obscurePassword ? Icons.visibility : Icons.visibility_off,
                   ),
+                  onPressed: () {
+                    setState(() {
+                      _obscurePassword = !_obscurePassword;
+                    });
+                  },
                 ),
               ),
               const SizedBox(height: 20),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: 'Cupón de referido (opcional)',
-                  labelStyle: TextStyle(fontFamily: 'Cairo-Regular'),
-                ),
-              ),
+              TextFormFieldWidget(labelText: 'Cupón de referido (opcional)'),
               const SizedBox(height: 20),
-              Row(
-                children: [
-                  Checkbox(
-                    value: false,
-                    onChanged: (bool? value) {},
-                  ),
-                  const Expanded(
-                    child: Text(
-                      'Aceptar Términos y Condiciones',
-                      style: TextStyle(fontFamily: 'Cairo-Regular'),
-                    ),
-                  ),
-                ],
+              CheckboxWidget(
+                labelText: 'Aceptar Términos y Condiciones',
+                value: false,
+                onChanged: (bool? value) {},
               ),
               const SizedBox(height: 40),
               LargeButtonWidget(

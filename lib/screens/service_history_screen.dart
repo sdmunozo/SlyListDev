@@ -95,7 +95,7 @@ class ServiceList extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Icon(service.icon, size: 40, color: AppTheme.primaryRed),
+        Icon(service.icon, size: 40, color: AppTheme.primaryNavyBlue),
         Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
@@ -155,7 +155,7 @@ class ServiceList extends StatelessWidget {
         print('Calificar servicio ${service.serviceName}');
       },
       buttonText: 'Calificar',
-      colorOption: ButtonColorOption.option2,
+      colorOption: s_ButtonColorOption.option1,
     );
   }
 
@@ -170,7 +170,7 @@ class ServiceList extends StatelessWidget {
           );
         },
         buttonText: 'Más detalles',
-        colorOption: ButtonColorOption.option2);
+        colorOption: s_ButtonColorOption.option1);
   }
 }
 

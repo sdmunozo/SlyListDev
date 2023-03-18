@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:slylist_app/theme.dart';
 
-enum ButtonColorOption { option1, option2, option3 }
+enum s_ButtonColorOption { option1, option2, option3 }
 
 class SmallButtonWidget extends StatelessWidget {
   final VoidCallback onPressed;
   final String buttonText;
-  final ButtonColorOption colorOption;
+  final s_ButtonColorOption colorOption;
   final double fontSize;
   final double? minHeight;
 
   SmallButtonWidget({
     required this.onPressed,
     required this.buttonText,
-    this.colorOption = ButtonColorOption.option1,
+    this.colorOption = s_ButtonColorOption.option1,
     this.fontSize = 14.0,
     this.minHeight,
   });
@@ -26,15 +26,15 @@ class SmallButtonWidget extends StatelessWidget {
     Color textColor;
 
     switch (colorOption) {
-      case ButtonColorOption.option1:
+      case s_ButtonColorOption.option1:
         backgroundColor = AppTheme.primaryNavyBlue;
         textColor = Colors.white;
         break;
-      case ButtonColorOption.option2:
+      case s_ButtonColorOption.option2:
         backgroundColor = AppTheme.primaryRed;
         textColor = Colors.white;
         break;
-      case ButtonColorOption.option3:
+      case s_ButtonColorOption.option3:
         backgroundColor = AppTheme.secondaryLightGray;
         textColor = AppTheme.primaryNavyBlue;
         break;

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
 import 'package:slylist_app/theme.dart';
+import 'package:slylist_app/widgets/large_button_widget.dart';
+import 'package:slylist_app/widgets/text_form_field_widget.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
   @override
@@ -22,7 +24,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const SizedBox(height: 40),
-              TextFormField(
+              TextFormFieldWidget(
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
                 onChanged: (value) {
@@ -30,28 +32,12 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                     _isEmailValid = value.isNotEmpty;
                   });
                 },
-                decoration: InputDecoration(
-                  labelText: 'Correo electrónico',
-                  labelStyle: TextStyle(fontFamily: 'Cairo-Regular'),
-                ),
+                labelText: 'Correo electrónico',
               ),
               const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: _isEmailValid
-                    ? () {
-// Aquí va el código para enviar la solicitud de restablecimiento de contraseña
-                      }
-                    : null,
-                style: ElevatedButton.styleFrom(
-                  primary: AppTheme.primaryNavyBlue,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  textStyle: Theme.of(context).textTheme.headline6?.copyWith(
-                        fontSize: 18,
-                        color: Theme.of(context).canvasColor,
-                      ),
-                ),
-                child: const Text('Enviar'),
-              ),
+              LargeButtonWidget(
+                  onPressed: _isEmailValid ? () {} : null,
+                  buttonText: 'Enviar'),
               const SizedBox(height: 20),
               Text(
                 'Se ha enviado un correo electrónico de restablecimiento de contraseña a la dirección proporcionada. Por favor, sigue las instrucciones en el correo electrónico para restablecer tu contraseña.',

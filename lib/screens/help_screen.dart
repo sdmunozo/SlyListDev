@@ -59,7 +59,7 @@ class HelpScreen extends StatelessWidget {
             Text(
               '¿Necesitas más ayuda?',
               style: appTheme.textTheme.subtitle1
-                  ?.copyWith(color: AppTheme.primaryRed, fontSize: 24),
+                  ?.copyWith(color: AppTheme.primaryNavyBlue, fontSize: 24),
             ),
             SizedBox(height: 26),
             Row(
@@ -75,7 +75,7 @@ class HelpScreen extends StatelessWidget {
                       },
                       buttonText: 'Llamar',
                       fontSize: 20,
-                      colorOption: ButtonColorOption.option2,
+                      colorOption: ButtonColorOption.option1,
                     ),
                   ),
                 ),
@@ -89,7 +89,7 @@ class HelpScreen extends StatelessWidget {
                       },
                       buttonText: 'WhatsApp',
                       fontSize: 20,
-                      colorOption: ButtonColorOption.option2,
+                      colorOption: ButtonColorOption.option1,
                     ),
                   ),
                 ),
@@ -119,7 +119,7 @@ class FAQWidget extends StatelessWidget {
         title: Text(
           question,
           style: appTheme.textTheme.subtitle1?.copyWith(
-            color: AppTheme.primaryRed,
+            color: AppTheme.primaryNavyBlue,
             fontWeight: FontWeight.bold,
           ),
         ),

@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
 import 'package:slylist_app/widgets/date_time_picker_bottom_widget.dart';
-import 'package:slylist_app/widgets/date_time_picker_bottom_widget.dart';
 import 'package:slylist_app/widgets/large_button_widget.dart';
 import 'package:slylist_app/widgets/quantity_widget.dart';
 import 'package:slylist_app/widgets/selection_widget.dart';
-import 'package:slylist_app/screens/service_details_screen.dart';
 
 class ServiceScreen extends StatefulWidget {
   @override

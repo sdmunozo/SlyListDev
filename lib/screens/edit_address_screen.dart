@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:slylist_app/screens/address_screen.dart';
+import 'package:slylist_app/widgets/checkbox_widget.dart';
 import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
 import 'package:slylist_app/theme.dart';
 import 'package:slylist_app/widgets/large_button_widget.dart';
+import 'package:slylist_app/widgets/text_form_field_widget.dart';
 
 class EditAddressScreen extends StatefulWidget {
   final Address? address;
@@ -76,32 +78,32 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildTextFormField('Alias', _aliasController),
+            TextFormFieldWidget(
+                labelText: 'Alias', controller: _aliasController),
             SizedBox(height: 10),
-            _buildTextFormField('Calle y número', _streetController),
+            TextFormFieldWidget(
+                labelText: 'Calle y número', controller: _streetController),
             SizedBox(height: 10),
-            _buildTextFormField('Ciudad', _cityController),
+            TextFormFieldWidget(
+                labelText: 'Ciudad', controller: _cityController),
             SizedBox(height: 10),
-            _buildTextFormField('Estado', _stateController),
+            TextFormFieldWidget(
+                labelText: 'Estado', controller: _stateController),
             SizedBox(height: 10),
-            _buildTextFormField('Código postal', _zipCodeController,
+            TextFormFieldWidget(
+                labelText: 'Código postal',
+                controller: _zipCodeController,
                 keyboardType: TextInputType.number),
             SizedBox(height: 10),
-            _buildTextFormField('País', _countryController),
+            TextFormFieldWidget(
+                labelText: 'País', controller: _countryController),
             SizedBox(height: 10),
-            CheckboxListTile(
-              title: Text(
-                'Establecer como dirección predeterminada',
-                style: AppTheme.lightTheme.textTheme.bodyText1,
-              ),
+            CheckboxWidget(
+              labelText: 'Establecer como dirección predeterminada',
               value: _isDefault,
               onChanged: (bool? value) {
-                setState(() {
-                  _isDefault = value ?? false;
-                });
+                _isDefault = value ?? false;
               },
-              controlAffinity: ListTileControlAffinity.leading,
-              activeColor: AppTheme.primaryNavyBlue,
             ),
             SizedBox(height: 20),
             Row(
@@ -139,7 +141,7 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
                       },
                       buttonText: 'Guardar',
                       fontSize: 20,
-                      colorOption: ButtonColorOption.option2,
+                      colorOption: ButtonColorOption.option1,
                     ),
                   ),
                 ),

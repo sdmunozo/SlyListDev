@@ -193,12 +193,12 @@ class _AddressScreenState extends State<AddressScreen> {
                     },
                     icon: Icon(
                       Icons.edit,
-                      color: AppTheme.primaryRed,
+                      color: AppTheme.primaryNavyBlue,
                     ),
                     label: Text(
                       'Editar',
                       style: AppTheme.light.textTheme.button!
-                          .copyWith(color: AppTheme.primaryRed),
+                          .copyWith(color: AppTheme.primaryNavyBlue),
                     ),
                   ),
                 ],

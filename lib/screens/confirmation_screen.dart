@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:slylist_app/theme.dart';
 import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
+import 'package:slylist_app/widgets/large_button_widget.dart';
 
 class ConfirmationScreen extends StatefulWidget {
   @override
@@ -120,52 +121,22 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
               ),
               SizedBox(height: 20),
               Row(
-                children: [
-                  Checkbox(
-                    value: _isAgreed,
-                    onChanged: (value) {
-                      setState(() {
-                        _isAgreed = value!;
-                      });
-                    },
-                  ),
-                  Flexible(
-                    child: Text(
-                      'Confirmo que poseo autorización para el servicio solicitado en el inmueble.',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontFamily:
-                            AppTheme.lightTheme.textTheme.bodyText1!.fontFamily,
-                      ),
-                    ),
-                  ),
-                ],
+                children: [],
               ),
               SizedBox(height: 20),
               SizedBox(
                 width: double.infinity,
-                child: ElevatedButton(
+                child: LargeButtonWidget(
                   onPressed: _isAgreed
                       ? () {
-// Implementar la funcionalidad de pago aquí
+                          // Implementar la funcionalidad de pago aquí
                         }
                       : null,
-                  child: Text(
-                    'Pagar servicio',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontFamily:
-                          AppTheme.lightTheme.textTheme.button!.fontFamily,
-                    ),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    primary: AppTheme.lightTheme.primaryColor,
-                    onPrimary: Colors.white,
-                    padding: EdgeInsets.symmetric(vertical: 20),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
+                  buttonText: 'Pagar servicio',
+                  colorOption: ButtonColorOption
+                      .option1, // Selecciona la opción de color que prefieras
+                  fontSize:
+                      20.0, // Si deseas, puedes cambiar el tamaño de fuente aquí
                 ),
               ),
             ],
