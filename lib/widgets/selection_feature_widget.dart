@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:slylist_app/models/feature_model.dart';
+import 'package:slylist_app/_models/feature_model.dart';
 import 'package:slylist_app/theme.dart';
 
 class SelectionFeatureWidget extends StatelessWidget {

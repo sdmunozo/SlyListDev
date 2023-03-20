@@ -1,6 +1,6 @@
 // lib/models/service.dart
 import 'package:flutter/material.dart';
-import 'package:slylist_app/models/feature_model.dart';
+import 'package:slylist_app/_models/feature_model.dart';
 
 class Service {
   final String id;

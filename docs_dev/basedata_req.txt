@@ -1,121 +1,66 @@
-Un Sly.
-Puede registrarse con su nombre, apellido, numero de telefono, correo electronico, contraseña, código de referido, y puede aceptar terminos y condiciones.
+Genera un modelo NOSQL de una base de datos para lla aplicación de SlyList considerando lo siguiente:
+
+Un Sly y un Slyer comparten caracteristicas de usuario como las siguientes:
+Puede registrarse con su nombre, apellido, numero de telefono, correo electronico, contraseña, código de referido opcional, y puede aceptar terminos y condiciones.
 Puede recuperar su contraseña con su correo electronico.
 Puede iniciar sesión con su correo y contraseña.
 Puede editar su fotografía, nombre, apellido, numero de telefono, correo electronico, contraseña.
+Puede tener una slycash que es una cuenta personal con un equivalente en pesos para descuentos en servicios contratados en la app.
+Puede ver una lista con las direcciones que tiene registradas en su cuenta, y cada dirección muestra el alias, la calle, el número exterior, número interior, colonia, ciudad, estado, código postal, país, una referencia y si es su dirección predeterminada.
+Puede editar el alias, la calle, el número exterior, número interior, colonia, ciudad, estado, código postal, país, y si es su dirección predeterminada de cada dirección que tiene registrada en su cuenta.
+Puede ver un mapa con la ubicación en tiempo real.
+Puede ver el logo de la aplicación.
+
+Slys = conjunto de Sly.
+Un Sly es un usuario que:
 Puede seleccionar entre pagar con efectivo, cuenta de paypal pero necesita ingresar primero, o puede registrar tarjetas de debito o crédito y seleccionar una forma de pago por defecto.
 Puede ver una lista con los servicios que tiene programados y esta lista muestra con el icono, el nombre del servicio, el costo del servicio, la dirección que eligió para que se hiciera el servicio, la forma de pago, el nombre y apellido de la persona que lo realizará y su califiación,  la hora y la fecha que eligió para que se hiciera el servicio de cada servicio.
 Puede seleccionar ver más detalles de su servicio programado, y estos detalles son nombre y apellido de la persona que lo realizará, fecha y hora programada para el servicio, forma de pago, y un conjunto de elementos que pueden ser diferentes y que incluye el servicio uno de esos tipos es el de cantidad cada elemento de cantidad incluye un icono, el nombre del elemento, una nota y una cantiad.
 Puede ver en el conjunto de elementos otro de esos tipos es el de selección y en cada elemento de este tipo, incluye un icono, el nombre del elemento, una nota y si se quiso o no.
-Puede ver una lista con los servicios que tiene completados y esta lista muestra con el icono, el nombre del servicio, el costo del servicio, la dirección que eligió para que se hiciera el servicio, la forma de pago, el nombre y apellido de la persona que lo realizó, la hora y la fecha que eligió para que se hiciera el servicio la calificación que le asigno al servicio de cada servicio.
-Puede seleccionar ver más detalles de su servicio completado, y estos detalles son nombre y apellido de la persona que lo realizó, fecha y hora en que se realizó el servicio, forma de pago, y un conjunto de elementos que pueden ser diferentes y que incluye el servicio uno de esos tipos es el de cantidad cada elemento de cantidad incluye un icono, el nombre del elemento, una nota y una cantiad.
+Una vez llegada la fecha y hora de recibir su servicio, puede cambiar el status de programado a "en ejecución", despues a compleado y calificar al Slyer.
 Puede ver en el conjunto de elementos otro de esos tipos es el de selección y en cada elemento de este tipo, incluye un icono, el nombre del elemento, una nota y si se quiso o no.
-Puede ver una lista con las direcciones que tiene registradas en su cuenta, y cada dirección muestra el alias, la calle, el número exterior, número interior, colonia, ciudad, estado, código postal, país, y si es su dirección predeterminada.
-Puede editar el alias, la calle, el número exterior, número interior, colonia, ciudad, estado, código postal, país, y si es su dirección predeterminada de cada dirección que tiene registrada en su cuenta.
-Puede consultar los términos y condiciones.
-Puede ver una lista de preguntas frecuentes, cada pregunta tiene una respuesta.
-Puede presionar un boton para llamar al teléfono de soporte de SlyList.
-Puede presionar un boton para enviar un mensaje de WhatsApp y abrir directamente el WhatsApp de soporte de SlyList.
-Puede ver un mapa con la ubicación en tiempo real.
-Puede ver una lista de elementos con el icono y nombre del servicio y el color de cada elemento, también puede ver si esta deshabilitado.
+Puede consultar los términos y condiciones de Slys.
+Puede ver una lista de preguntas frecuentes de Slys, cada pregunta tiene una respuesta.
+Puede presionar un boton para llamar al teléfono de soporte para Slys.
+Puede presionar un boton para enviar un mensaje de WhatsApp y abrir directamente el WhatsApp de soporte para Slys.
+Puede ver una lista de elementos disponibles con el icono y nombre del servicio y el color de cada elemento, también puede ver si esta deshabilitado.
 Puede seleccionar ver un servicio de la lista con el objetivo de cotizar y configurar su servicio, en esta cotización puede ver una nota de bienvenida para este servicio, y un conjunto de elementos que pueden ser diferentes y que incluye el servicio uno de esos tipos es el de cantidad, cada elemento de cantidad incluye un icono, el nombre del elemento, una nota, una cantiad y su costo.
 Puede ver en el conjunto de elementos otro de esos tipos es el de selección y en cada elemento de este tipo, incluye un icono, el nombre del elemento, una nota, si lo quiere o no y su costo.
 Puede ver el total de la cotización.
 Puede programar fecha y hora en que quiere el servicio seleccionar su forma de pago y confirmar terminos y condiciones del servicio así como pagar y ver su numero de confirmación una vez efectado el pago.
-Puede ver un elemento de publicidad que puede ser SlyList o no, este elemento puede dirigir a una aplicación del teléfono, a una ventana de SlyList o a una página de internet.
-Puede tener un chat con soporte desde su app.
-Puede ver el logo de la aplicación.
+Puede ver un elemento de publicidad para Slys que puede ser de SlyList o no, este elemento puede dirigir a una aplicación del teléfono, a una ventana de SlyList o a una página de internet.
+Puede tener un chat con soporte para Slys desde su app.
+Si se registró con código de referido, recibirá una bonificación en su SlyCash que puede utilizar para descuento en su proximo servicio.
+Puede ver su código único de referido que se genera cuando se registra.
+Puede compartir su código de referido, y cuando alguien se registra y usa el servicio por primera vez para contratar un servicio, recibirá una bonificación en su SlyCash que puede utilizar para descuento en su proximo servicio.
+Puede solicitar ser Slyer, aceptar terminos y condiciones de Slyer y esperar a ser autorizado.
+Puede confirmar un servicio brindado de los que tenia programados con un Slyer, pasando este a los que se le muestran como completados.
 
-Un Slyer prestador de servicios en la plataforma Slylist.
-Puede registrarse con su nombre, apellido, numero de telefono, correo electronico, contraseña, código de referido, y puede aceptar terminos y condiciones.
-Puede recuperar su contraseña con su correo electronico.
-Puede iniciar sesión con su correo y contraseña.
-Puede editar su fotografía, nombre, apellido, numero de telefono, correo electronico, contraseña.
-Puede subir sus documentos personales.
-Puede seleccionar entre recibir su pago en efectivo, cuenta de paypal pero necesita ingresar primero, o puede registrar tarjetas de debito o crédito y seleccionar una forma de pago por defecto.
+Slyers = conjunto de Slyer
+Un Slyer es un prestador de servicios en la plataforma Slylist.
+Un Slyer autorizado puede cambiar la interfaz de la plataforma entre Sly y Slyer.
+Puede subir varios tipos de documentos personales de identificación.
+Puede seleccionar entre recibir su pago en efectivo, cuenta de paypal pero necesita ingresar primero, o puede registrar tarjetas de debito o crédito y seleccionar una forma de para que le paguen por defecto.
 Puede registrar servicios que el brinda, dentro de una lista de servicio, lo que tiene que registrar de cada servicio es un documento de certificación del servicio, y una confirmación de términos y condiciones y esperar a ser autorizado por SlyList a brindarlo.
 Puede ver una lista de los servicios autorizados que tiene disponibles para asignarse y brindar a usuarios y esta lista muestra con el icono, el nombre del servicio, el costo del servicio, la dirección en la que se hará el servicio, la forma de pago, el nombre y apellido de la persona que lo solicitó su calificación, la hora y la fecha que eligió para que se hiciera el servicio una opción de aceptación de servicio.
 Puede ver una lista de los servicios que tiene programados para brindar a usuarios y esta lista muestra con el icono, el nombre del servicio, el costo del servicio, la dirección que se eligió para que se hiciera el servicio, la forma de pago, el nombre y apellido de la persona que lo solicitó, su calificación, sus comentarios la hora y la fecha que eligió para que se hiciera el servicio.
 Puede ver una lista de los servicios que ha brindado a usuarios y esta lista muestra con el icono, el nombre del servicio, el costo del servicio, la dirección que se eligió para que se hiciera el servicio, la forma de pago, el nombre y apellido de la persona que lo solicitó, su calificación, sus comentarios la hora y la fecha que eligió para que se hiciera el servicio.
 Puede seleccionar ver más detalles de su servicio programado, y estos detalles son nombre y apellido de la persona que lo requiere, fecha y hora programada para el servicio, forma de pago, y un conjunto de elementos que pueden ser diferentes y que incluye el servicio uno de esos tipos es el de cantidad cada elemento de cantidad incluye un icono, el nombre del elemento, una nota y una cantiad.
 Puede ver en el conjunto de elementos otro de esos tipos es el de selección y en cada elemento de este tipo, incluye un icono, el nombre del elemento, una nota y si se quiso o no.
-Puede ver una lista con los servicios que tiene completados y esta lista muestra con el icono, el nombre del servicio, el costo del servicio, la dirección que se eligió para que se hiciera el servicio, la forma de pago, el nombre y apellido de la persona que lo requirió, la hora y la fecha que se hizo el servicio la calificación que le asigno al servicio de cada servicio.
-Puede seleccionar ver más detalles de su servicio completado, y estos detalles son nombre y apellido de la persona que lo solicitó, fecha y hora en que se realizó el servicio, forma de pago, y un conjunto de elementos que pueden ser diferentes y que incluye el servicio uno de esos tipos es el de cantidad cada elemento de cantidad incluye un icono, el nombre del elemento, una nota y una cantiad.
+Una vez llegada la fecha y hora de su brindar su servicio, puede cambiar el status de programado a "en ejecución", despues a compleado y calificar al Sly.
 Puede ver en el conjunto de elementos otro de esos tipos es el de selección y en cada elemento de este tipo, incluye un icono, el nombre del elemento, una nota y si se quiso o no.
-Puede ver una lista con las direcciones que tiene registradas en su cuenta, y cada dirección muestra el alias, la calle, el número exterior, número interior, colonia, ciudad, estado, código postal, país, y si es su dirección predeterminada.
-Puede editar el alias, la calle, el número exterior, número interior, colonia, ciudad, estado, código postal, país, y si es su dirección predeterminada de cada dirección que tiene registrada en su cuenta.
-Puede consultar los términos y condiciones.
-Puede ver una lista de preguntas frecuentes de un prestador de servicios, cada pregunta tiene una respuesta.
-Puede presionar un boton para llamar al teléfono de soporte de SlyList.
-Puede presionar un boton para enviar un mensaje de WhatsApp y abrir directamente el WhatsApp de soporte de SlyList.
-Puede ver un mapa con la ubicación en tiempo real.
-Puede ver un elemento de publicidad que puede ser SlyList o no, este elemento puede dirigir a una aplicación del teléfono, a una ventana de SlyList o a una página de internet.
-Puede tener un chat con soporte desde su app.
-Puede ver el logo de la aplicación.
+Puede consultar los términos y condiciones de Slyers.
+Puede ver una lista de preguntas frecuentes de un Slyer, cada pregunta tiene una respuesta.
+Puede presionar un boton para llamar al teléfono de soporte de Slyers.
+Puede presionar un boton para enviar un mensaje de WhatsApp y abrir directamente el WhatsApp de soporte de Slyers.
+Puede ver un elemento de publicidad para Slyers que puede ser de SlyList o no, este elemento puede dirigir a una aplicación del teléfono, a una ventana de SlyList o a una página de internet.
+Puede tener un chat con soporte para Slyers desde su app.
+Puede confirmar un servicio brindado de los que tenia programados con un Sly, pasando este a los que se le muestran como completados.
 
+Un usuario siempre se registra por defecto en modo Sly, pero puede solicitar cuenta de Slyer y esperar su autorización.
 Un Sly y un Slyer acceden en una misma aplicación y dentro de la aplicación selecciona cómo desea la interfaz, si en Sly o Slyer para intercambiar de interfaz.
 
-
-
-
-Genera un modelo de una base de datos para lla aplicación de SlyList considerando lo siguiente:
-
-Un Sly.
-Puede registrarse con su nombre, apellido, numero de telefono, correo electronico, contraseña, código de referido, y puede aceptar terminos y condiciones.
-Puede recuperar su contraseña con su correo electronico.
-Puede iniciar sesión con su correo y contraseña.
-Puede editar su fotografía, nombre, apellido, numero de telefono, correo electronico, contraseña.
-Puede seleccionar entre pagar con efectivo, cuenta de paypal pero necesita ingresar primero, o puede registrar tarjetas de debito o crédito y seleccionar una forma de pago por defecto.
-Puede ver una lista con los servicios que tiene programados y esta lista muestra con el icono, el nombre del servicio, el costo del servicio, la dirección que eligió para que se hiciera el servicio, la forma de pago, el nombre y apellido de la persona que lo realizará y su califiación,  la hora y la fecha que eligió para que se hiciera el servicio de cada servicio.
-Puede seleccionar ver más detalles de su servicio programado, y estos detalles son nombre y apellido de la persona que lo realizará, fecha y hora programada para el servicio, forma de pago, y un conjunto de elementos que pueden ser diferentes y que incluye el servicio uno de esos tipos es el de cantidad cada elemento de cantidad incluye un icono, el nombre del elemento, una nota y una cantiad.
-Puede ver en el conjunto de elementos otro de esos tipos es el de selección y en cada elemento de este tipo, incluye un icono, el nombre del elemento, una nota y si se quiso o no.
-Puede ver una lista con los servicios que tiene completados y esta lista muestra con el icono, el nombre del servicio, el costo del servicio, la dirección que eligió para que se hiciera el servicio, la forma de pago, el nombre y apellido de la persona que lo realizó, la hora y la fecha que eligió para que se hiciera el servicio la calificación que le asigno al servicio de cada servicio.
-Puede seleccionar ver más detalles de su servicio completado, y estos detalles son nombre y apellido de la persona que lo realizó, fecha y hora en que se realizó el servicio, forma de pago, y un conjunto de elementos que pueden ser diferentes y que incluye el servicio uno de esos tipos es el de cantidad cada elemento de cantidad incluye un icono, el nombre del elemento, una nota y una cantiad.
-Puede ver en el conjunto de elementos otro de esos tipos es el de selección y en cada elemento de este tipo, incluye un icono, el nombre del elemento, una nota y si se quiso o no.
-Puede ver una lista con las direcciones que tiene registradas en su cuenta, y cada dirección muestra el alias, la calle, el número exterior, número interior, colonia, ciudad, estado, código postal, país, y si es su dirección predeterminada.
-Puede editar el alias, la calle, el número exterior, número interior, colonia, ciudad, estado, código postal, país, y si es su dirección predeterminada de cada dirección que tiene registrada en su cuenta.
-Puede consultar los términos y condiciones.
-Puede ver una lista de preguntas frecuentes, cada pregunta tiene una respuesta.
-Puede presionar un boton para llamar al teléfono de soporte de SlyList.
-Puede presionar un boton para enviar un mensaje de WhatsApp y abrir directamente el WhatsApp de soporte de SlyList.
-Puede ver un mapa con la ubicación en tiempo real.
-Puede ver una lista de elementos con el icono y nombre del servicio y el color de cada elemento, también puede ver si esta deshabilitado.
-Puede seleccionar ver un servicio de la lista con el objetivo de cotizar y configurar su servicio, en esta cotización puede ver una nota de bienvenida para este servicio, y un conjunto de elementos que pueden ser diferentes y que incluye el servicio uno de esos tipos es el de cantidad, cada elemento de cantidad incluye un icono, el nombre del elemento, una nota, una cantiad y su costo.
-Puede ver en el conjunto de elementos otro de esos tipos es el de selección y en cada elemento de este tipo, incluye un icono, el nombre del elemento, una nota, si lo quiere o no y su costo.
-Puede ver el total de la cotización.
-Puede programar fecha y hora en que quiere el servicio seleccionar su forma de pago y confirmar terminos y condiciones del servicio así como pagar y ver su numero de confirmación una vez efectado el pago.
-Puede ver un elemento de publicidad que puede ser SlyList o no, este elemento puede dirigir a una aplicación del teléfono, a una ventana de SlyList o a una página de internet.
-Puede tener un chat con soporte desde su app.
-Puede ver el logo de la aplicación.
-
-Un Slyer prestador de servicios en la plataforma Slylist.
-Puede registrarse con su nombre, apellido, numero de telefono, correo electronico, contraseña, código de referido, y puede aceptar terminos y condiciones.
-Puede recuperar su contraseña con su correo electronico.
-Puede iniciar sesión con su correo y contraseña.
-Puede editar su fotografía, nombre, apellido, numero de telefono, correo electronico, contraseña.
-Puede subir sus documentos personales.
-Puede seleccionar entre recibir su pago en efectivo, cuenta de paypal pero necesita ingresar primero, o puede registrar tarjetas de debito o crédito y seleccionar una forma de pago por defecto.
-Puede registrar servicios que el brinda, dentro de una lista de servicio, lo que tiene que registrar de cada servicio es un documento de certificación del servicio, y una confirmación de términos y condiciones y esperar a ser autorizado por SlyList a brindarlo.
-Puede ver una lista de los servicios autorizados que tiene disponibles para asignarse y brindar a usuarios y esta lista muestra con el icono, el nombre del servicio, el costo del servicio, la dirección en la que se hará el servicio, la forma de pago, el nombre y apellido de la persona que lo solicitó su calificación, la hora y la fecha que eligió para que se hiciera el servicio una opción de aceptación de servicio.
-Puede ver una lista de los servicios que tiene programados para brindar a usuarios y esta lista muestra con el icono, el nombre del servicio, el costo del servicio, la dirección que se eligió para que se hiciera el servicio, la forma de pago, el nombre y apellido de la persona que lo solicitó, su calificación, sus comentarios la hora y la fecha que eligió para que se hiciera el servicio.
-Puede ver una lista de los servicios que ha brindado a usuarios y esta lista muestra con el icono, el nombre del servicio, el costo del servicio, la dirección que se eligió para que se hiciera el servicio, la forma de pago, el nombre y apellido de la persona que lo solicitó, su calificación, sus comentarios la hora y la fecha que eligió para que se hiciera el servicio.
-Puede seleccionar ver más detalles de su servicio programado, y estos detalles son nombre y apellido de la persona que lo requiere, fecha y hora programada para el servicio, forma de pago, y un conjunto de elementos que pueden ser diferentes y que incluye el servicio uno de esos tipos es el de cantidad cada elemento de cantidad incluye un icono, el nombre del elemento, una nota y una cantiad.
-Puede ver en el conjunto de elementos otro de esos tipos es el de selección y en cada elemento de este tipo, incluye un icono, el nombre del elemento, una nota y si se quiso o no.
-Puede ver una lista con los servicios que tiene completados y esta lista muestra con el icono, el nombre del servicio, el costo del servicio, la dirección que se eligió para que se hiciera el servicio, la forma de pago, el nombre y apellido de la persona que lo requirió, la hora y la fecha que se hizo el servicio la calificación que le asigno al servicio de cada servicio.
-Puede seleccionar ver más detalles de su servicio completado, y estos detalles son nombre y apellido de la persona que lo solicitó, fecha y hora en que se realizó el servicio, forma de pago, y un conjunto de elementos que pueden ser diferentes y que incluye el servicio uno de esos tipos es el de cantidad cada elemento de cantidad incluye un icono, el nombre del elemento, una nota y una cantiad.
-Puede ver en el conjunto de elementos otro de esos tipos es el de selección y en cada elemento de este tipo, incluye un icono, el nombre del elemento, una nota y si se quiso o no.
-Puede ver una lista con las direcciones que tiene registradas en su cuenta, y cada dirección muestra el alias, la calle, el número exterior, número interior, colonia, ciudad, estado, código postal, país, y si es su dirección predeterminada.
-Puede editar el alias, la calle, el número exterior, número interior, colonia, ciudad, estado, código postal, país, y si es su dirección predeterminada de cada dirección que tiene registrada en su cuenta.
-Puede consultar los términos y condiciones.
-Puede ver una lista de preguntas frecuentes de un prestador de servicios, cada pregunta tiene una respuesta.
-Puede presionar un boton para llamar al teléfono de soporte de SlyList.
-Puede presionar un boton para enviar un mensaje de WhatsApp y abrir directamente el WhatsApp de soporte de SlyList.
-Puede ver un mapa con la ubicación en tiempo real.
-Puede ver un elemento de publicidad que puede ser SlyList o no, este elemento puede dirigir a una aplicación del teléfono, a una ventana de SlyList o a una página de internet.
-Puede tener un chat con soporte desde su app.
-Puede ver el logo de la aplicación.
-
-Un Sly y un Slyer acceden en una misma aplicación y dentro de la aplicación selecciona cómo desea la interfaz, si en Sly o Slyer para intercambiar de interfaz.
+Descripción de SlyList
 
 La Zona TEC de Monterrey, Nuevo León, es un área en la que se encuentran numerosos estudiantes universitarios y profesionistas recién graduados que buscan iniciar su vida independiente. En este contexto, la necesidad de contar con un espacio limpio y ordenado se vuelve primordial, pero a menudo resulta difícil encontrar el tiempo y la energía para mantenerlo así.
 
@@ -167,3 +112,4 @@ Salarios de proveedores de servicios de limpieza.
 Costos de marketing y publicidad.
 Gastos generales.
 
+Genera una propuesta de endpoints la aplicación de SlyList considerando lo siguiente:

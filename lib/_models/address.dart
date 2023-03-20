@@ -9,6 +9,7 @@ class Address {
   final String state;
   final String postalCode;
   final String country;
+  bool isDefault;
 
   Address({
     required this.id,
@@ -21,5 +22,6 @@ class Address {
     required this.state,
     required this.postalCode,
     required this.country,
+    this.isDefault = false,
   });
 }

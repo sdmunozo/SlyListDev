@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:slylist_app/screens/service_details_screen.dart';
 import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
-import 'package:slylist_app/models/feature_model.dart';
+import 'package:slylist_app/_models/feature_model.dart';
 import 'package:slylist_app/theme.dart';
 import 'package:slylist_app/widgets/small_button_widget.dart';
 

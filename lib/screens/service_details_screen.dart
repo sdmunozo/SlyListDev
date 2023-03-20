@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:slylist_app/theme.dart';
 import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
-import 'package:slylist_app/models/feature_model.dart';
+import 'package:slylist_app/_models/feature_model.dart';
 import 'package:slylist_app/widgets/quantity_feature_widget.dart';
 import 'package:slylist_app/widgets/selection_feature_widget.dart';
 import 'package:slylist_app/screens/service_history_screen.dart';

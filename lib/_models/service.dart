@@ -1,7 +1,7 @@
-import 'package:slylist_app/models/address.dart';
-import 'package:slylist_app/models/payment_method.dart';
-import 'package:slylist_app/models/user.dart';
-import 'package:slylist_app/models/document.dart';
+import 'package:slylist_app/_models/address.dart';
+import 'package:slylist_app/_models/payment_method.dart';
+import 'package:slylist_app/_models/user.dart';
+import 'package:slylist_app/_models/document.dart';
 
 class User {
   final String id;
