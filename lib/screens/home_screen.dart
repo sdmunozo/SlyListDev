@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:slylist_app/_models/service_model.dart';
+import 'package:slylist_app/models/service.dart';
+import 'package:slylist_app/data/database.dart';
 import 'package:slylist_app/screens/service_screen.dart';
 import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
 import 'package:slylist_app/widgets/refer_a_friend_widget.dart';
@@ -9,65 +10,26 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:slylist_app/theme.dart';
+import '../data/ListIconData.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
   State<HomeScreen> createState() => _HomeScreenState();
+  final Database db = Database();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
   Position? _currentPosition;
   MapController _mapController = MapController();
 
-  final List<Service> services = [
-    Service(
-      id: "1",
-      name: "Limpieza",
-      icon: Icons.cleaning_services,
-      color: Color(0xFF228B22),
-      enabled: true,
-      baseCost: 100,
-      quantityFeatures: [],
-      selectionFeatures: [],
-      features: [],
-      date: DateTime.now(),
-      time: "10:00 AM",
-      paymentMethod: "Tarjeta",
-    ),
-    Service(
-      id: "2",
-      name: "Lavandería",
-      icon: Icons.local_laundry_service,
-      color: Color(0xFF800080),
-      enabled: false,
-      baseCost: 50,
-      quantityFeatures: [],
-      selectionFeatures: [],
-      features: [],
-      date: DateTime.now(),
-      time: "11:00 AM",
-      paymentMethod: "Efectivo",
-    ),
-    Service(
-      id: "3",
-      name: "Asesorías",
-      icon: Icons.person_search,
-      color: Color(0xFF8B0000),
-      enabled: false,
-      baseCost: 150,
-      quantityFeatures: [],
-      selectionFeatures: [],
-      features: [],
-      date: DateTime.now(),
-      time: "12:00 PM",
-      paymentMethod: "Tarjeta",
-    ),
-  ];
+  late List<Service> services;
 
   @override
   void initState() {
     super.initState();
     _getCurrentLocation();
+    services = widget.db.initServices;
+    services.sort((a, b) => b.enabled ? 1 : 0 - (a.enabled ? 1 : 0));
   }
 
   Future<void> _getCurrentLocation() async {
@@ -155,7 +117,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (builder) => ServiceScreen(),
+                                        builder: (builder) => ServiceScreen(
+                                          service: service,
+                                        ),
                                       ));
                                 }
                               },
@@ -163,8 +127,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                 padding: EdgeInsets.symmetric(vertical: 8.0),
                                 child: ServiceWidget(
                                   serviceName: service.name,
-                                  icon: service.icon,
-                                  color: service.color,
+                                  icon: iconMap[service.icon] ?? Icons.error,
+                                  color: Color(int.parse(
+                                          service.color.substring(1),
+                                          radix: 16) +
+                                      0xFF000000),
                                   enabled: service.enabled,
                                 ),
                               ),

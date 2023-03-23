@@ -2,18 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:slylist_app/_models/feature_model.dart';
 import 'package:slylist_app/theme.dart';
 
-class QuantityFeatureWidget extends StatelessWidget {
+class QuantityFeatureWidget extends StatefulWidget {
   final IconData icon;
   final QuantityFeature feature;
-  final Function() onIncrement;
-  final Function() onDecrement;
 
   QuantityFeatureWidget({
     required this.icon,
     required this.feature,
-    required this.onIncrement,
-    required this.onDecrement,
   });
+
+  @override
+  _QuantityFeatureWidgetState createState() => _QuantityFeatureWidgetState();
+}
+
+class _QuantityFeatureWidgetState extends State<QuantityFeatureWidget> {
+  void onIncrement() {
+    setState(() {
+      widget.feature.quantity++;
+    });
+  }
+
+  void onDecrement() {
+    setState(() {
+      if (widget.feature.quantity > 0) {
+        widget.feature.quantity--;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,13 +40,13 @@ class QuantityFeatureWidget extends StatelessWidget {
         color: Colors.grey[200],
       ),
       child: ListTile(
-        leading: Icon(icon, size: 50, color: AppTheme.primaryNavyBlue),
+        leading: Icon(widget.icon, size: 50, color: AppTheme.primaryNavyBlue),
         title: Text(
-          feature.title,
+          widget.feature.title,
           style: Theme.of(context).textTheme.headline6!.copyWith(fontSize: 18),
         ),
         subtitle: Text(
-          feature.subTitle,
+          widget.feature.subTitle,
           style: Theme.of(context).textTheme.subtitle2!.copyWith(fontSize: 14),
         ),
         trailing: Row(
@@ -41,7 +56,7 @@ class QuantityFeatureWidget extends StatelessWidget {
               icon: Icon(Icons.remove, color: AppTheme.primaryNavyBlue),
               onPressed: onDecrement,
             ),
-            Text(feature.quantity.toString(),
+            Text(widget.feature.quantity.toString(),
                 style: Theme.of(context)
                     .textTheme
                     .headline6!

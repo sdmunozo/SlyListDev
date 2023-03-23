@@ -1,0 +1,250 @@
+// models/address.dart
+
+class Address {
+  final String id;
+  final String userId;
+  final String alias;
+  final String street;
+  final String exteriorNumber;
+  final String interiorNumber;
+  final String neighborhood;
+  final String city;
+  final String state;
+  final String zipCode;
+  final String country;
+  final String reference;
+  final bool isDefault;
+
+  Address({
+    required this.id,
+    required this.userId,
+    required this.alias,
+    required this.street,
+    required this.exteriorNumber,
+    this.interiorNumber = '',
+    required this.neighborhood,
+    required this.city,
+    required this.state,
+    required this.zipCode,
+    required this.country,
+    this.reference = '',
+    this.isDefault = false,
+  });
+}
+// models/ads.dart
+
+class Ads {
+  String Id;
+  String image;
+  String destinationType;
+  String destinationUrl;
+
+  Ads({
+    required this.Id,
+    required this.image,
+    required this.destinationType,
+    required this.destinationUrl,
+  });
+}
+// models/chat.dart
+
+class Chat {
+  final String id;
+  final String senderId;
+  final String receiverId;
+  final String message;
+  final DateTime timestamp;
+
+  Chat({
+    required this.id,
+    required this.senderId,
+    required this.receiverId,
+    required this.message,
+    required this.timestamp,
+  });
+}
+// models/faq.dart
+
+class FAQ {
+  final String id;
+  final String userType;
+  final String question;
+  final String answer;
+
+  FAQ({
+    required this.id,
+    required this.userType,
+    required this.question,
+    required this.answer,
+  });
+}
+// models/feature.dart
+
+class Feature {
+  final String id;
+  final String type;
+  final String icon;
+  final String name;
+  final String note;
+  final int quantity;
+  final bool selected;
+  final double cost;
+
+  Feature({
+    required this.id,
+    required this.type,
+    required this.icon,
+    required this.name,
+    required this.note,
+    this.quantity = 0,
+    this.selected = false,
+    required this.cost,
+  });
+}
+// models/payment_method.dart
+
+class PaymentMethod {
+  final String id;
+  final String userId;
+  final PaymentType type;
+  final String cardNumber;
+  final String cardHolderName;
+  final String expirationDate;
+  final String cvv;
+  final String paypalEmail;
+
+  PaymentMethod({
+    required this.id,
+    required this.userId,
+    required this.type,
+    required this.cardNumber,
+    required this.cardHolderName,
+    required this.expirationDate,
+    required this.cvv,
+    required this.paypalEmail,
+  });
+}
+
+// payment_type.dart
+enum PaymentType {
+  cash,
+  paypal,
+  creditCard,
+  debitCard,
+  slycash,
+}
+// models/requested_service.dart
+
+import 'package:slylist_app/models/service.dart';
+
+class RequestedService {
+  final String id;
+  final ServiceStatusType status;
+  final String addressId;
+  final DateTime dateTime;
+  final String paymentMethodId;
+  final String paymentMethod;
+  final int slyRating;
+  final int slyerRating;
+  final double cost;
+  final Service service;
+
+  RequestedService({
+    required this.id,
+    required this.status,
+    required this.addressId,
+    required this.dateTime,
+    required this.paymentMethodId,
+    required this.paymentMethod,
+    required this.cost,
+    required this.service,
+    this.slyRating = 0,
+    this.slyerRating = 0,
+  });
+}
+
+enum ServiceStatusType { Requested, Provided }
+// models/service.dart
+
+import 'package:slylist_app/models/feature.dart';
+
+class Service {
+  final String id;
+  final String name;
+  final String icon;
+  final List<Feature> features;
+  final bool enabled;
+  final String text;
+  final String color;
+  final double baseCost;
+
+  Service({
+    required this.id,
+    required this.name,
+    required this.icon,
+    required this.features,
+    this.enabled = false,
+    this.text = "Cómo podemos ayudarte",
+    this.color = "#CCDCF4",
+    this.baseCost = 100.0,
+  });
+}
+// models/uploaded_document.dart
+class UploadedDocument {
+  String documentId;
+  String documentType;
+  String documentUrl;
+  String status;
+
+  UploadedDocument({
+    required this.documentId,
+    required this.documentType,
+    required this.documentUrl,
+    required this.status,
+  });
+}
+// models/user.dart
+import 'package:slylist_app/models/requested_service.dart';
+import 'package:slylist_app/models/uploaded_document.dart';
+
+class User {
+  final String id;
+  final String firstName;
+  final String lastName;
+  final String phoneNumber;
+  final String email;
+  final String password;
+  final String referralCode;
+  final double slyCash;
+  final bool slyTermsAccepted;
+  final String defaultPaymentMethodId;
+  final String defaultAddressId;
+  final List<UploadedDocument> slyerDocuments;
+  final List<RequestedService> slyRequestedService;
+  final List<RequestedService> slyerProviderService;
+  final bool isSlyer;
+  final bool slyerTermsAccepted;
+  final String slyerStatus;
+  final bool slyerApproved;
+
+  User({
+    required this.id,
+    required this.firstName,
+    required this.lastName,
+    required this.phoneNumber,
+    required this.email,
+    required this.password,
+    this.referralCode = '',
+    this.slyCash = 0.0,
+    this.slyerStatus = 'N/A',
+    required this.slyTermsAccepted,
+    this.slyerTermsAccepted = false,
+    this.isSlyer = false,
+    this.slyerDocuments = const [],
+    this.slyerApproved = false,
+    required this.defaultPaymentMethodId,
+    required this.defaultAddressId,
+    this.slyRequestedService = const [],
+    this.slyerProviderService = const [],
+  });
+}

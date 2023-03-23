@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:slylist_app/_models/feature_model.dart';
+import 'package:slylist_app/data/ListIconData.dart';
+import 'package:slylist_app/models/feature.dart';
 import 'package:slylist_app/theme.dart';
 
-class SelectionFeatureWidget extends StatelessWidget {
-  final IconData icon;
-  final SelectionFeature feature;
-  final ValueChanged<bool?> onChanged;
+class SelectionFeatureWidget extends StatefulWidget {
+  final Feature feature;
+  final Function(bool) onSelected;
 
-  const SelectionFeatureWidget({
-    Key? key,
-    required this.icon,
-    required this.feature,
-    required this.onChanged,
-  }) : super(key: key);
+  const SelectionFeatureWidget(
+      {Key? key, required this.feature, required this.onSelected})
+      : super(key: key);
+
+  @override
+  _SelectionFeatureWidgetState createState() => _SelectionFeatureWidgetState();
+}
+
+class _SelectionFeatureWidgetState extends State<SelectionFeatureWidget> {
+  void onChanged(bool? value) {
+    widget.onSelected(value ?? false);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,19 +29,20 @@ class SelectionFeatureWidget extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
       child: ListTile(
         leading: CircleAvatar(
-          child: Icon(icon, color: Colors.white),
+          child: Icon(iconMap[widget.feature.icon] ?? Icons.error,
+              color: Colors.white),
           backgroundColor: AppTheme.primaryNavyBlue,
         ),
-        title: Text(feature.title, style: appTheme.textTheme.subtitle1),
-        subtitle: feature.subTitle.isNotEmpty
+        title: Text(widget.feature.name, style: appTheme.textTheme.subtitle1),
+        subtitle: widget.feature.note.isNotEmpty
             ? Text(
-                feature.subTitle,
+                widget.feature.note,
                 style: appTheme.textTheme.subtitle2!
                     .copyWith(color: AppTheme.secondaryBlueGray, fontSize: 14),
               )
             : null,
         trailing: Checkbox(
-          value: feature.isSelected,
+          value: widget.feature.selected,
           onChanged: onChanged,
           activeColor: AppTheme.primaryRed,
         ),

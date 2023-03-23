@@ -1,37 +1,94 @@
 import 'package:flutter/material.dart';
+import 'package:slylist_app/models/feature.dart';
+import 'package:slylist_app/models/service.dart';
 import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
 import 'package:slylist_app/widgets/date_time_picker_bottom_widget.dart';
 import 'package:slylist_app/widgets/large_button_widget.dart';
-import 'package:slylist_app/widgets/quantity_widget.dart';
-import 'package:slylist_app/widgets/selection_widget.dart';
+import 'package:slylist_app/widgets/quantity_feature_widget.dart';
+import 'package:slylist_app/widgets/selection_feature_widget.dart';
 
 class ServiceScreen extends StatefulWidget {
+  final Service service;
+
+  ServiceScreen({required this.service});
+
   @override
   _ServiceScreenState createState() => _ServiceScreenState();
 }
 
 class _ServiceScreenState extends State<ServiceScreen> {
-  int _bedrooms = 0;
-  int _bathrooms = 0;
-  int _commonAreas = 0;
   late TextTheme textTheme;
-  bool _deepCleaning = false;
 
-  int _calculateTotal() {
-    int total = (_bedrooms + _bathrooms + _commonAreas) * 100;
-    if (_deepCleaning) {
-      total += 200;
+  double _calculateTotalCost() {
+    double totalIncluded = 0;
+    double totalExcluded = 0;
+    double quantityIncluded = 0;
+
+// calcular el total de los features incluidos en el costo base
+    for (Feature feature in widget.service.features) {
+      if (feature.isIncludedInBaseCost) {
+        if (feature.type == FeatureType.selection) {
+          totalIncluded +=
+              feature.weight * feature.cost * (feature.selected ? 1 : 0);
+
+          if (!((widget.service.priority == PriorityType.quantity) &
+              ((feature.baseQuantityIncluded - feature.quantity) >= 0))) {
+            quantityIncluded++;
+            print(quantityIncluded);
+          }
+        } else if (feature.type == FeatureType.quantity) {
+          totalIncluded += feature.cost * feature.quantity;
+
+          if (!((widget.service.priority == PriorityType.quantity) &
+              ((feature.baseQuantityIncluded - feature.quantity) >= 0))) {
+            quantityIncluded +=
+                (feature.quantity - feature.baseQuantityIncluded) *
+                    feature.cost;
+          }
+        }
+      }
     }
-    return total;
+
+// si el total incluido es menor que el costo base, no se agrega nada al total
+    if (totalIncluded < widget.service.baseCost) {
+      totalIncluded = widget.service.baseCost;
+    } else {
+      totalIncluded = widget.service.baseCost + quantityIncluded;
+    }
+
+// calcular el total de los features no incluidos en el costo base
+    for (Feature feature in widget.service.features) {
+      if (!feature.isIncludedInBaseCost) {
+        if (feature.type == FeatureType.selection) {
+          totalExcluded += feature.cost * (feature.selected ? 1 : 0);
+        } else if (feature.type == FeatureType.quantity) {
+          totalExcluded += feature.cost * feature.quantity;
+        }
+      }
+    }
+
+    return totalIncluded + totalExcluded;
   }
 
   @override
   Widget build(BuildContext context) {
     textTheme = Theme.of(context).textTheme;
 
+    List<Feature> sortedFeatures = [...widget.service.features];
+    sortedFeatures.sort((a, b) {
+      if (a.type == FeatureType.quantity && b.type != FeatureType.quantity) {
+        return -1;
+      } else if (a.type != FeatureType.quantity &&
+          b.type == FeatureType.quantity) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+
     return Scaffold(
       appBar: CustomAppBar(
-        title: 'Limpieza',
+        title: widget.service.name,
       ),
       body: Column(
         children: [
@@ -40,8 +97,10 @@ class _ServiceScreenState extends State<ServiceScreen> {
               padding: EdgeInsets.all(10),
               children: [
                 buildTitle(textTheme, context),
-                buildQuantityWidgets(),
-                buildSelectionWidget(),
+                // Genera los widgets de forma dinámica a partir del arreglo sortedFeatures
+                ...sortedFeatures.map((info) {
+                  return buildFeaturesWidgets(info);
+                }).toList(),
                 buildTotal(context),
                 buildScheduleButton(context),
               ],
@@ -55,7 +114,7 @@ class _ServiceScreenState extends State<ServiceScreen> {
 
   Text buildTitle(TextTheme textTheme, BuildContext context) {
     return Text(
-      '¿Qué limpiaremos por ti?',
+      widget.service.text,
       textAlign: TextAlign.center,
       style: textTheme.headline5!.copyWith(
           fontFamily: 'SohoGothicPro-Bold',
@@ -64,79 +123,28 @@ class _ServiceScreenState extends State<ServiceScreen> {
     );
   }
 
-  Widget buildQuantityWidgets() {
-    return Column(
-      children: [
-        QuantityWidget(
-          icon: Icons.king_bed,
-          title: 'Cuartos',
-          subTitle: '',
-          quantity: _bedrooms,
-          onIncrement: () {
-            setState(() {
-              _bedrooms++;
-            });
-          },
-          onDecrement: () {
-            setState(() {
-              if (_bedrooms > 0) {
-                _bedrooms--;
-              }
-            });
-          },
-        ),
-        QuantityWidget(
-          icon: Icons.bathtub,
-          title: 'Baños',
-          subTitle: '',
-          quantity: _bathrooms,
-          onIncrement: () {
-            setState(() {
-              _bathrooms++;
-            });
-          },
-          onDecrement: () {
-            setState(() {
-              if (_bathrooms > 0) {
-                _bathrooms--;
-              }
-            });
-          },
-        ),
-        QuantityWidget(
-          icon: Icons.weekend,
-          title: 'Áreas comunes',
-          subTitle: '(Sala, Comedor)',
-          quantity: _commonAreas,
-          onIncrement: () {
-            setState(() {
-              _commonAreas++;
-            });
-          },
-          onDecrement: () {
-            setState(() {
-              if (_commonAreas > 0) {
-                _commonAreas--;
-              }
-            });
-          },
-        ),
-      ],
-    );
-  }
-
-  SelectionWidget buildSelectionWidget() {
-    return SelectionWidget(
-      icon: Icons.cleaning_services,
-      title: 'Limpieza profunda',
-      subTitle: 'Fiestas, suciedad acumulada(+200)',
-      isSelected: _deepCleaning,
-      onChanged: (bool? value) {
-        setState(() {
-          _deepCleaning = value ?? false;
-        });
-      },
-    );
+  Widget buildFeaturesWidgets(Feature info) {
+    if (info.type == FeatureType.selection) {
+      return SelectionFeatureWidget(
+        feature: info,
+        onSelected: (selected) {
+          setState(() {
+            info.selected = selected;
+          });
+        },
+      );
+    } else if (info.type == FeatureType.quantity) {
+      return QuantityFeatureWidget(
+        feature: info,
+        onQuantityChanged: (quantity) {
+          setState(() {
+            info.quantity = quantity;
+          });
+        },
+      );
+    } else {
+      throw Exception('Tipo de Feature no soportado.');
+    }
   }
 
   Column buildTotal(BuildContext context) {
@@ -159,7 +167,7 @@ class _ServiceScreenState extends State<ServiceScreen> {
             text: TextSpan(
               children: [
                 TextSpan(
-                  text: '\$${_calculateTotal()} ',
+                  text: '\$${(_calculateTotalCost()).toStringAsFixed(2)}',
                   style: TextStyle(
                     fontSize: 50,
                     fontWeight: FontWeight.bold,

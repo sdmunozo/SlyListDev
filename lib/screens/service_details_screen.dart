@@ -29,6 +29,7 @@ class ServiceDetailsScreen extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
         children: [
+          /*
           const SizedBox(height: 10),
           Text('Usuario:', style: boldSubtitleStyle),
           Text('Carlos Martínez', style: regularSubtitleStyle),
@@ -52,7 +53,6 @@ class ServiceDetailsScreen extends StatelessWidget {
               );
             } else if (feature is SelectionFeature) {
               return SelectionFeatureWidget(
-                icon: Icons.check,
                 feature: feature,
                 onChanged: (bool? isSelected) {},
               );
@@ -60,7 +60,7 @@ class ServiceDetailsScreen extends StatelessWidget {
               return const SizedBox.shrink();
             }
           }).toList(),
-          const SizedBox(height: 16),
+          const SizedBox(height: 16),*/
         ],
       ),
     );
