@@ -10,7 +10,7 @@ List<Service> mockInitServices = [
     text: "¿Qué limpiaremos por ti?",
     color: "#ADD8E6",
     baseCost: 450,
-    baseFeatures: 6,
+    baseFeatures: 4,
     priority: PriorityType.quantity,
     features: [
       mockInitFeatures[0],

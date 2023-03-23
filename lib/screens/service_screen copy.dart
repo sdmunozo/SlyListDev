@@ -31,31 +31,15 @@ class _ServiceScreenState extends State<ServiceScreen> {
         if (feature.type == FeatureType.selection) {
           totalIncluded +=
               feature.weight * feature.cost * (feature.selected ? 1 : 0);
-
-          /*if ((widget.service.priority == PriorityType.quantity) &
-              (quantityMaxIncluded > widget.service.baseFeatures)) {
-            //quantityMaxIncluded++;
-
-            //quantityIncluded =
-            //  (quantityMaxIncluded - feature.baseQuantityIncluded) *
-            //    feature.cost;
-
-            //print(quantityIncluded);
-          }*/
         } else if (feature.type == FeatureType.quantity) {
           totalIncluded += feature.cost * feature.quantity;
           quantityMaxIncluded += feature.quantity;
 
-          if (widget.service.priority == PriorityType.quantity) {
-            if ((feature.quantity - feature.baseQuantityIncluded) > 0) {
-              quantityIncluded +=
-                  (feature.quantity - feature.baseQuantityIncluded) *
-                      feature.cost;
-            } else if (quantityMaxIncluded > widget.service.baseFeatures) {
-              quantityIncluded +=
-                  (quantityMaxIncluded - feature.baseQuantityIncluded) *
-                      feature.cost;
-            }
+          if ((widget.service.priority == PriorityType.quantity) &
+              ((feature.quantity - feature.baseQuantityIncluded) > 0)) {
+            quantityIncluded +=
+                (feature.quantity - feature.baseQuantityIncluded) *
+                    feature.cost;
           }
         }
       }
