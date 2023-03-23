@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:slylist_app/models/service.dart';
+import 'package:slylist_app/domains/models/service.dart';
 import 'package:slylist_app/data/database.dart';
 import 'package:slylist_app/screens/service_screen.dart';
 import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
@@ -9,7 +9,7 @@ import 'package:slylist_app/widgets/side_menu.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:slylist_app/theme.dart';
+import 'package:slylist_app/app/theme.dart';
 import '../data/ListIconData.dart';
 
 class HomeScreen extends StatefulWidget {

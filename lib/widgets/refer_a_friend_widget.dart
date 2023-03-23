@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:slylist_app/screens/referral_code_screen.dart';
-import 'package:slylist_app/theme.dart';
+import 'package:slylist_app/app/theme.dart';
 import 'package:slylist_app/widgets/card_widget.dart';
 
 class ReferAFriendWidget extends StatelessWidget {

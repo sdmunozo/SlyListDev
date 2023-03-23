@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:slylist_app/screens/home_screen.dart';
 import 'package:slylist_app/screens/register_screen.dart';
 import 'package:slylist_app/screens/reset_password.dart';
-import 'package:slylist_app/theme.dart';
+import 'package:slylist_app/app/theme.dart';
 import 'package:slylist_app/widgets/large_button_widget.dart';
 import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
 

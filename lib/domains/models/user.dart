@@ -1,6 +1,6 @@
 // models/user.dart
-import 'package:slylist_app/models/requested_service.dart';
-import 'package:slylist_app/models/uploaded_document.dart';
+import 'package:slylist_app/domains/models/requested_service.dart';
+import 'package:slylist_app/domains/models/uploaded_document.dart';
 
 class User {
   final String id;

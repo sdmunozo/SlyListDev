@@ -1,4 +1,4 @@
-import 'package:slylist_app/models/feature.dart';
+import 'package:slylist_app/domains/models/feature.dart';
 
 List<Feature> mockFeatures = [
   Feature(

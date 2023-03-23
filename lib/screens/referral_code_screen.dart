@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
-import '../theme.dart';
+import '../app/theme.dart';
 
 class ReferralCodeScreen extends StatelessWidget {
   final String referralCode;

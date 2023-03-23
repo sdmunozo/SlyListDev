@@ -1,4 +1,4 @@
-import 'package:slylist_app/models/service.dart';
+import 'package:slylist_app/domains/models/service.dart';
 import './init_features.dart';
 
 List<Service> mockInitServices = [
@@ -11,7 +11,7 @@ List<Service> mockInitServices = [
     color: "#ADD8E6",
     baseCost: 450,
     baseFeatures: 4,
-    priority: PriorityType.quantity,
+    priority: PriorityType.cost,
     features: [
       mockInitFeatures[0],
       mockInitFeatures[1],

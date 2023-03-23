@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:slylist_app/screens/edit_address_screen.dart';
 import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
-import 'package:slylist_app/theme.dart';
+import 'package:slylist_app/app/theme.dart';
 
 class Address {
   final String alias;

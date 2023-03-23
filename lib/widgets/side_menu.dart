@@ -5,7 +5,7 @@ import 'package:slylist_app/screens/help_screen.dart';
 import 'package:slylist_app/screens/payment_methods_screen.dart';
 import 'package:slylist_app/screens/service_history_screen.dart';
 import 'package:slylist_app/screens/terms_and_conditions_screen.dart';
-import 'package:slylist_app/theme.dart';
+import 'package:slylist_app/app/theme.dart';
 
 class SideMenu extends StatelessWidget {
   @override

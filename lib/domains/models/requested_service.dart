@@ -1,6 +1,6 @@
 // models/requested_service.dart
 
-import 'package:slylist_app/models/service.dart';
+import 'package:slylist_app/domains/models/service.dart';
 
 class RequestedService {
   final String id;

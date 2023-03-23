@@ -1,4 +1,4 @@
-import 'package:slylist_app/models/service.dart';
+import 'package:slylist_app/domains/models/service.dart';
 import './features.dart';
 
 List<Service> mockServices = [

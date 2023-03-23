@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:slylist_app/screens/confirmation_screen.dart';
-import 'package:slylist_app/theme.dart';
+import 'package:slylist_app/app/theme.dart';
 import 'package:slylist_app/widgets/large_button_widget.dart';
 import 'package:slylist_app/widgets/small_button_widget.dart';
 

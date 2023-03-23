@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:slylist_app/theme.dart';
+import 'package:slylist_app/app/theme.dart';
 
 enum ButtonColorOption { option1, option2, option3 }
 

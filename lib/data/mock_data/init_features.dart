@@ -1,4 +1,4 @@
-import 'package:slylist_app/models/feature.dart';
+import 'package:slylist_app/domains/models/feature.dart';
 
 List<Feature> mockInitFeatures = [
   Feature(
@@ -37,7 +37,7 @@ List<Feature> mockInitFeatures = [
     name: "Limpieza Profunda",
     note: "Fiestas, suciedad acumulada.",
     cost: 200,
-    isIncludedInBaseCost: true,
+    isIncludedInBaseCost: false,
   ),
   Feature(
     id: "5",

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:slylist_app/models/feature.dart';
-import 'package:slylist_app/models/service.dart';
+import 'package:slylist_app/domains/models/feature.dart';
+import 'package:slylist_app/domains/models/service.dart';
 import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
 import 'package:slylist_app/widgets/date_time_picker_bottom_widget.dart';
 import 'package:slylist_app/widgets/large_button_widget.dart';
@@ -23,7 +23,6 @@ class _ServiceScreenState extends State<ServiceScreen> {
     double totalIncluded = 0;
     double totalExcluded = 0;
     double quantityIncluded = 0;
-    int quantityMaxIncluded = 0;
 
 // calcular el total de los features incluidos en el costo base
     for (Feature feature in widget.service.features) {
@@ -31,41 +30,23 @@ class _ServiceScreenState extends State<ServiceScreen> {
         if (feature.type == FeatureType.selection) {
           totalIncluded +=
               feature.weight * feature.cost * (feature.selected ? 1 : 0);
-
-          /*if ((widget.service.priority == PriorityType.quantity) &
-              (quantityMaxIncluded > widget.service.baseFeatures)) {
-            //quantityMaxIncluded++;
-
-            //quantityIncluded =
-            //  (quantityMaxIncluded - feature.baseQuantityIncluded) *
-            //    feature.cost;
-
-            //print(quantityIncluded);
-          }*/
         } else if (feature.type == FeatureType.quantity) {
           totalIncluded += feature.cost * feature.quantity;
-          quantityMaxIncluded += feature.quantity;
 
           if (widget.service.priority == PriorityType.quantity) {
             if ((feature.quantity - feature.baseQuantityIncluded) > 0) {
-              quantityIncluded +=
+              quantityIncluded =
                   (feature.quantity - feature.baseQuantityIncluded) *
-                      feature.cost;
-            } else if (quantityMaxIncluded > widget.service.baseFeatures) {
-              quantityIncluded +=
-                  (quantityMaxIncluded - feature.baseQuantityIncluded) *
                       feature.cost;
             }
           }
         }
       }
     }
-
-    print(quantityMaxIncluded);
 // si el total incluido es menor que el costo base, no se agrega nada al total
     if (totalIncluded < widget.service.baseCost) {
       totalIncluded = widget.service.baseCost + quantityIncluded;
-    } else {
+    } else if (widget.service.priority == PriorityType.quantity) {
       totalIncluded = widget.service.baseCost + quantityIncluded;
     }
 

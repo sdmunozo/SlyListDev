@@ -1,6 +1,6 @@
 // ... Importa otros archivos de datos de prueba aquí
 import 'package:slylist_app/data/mock_data/init_services.dart';
-import 'package:slylist_app/models/service.dart';
+import 'package:slylist_app/domains/models/service.dart';
 import 'mock_data/services.dart';
 
 class Database {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:slylist_app/data/ListIconData.dart';
-import 'package:slylist_app/models/feature.dart';
-import 'package:slylist_app/theme.dart';
+import 'package:slylist_app/domains/models/feature.dart';
+import 'package:slylist_app/app/theme.dart';
 
 class SelectionFeatureWidget extends StatefulWidget {
   final Feature feature;
