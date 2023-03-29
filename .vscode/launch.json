@@ -1,0 +1,26 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "slylist_app",
+        "request": "launch",
+        "type": "dart",
+        "program": "lib/app/main.dart"
+      },
+      {
+        "name": "slylist_app (profile mode)",
+        "request": "launch",
+        "type": "dart",
+        "program": "lib/app/main.dart",
+        "flutterMode": "profile"
+      },
+      {
+        "name": "slylist_app (release mode)",
+        "request": "launch",
+        "type": "dart",
+        "program": "lib/app/main.dart",
+        "flutterMode": "release"
+      }
+    ]
+  }
+  

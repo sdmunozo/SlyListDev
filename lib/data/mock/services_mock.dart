@@ -1,7 +1,7 @@
+import 'package:slylist_app/data/mock/features_mock.dart';
 import 'package:slylist_app/domains/models/service.dart';
-import './init_features.dart';
 
-List<Service> mockInitServices = [
+List<Service> services = [
   Service(
     id: "1",
     name: "Limpieza",
@@ -9,16 +9,7 @@ List<Service> mockInitServices = [
     enabled: true,
     text: "¿Qué limpiaremos por ti?",
     color: "#ADD8E6",
-    baseCost: 450,
-    baseFeatures: 4,
-    priority: PriorityType.cost,
-    features: [
-      mockInitFeatures[0],
-      mockInitFeatures[1],
-      mockInitFeatures[2],
-      mockInitFeatures[3],
-      mockInitFeatures[4]
-    ],
+    features: [features[0], features[1], features[2]],
   ),
   Service(
     id: "2",
@@ -27,7 +18,7 @@ List<Service> mockInitServices = [
     color: "#E8F8F5",
     text: "¡Te ayudaremos con todas tus dudas!",
     enabled: true,
-    features: [mockInitFeatures[3], mockInitFeatures[4], mockInitFeatures[5]],
+    features: [features[3], features[4], features[5]],
   ),
   Service(
     id: "3",
@@ -35,21 +26,21 @@ List<Service> mockInitServices = [
     icon: "local_florist",
     enabled: true,
     color: "#FADADD",
-    features: [mockInitFeatures[6], mockInitFeatures[7], mockInitFeatures[8]],
+    features: [features[6], features[7], features[8]],
   ),
   Service(
     id: "4",
     name: "Service 4",
     icon: "clean_hands",
     color: "#C1E1C1",
-    features: [mockInitFeatures[0], mockInitFeatures[0], mockInitFeatures[1]],
+    features: [features[0], features[0], features[1]],
   ),
   Service(
     id: "5",
     name: "Service 5",
     icon: "fireplace",
     color: "#F2D7EE",
-    features: [mockInitFeatures[2], mockInitFeatures[3], mockInitFeatures[4]],
+    features: [features[2], features[3], features[4]],
   ),
   Service(
     id: "6",
@@ -57,21 +48,21 @@ List<Service> mockInitServices = [
     icon: "ac_unit",
     enabled: true,
     color: "#FFDAB9",
-    features: [mockInitFeatures[5], mockInitFeatures[6], mockInitFeatures[7]],
+    features: [features[5], features[6], features[7]],
   ),
   Service(
     id: "7",
     name: "Service 7",
     icon: "water_damage",
     color: "#B0E0E6",
-    features: [mockInitFeatures[8], mockInitFeatures[0], mockInitFeatures[0]],
+    features: [features[8], features[0], features[0]],
   ),
   Service(
     id: "8",
     name: "Service 8",
     icon: "room",
     color: "#F5DEB3",
-    features: [mockInitFeatures[1], mockInitFeatures[2], mockInitFeatures[3]],
+    features: [features[1], features[2], features[3]],
   ),
   Service(
     id: "9",
@@ -79,13 +70,13 @@ List<Service> mockInitServices = [
     icon: "sports_handball",
     enabled: true,
     color: "#D8BFD8",
-    features: [mockInitFeatures[4], mockInitFeatures[5], mockInitFeatures[6]],
+    features: [features[4], features[5], features[6]],
   ),
   Service(
     id: "10",
     name: "Service 10",
     icon: "euro",
     color: "#E0FFFF",
-    features: [mockInitFeatures[7], mockInitFeatures[8], mockInitFeatures[0]],
+    features: [features[7], features[8], features[0]],
   )
 ];

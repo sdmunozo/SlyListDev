@@ -1,6 +1,6 @@
 import 'package:slylist_app/domains/models/feature.dart';
 
-List<Feature> mockInitFeatures = [
+List<Feature> features = [
   Feature(
     id: "1",
     type: FeatureType.quantity,

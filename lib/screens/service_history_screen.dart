@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:slylist_app/data/ListIconData.dart';
+import 'package:slylist_app/data/mock/requested_service_mock.dart';
+import 'package:slylist_app/domains/models/requested_service.dart';
 import 'package:slylist_app/screens/service_details_screen.dart';
 import 'package:slylist_app/widgets/custom_app_bar_widget.dart';
-import 'package:slylist_app/_models/feature_model.dart';
+import 'package:slylist_app/domains/models/feature.dart';
 import 'package:slylist_app/app/theme.dart';
 import 'package:slylist_app/widgets/small_button_widget.dart';
+import 'package:intl/intl.dart';
 
 class ServiceHistoryScreen extends StatefulWidget {
   @override
@@ -13,8 +17,8 @@ class ServiceHistoryScreen extends StatefulWidget {
 class _ServiceHistoryScreenState extends State<ServiceHistoryScreen>
     with SingleTickerProviderStateMixin {
   TabController? _tabController;
-  final List<ServiceHistory> scheduledServices = _getScheduledServices();
-  final List<ServiceHistory> completedServices = _getCompletedServices();
+  final List<RequestedService> scheduledServices = _getScheduledServices();
+  final List<RequestedService> completedServices = _getCompletedServices();
 
   @override
   void initState() {
@@ -58,7 +62,7 @@ class _ServiceHistoryScreenState extends State<ServiceHistoryScreen>
 }
 
 class ServiceList extends StatelessWidget {
-  final List<ServiceHistory> serviceList;
+  final List<RequestedService> serviceList;
 
   const ServiceList({required this.serviceList});
 
@@ -72,7 +76,7 @@ class ServiceList extends StatelessWidget {
     );
   }
 
-  Widget _buildServiceCard(BuildContext context, ServiceHistory service) {
+  Widget _buildServiceCard(BuildContext context, RequestedService service) {
     return Card(
       margin: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
       child: Padding(
@@ -91,17 +95,22 @@ class ServiceList extends StatelessWidget {
     );
   }
 
-  Widget _buildServiceHeader(BuildContext context, ServiceHistory service) {
+  Widget _buildServiceHeader(
+      BuildContext context, RequestedService requestedService) {
+    DateTime serviceDateTime = requestedService.dateTime.toLocal();
+    String date = DateFormat('MMM d, yyyy').format(serviceDateTime);
+    String time = DateFormat('h:mm a').format(serviceDateTime);
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Icon(service.icon, size: 40, color: AppTheme.primaryNavyBlue),
+        Icon(iconMap[requestedService.service.icon] ?? Icons.error,
+            size: 40, color: AppTheme.primaryNavyBlue),
         Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Text(service.date, style: AppTheme.lightTheme.textTheme.subtitle1),
+            Text(date, style: AppTheme.lightTheme.textTheme.subtitle1),
             SizedBox(height: 4),
-            Text(service.time),
+            Text(time),
           ],
         ),
       ],
@@ -109,32 +118,53 @@ class ServiceList extends StatelessWidget {
   }
 
   Widget _buildServiceInformation(
-      BuildContext context, ServiceHistory service) {
+      BuildContext context, RequestedService requestedService) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(service.serviceName,
+        Text(requestedService.service.name,
             style: AppTheme.lightTheme.textTheme.subtitle2),
         SizedBox(height: 8),
-        Text('Costo: \$${service.cost.toStringAsFixed(2)}'),
+        Text('Costo: \$${requestedService.cost.toStringAsFixed(2)}'),
         SizedBox(height: 4),
-        Text('Dirección: ${service.address}'),
+        Text('Dirección: ${requestedService.addressId}'),
         SizedBox(height: 4),
-        Text('Forma de pago: ${service.paymentMethod}'),
+        Text('Forma de pago: ${requestedService.paymentMethod}'),
         SizedBox(height: 4),
-        Text('Persona que lo realizará: ${service.serviceProvider}',
+        Text(
+            'Persona que lo realizará: ${requestedService.slyerfirstName} ${requestedService.slyerlastName} ',
             style: Theme.of(context).textTheme.bodyText2),
       ],
     );
   }
 
   Widget _buildServiceButtonOrRating(
-      BuildContext context, ServiceHistory service) {
-    return service.completed
-        ? service.rating != null
-            ? _buildRatingRow(context, service.rating!)
-            : _buildRatingButton(context, service)
-        : _buildDetailsButton(context, service);
+      BuildContext context, RequestedService requestedService) {
+    if (requestedService.status == ServiceStatusType.Completed) {
+      if (requestedService.slyerRating != -1) {
+        return _buildRatingRow(context, (requestedService.slyerRating).toInt());
+      } else {
+        return _buildRatingButton(context, requestedService);
+      }
+    } else if (requestedService.status == ServiceStatusType.Cancelled) {
+      return _buildCancelledButton(context, requestedService);
+    } else {
+      return _buildDetailsButton(context, requestedService);
+    }
+  }
+
+  Widget _buildCancelledButton(
+      BuildContext context, RequestedService requestedService) {
+    return ElevatedButton(
+      onPressed: null,
+      child: Text('Cancelado', style: TextStyle(color: Colors.white)),
+      style: ElevatedButton.styleFrom(
+        primary: Colors.red,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+      ),
+    );
   }
 
   Widget _buildRatingRow(BuildContext context, int rating) {
@@ -149,23 +179,24 @@ class ServiceList extends StatelessWidget {
     );
   }
 
-  Widget _buildRatingButton(BuildContext context, ServiceHistory service) {
+  Widget _buildRatingButton(BuildContext context, RequestedService service) {
     return SmallButtonWidget(
       onPressed: () {
-        print('Calificar servicio ${service.serviceName}');
+        print('Calificar servicio ${service.service.name}');
       },
       buttonText: 'Calificar',
       colorOption: s_ButtonColorOption.option1,
     );
   }
 
-  Widget _buildDetailsButton(BuildContext context, ServiceHistory service) {
+  Widget _buildDetailsButton(BuildContext context, RequestedService service) {
     return SmallButtonWidget(
         onPressed: () {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ServiceDetailsScreen(service: service),
+              builder: (context) =>
+                  ServiceDetailsScreen(requestedService: service),
             ),
           );
         },
@@ -174,164 +205,16 @@ class ServiceList extends StatelessWidget {
   }
 }
 
-List<ServiceHistory> _getScheduledServices() {
-// Ejemplos de servicios programados y completados
-  final List<ServiceHistory> scheduledServices = [
-    ServiceHistory(
-      completed: false,
-      icon: Icons.home_repair_service,
-      date: '2023-04-10',
-      time: '15:00',
-      serviceName: 'Limpieza',
-      cost: 150.0,
-      address: 'Calle 123 #45-67',
-      paymentMethod: 'Tarjeta de crédito',
-      serviceProvider: 'Pedro Pérez',
-      features: [
-        QuantityFeature(
-            id: 'q1',
-            title: 'Cuartos',
-            subTitle: '',
-            quantity: 3,
-            unitCost: 100.0),
-        QuantityFeature(
-            id: 'q2',
-            title: 'Baños',
-            subTitle: '',
-            quantity: 2,
-            unitCost: 100.0),
-        QuantityFeature(
-            id: 'q3',
-            title: 'Áreas comunes',
-            subTitle: '(Sala, comedor)',
-            quantity: 3,
-            unitCost: 30.0),
-        SelectionFeature(
-            id: 's1',
-            title: 'Limpieza profunda',
-            subTitle: 'Fiestas, suciedad acumulada (+200)',
-            isSelected: true,
-            cost: 200.0),
-      ],
-    ),
-    ServiceHistory(
-      completed: false,
-      icon: Icons.electrical_services,
-      date: '2023-04-15',
-      time: '09:00',
-      serviceName: 'Instalación eléctrica',
-      cost: 200.0,
-      address: 'Avenida 76 #20-30',
-      paymentMethod: 'Efectivo',
-      serviceProvider: 'Juan García',
-      features: [
-        QuantityFeature(
-          id: 'q1',
-          title: 'Característica de cantidad 1',
-          subTitle: 'Subtítulo de cantidad 1',
-          quantity: 1,
-          unitCost: 10.0,
-        ),
-        SelectionFeature(
-          id: 's3',
-          title: 'Característica de selección 3',
-          subTitle: 'Subtítulo de selección 3',
-          isSelected: false,
-          cost: 150.0,
-        ),
-      ],
-    ),
-  ];
-
-  return scheduledServices;
+List<RequestedService> _getScheduledServices() {
+  return requestedServices
+      .where((service) => service.status == ServiceStatusType.Appointment)
+      .toList();
 }
 
-List<ServiceHistory> _getCompletedServices() {
-  final List<ServiceHistory> completedServices = [
-    ServiceHistory(
-      completed: true,
-      icon: Icons.cleaning_services,
-      date: '2023-03-20',
-      time: '14:00',
-      serviceName: 'Limpieza de hogar',
-      cost: 100.0,
-      address: 'Carrera 50 #25-80',
-      paymentMethod: 'Efectivo',
-      serviceProvider: 'María Rodríguez',
-      features: [
-        QuantityFeature(
-          id: 'q1',
-          title: 'Característica de cantidad 1',
-          subTitle: 'Subtítulo de cantidad 1',
-          quantity: 1,
-          unitCost: 10.0,
-        ),
-        SelectionFeature(
-          id: 's3',
-          title: 'Característica de selección 3',
-          subTitle: 'Subtítulo de selección 3',
-          isSelected: false,
-          cost: 150.0,
-        ),
-      ],
-    ),
-    ServiceHistory(
-      completed: true,
-      icon: Icons.grass,
-      date: '2023-03-25',
-      time: '10:00',
-      serviceName: 'Mantenimiento de jardín',
-      cost: 120.0,
-      address: 'Diagonal 60 #35-90',
-      paymentMethod: 'Tarjeta de crédito',
-      serviceProvider: 'José Gómez',
-      rating: 4,
-      features: [
-        QuantityFeature(
-          id: 'q1',
-          title: 'Característica de cantidad 1',
-          subTitle: 'Subtítulo de cantidad 1',
-          quantity: 1,
-          unitCost: 10.0,
-        ),
-        SelectionFeature(
-          id: 's3',
-          title: 'Característica de selección 3',
-          subTitle: 'Subtítulo de selección 3',
-          isSelected: false,
-          cost: 150.0,
-        ),
-      ],
-    ),
-  ];
-
-  return completedServices;
-}
-
-class ServiceHistory {
-  final bool completed;
-  final IconData icon;
-  final String date;
-  final String time;
-  final String serviceName;
-  final double cost;
-  final String address;
-  final String paymentMethod;
-  final String serviceProvider;
-  final int? rating;
-  final List<Feature> features;
-
-  ServiceHistory({
-    required this.completed,
-    required this.icon,
-    required this.date,
-    required this.time,
-    required this.serviceName,
-    required this.cost,
-    required this.address,
-    required this.paymentMethod,
-    required this.serviceProvider,
-    required this.features,
-    this.rating,
-  });
+List<RequestedService> _getCompletedServices() {
+  return requestedServices
+      .where((service) =>
+          service.status == ServiceStatusType.Cancelled ||
+          service.status == ServiceStatusType.Completed)
+      .toList();
 }
